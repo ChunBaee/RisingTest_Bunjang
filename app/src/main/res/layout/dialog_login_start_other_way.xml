@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:background="@android:color/transparent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/dialog_login_start_other">
+
+        <TextView
+            android:id="@+id/dialog_txt_login_other_way"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:layout_marginTop="30sp"
+            android:text="@string/login_start_other"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/dialog_btn_login_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/dialog_txt_login_other_way"
+            app:layout_constraintTop_toBottomOf="@id/dialog_txt_login_other_way">
+
+            <ImageView
+                android:id="@+id/dialog_img_login_phone"
+                android:layout_width="45sp"
+                android:layout_height="45sp"
+                android:src="@drawable/img_login_start_phone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10sp"
+                android:text="@string/login_dialog_phone"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
