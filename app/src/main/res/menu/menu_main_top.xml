@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/top_main_search"
+        android:icon="@drawable/icon_bottom_menu_search"
+        android:title="" />
+
+    <item
+        android:id="@+id/top_main_alarm"
+        android:icon="@drawable/icon_main_toolbar_alarm"
+        android:title="" />
+</menu>

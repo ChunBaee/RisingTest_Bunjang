@@ -39,5 +39,4 @@ class LoginPagerAdapter (imgList : MutableList<Int>, context : Context) : Recycl
     override fun getItemCount(): Int {
         return Int.MAX_VALUE
     }
-
 }

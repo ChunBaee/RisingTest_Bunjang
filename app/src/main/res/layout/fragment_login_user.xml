@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="이름을"
-        android:textSize="25sp"
+        android:textSize="27sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginTop="30sp"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="입력해주세요"
-        android:textSize="25sp"
+        android:textSize="27sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/login_user_txt_changeable1"
@@ -49,6 +49,41 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/login_user_layout_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="70sp"
+            android:layout_marginTop="25sp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/login_user_txt_phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="휴대폰번호"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <EditText
+                android:id="@+id/login_user_edt_phone_number"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:maxLength="11"
+                android:inputType="number"
+                android:textCursorDrawable="@color/black"
+                android:backgroundTint="@color/login_user_edittext_unfocused_tint"
+                app:layout_constraintWidth_percent="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent" >
+                <requestFocus/>
+            </EditText>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_user_btn_telecom"
         android:layout_width="match_parent"
@@ -62,11 +97,12 @@
         app:layout_constraintLeft_toLeftOf="parent" >
         
         <TextView
+            android:id="@+id/login_user_txt_telecom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="통신사"
             android:textStyle="bold"
-            android:textSize="15sp"
+            android:textSize="17sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
@@ -82,7 +118,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1sp"
-            android:background="#E6E6E6"
+            android:background="@color/login_user_edittext_unfocused_tint"
             app:layout_constraintBottom_toBottomOf="parent"/>
         
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -113,7 +149,10 @@
             android:layout_width="0sp"
             android:layout_height="wrap_content"
             android:maxLength="6"
-            android:backgroundTint="#E6E6E6"
+            android:textCursorDrawable="@color/black"
+            android:backgroundTint="@color/login_user_edittext_unfocused_tint"
+            android:inputType="number"
+            android:textStyle="bold"
             app:layout_constraintWidth_percent="0.6"
             app:layout_constraintTop_toBottomOf="@id/login_user_txt_birth"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -125,6 +164,8 @@
             android:layout_height="wrap_content"
             android:maxLength="1"
             android:backgroundTint="#E6E6E6"
+            android:inputType="number"
+            android:textStyle="bold"
             android:layout_marginStart="15sp"
             app:layout_constraintWidth_percent="0.1"
             app:layout_constraintTop_toTopOf="@id/login_user_edt_birth_first"
@@ -166,8 +207,10 @@
             android:id="@+id/login_user_edt_name"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:maxLength="6"
-            android:backgroundTint="#E6E6E6"
+            android:textCursorDrawable="@color/black"
+            android:backgroundTint="@color/login_user_edittext_unfocused_tint"
             app:layout_constraintWidth_percent="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent" >
@@ -179,31 +222,31 @@
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/login_user_btn_next"
         android:layout_width="0sp"
-        android:layout_height="0sp"
-        android:layout_marginBottom="25sp"
+        android:layout_height="40sp"
+        android:layout_marginBottom="40sp"
         android:layout_weight="1"
         android:background="@drawable/btn_login_user_next"
         app:layout_constraintWidth_percent="0.9"
-        app:layout_constraintHeight_percent="0.07"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" >
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="다음"
             android:textStyle="bold"
             android:textColor="@color/white"
+            android:gravity="center"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

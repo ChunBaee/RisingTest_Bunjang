@@ -12,9 +12,4 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(ActivityLoginBinding::i
 
         supportFragmentManager.beginTransaction().replace(R.id.login_container, LoginStartFragment()).commit()
     }
-
-    fun manageFragment() {
-
-    }
-
 }

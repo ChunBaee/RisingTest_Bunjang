@@ -13,4 +13,7 @@
     <color name="login_start_kakao_background">#F7E600</color>
     <color name="login_start_kakao_text">#3A1D1D</color>
     <color name="login_start_other_text">#7C7A85</color>
+    <color name="login_user_edittext_unfocused_tint">#E6E6E6</color>
+    <color name="login_user_telecom_radio_unclicked">#E6E6E6</color>
+    <color name="login_user_telecom_radio_clicked">#D70000</color>
 </resources>

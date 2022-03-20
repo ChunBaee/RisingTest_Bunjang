@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import com.jcorp.risingtest.MainActivity
 import com.jcorp.risingtest.config.BaseActivity
 import com.jcorp.risingtest.databinding.ActivitySplashBinding
 import com.jcorp.risingtest.src.main.login.LoginActivity

@@ -3,6 +3,7 @@ package com.jcorp.risingtest.src.main.login
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import android.widget.LinearLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jcorp.risingtest.R
@@ -20,15 +21,15 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
 
         setPager()
 
-        binding.loginStartBtnKakao.setOnClickListener(this)
-        binding.loginStartBtnOther.setOnClickListener(this)
+        binding!!.loginStartBtnKakao.setOnClickListener(this)
+        binding!!.loginStartBtnOther.setOnClickListener(this)
 
     }
 
     private fun setPager() {
-        binding.loginStartPager.adapter = LoginPagerAdapter(setPagerList(), requireActivity())
-        binding.loginStartPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        binding.loginStartPager.setCurrentItem((Int.MAX_VALUE / 2 + 1), false)
+        binding!!.loginStartPager.adapter = LoginPagerAdapter(setPagerList(), requireActivity())
+        binding!!.loginStartPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding!!.loginStartPager.setCurrentItem((Int.MAX_VALUE / 2 + 1), false)
 
         //인디케이터 추가할 것
     }
@@ -43,7 +44,7 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
         val handler = Handler()
         val update = Runnable {
             run() {
-                binding.loginStartPager.currentItem = binding.loginStartPager.currentItem + 1
+                binding!!.loginStartPager.currentItem = binding!!.loginStartPager.currentItem + 1
             }
         }
         pagerTimer?.schedule(object : TimerTask() {
@@ -68,13 +69,14 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
             }
 
             R.id.login_start_btn_other -> {
-                /*val loginDialog = LoginOtherWayDialog()
-                loginDialog.show(requireActivity().supportFragmentManager, "LOGINBOTTOMDIALOG")*/
+                val loginSheetView = layoutInflater.inflate(R.layout.dialog_login_start_other_way, null)
                 val loginDialog = BottomSheetDialog(requireActivity())
-                loginDialog.setContentView(R.layout.dialog_login_start_other_way)
+                loginDialog.setContentView(loginSheetView)
                 loginDialog.show()
-                // 둥글게 만들 방법 찾기
-
+                loginSheetView.findViewById<LinearLayout>(R.id.dialog_btn_login_phone).setOnClickListener {
+                    loginDialog.dismiss()
+                    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.login_start_layout, LoginUserFragment()).commit()
+                }
             }
         }
     }

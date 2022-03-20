@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/main_home_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="match_parent"
+                    android:layout_height="326sp"
+                    android:fitsSystemWindows="true"
+                    android:background="@drawable/ic_launcher_background"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--뷰페이져 넣기-->
+
+                <View
+                    android:id="@+id/main_home_pager_rv_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="5sp"
+                    app:layout_constraintTop_toBottomOf="@id/img" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1000sp"
+                    android:background="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/main_home_pager_rv_divider" />
+
+                <!--리사이클러뷰 넣기-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/main_home_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_marginTop="40sp"
+            android:fitsSystemWindows="true"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/main_home_btn_menu"
+                android:layout_width="18sp"
+                android:layout_height="18sp"
+                android:clickable="true"
+                android:background="@drawable/icon_main_toolbar_menu" />
+
+            <ImageView
+                android:id="@+id/main_home_btn_alarm"
+                android:layout_width="23sp"
+                android:layout_height="23sp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="15sp"
+                android:clickable="true"
+                android:background="@drawable/icon_main_toolbar_alarm" />
+
+            <ImageView
+                android:id="@+id/main_home_btn_search"
+                android:layout_width="23sp"
+                android:layout_height="23sp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="15sp"
+                android:clickable="true"
+                android:background="@drawable/icon_main_toolbar_search" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
