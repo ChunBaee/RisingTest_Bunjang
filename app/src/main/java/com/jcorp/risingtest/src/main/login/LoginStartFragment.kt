@@ -2,8 +2,10 @@ package com.jcorp.risingtest.src.main.login
 
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jcorp.risingtest.R
@@ -16,20 +18,22 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
     View.OnClickListener {
 
     private var pagerTimer : Timer? = Timer()
+    lateinit var update : Runnable
+    var isFinish = false
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setPager()
 
-        binding!!.loginStartBtnKakao.setOnClickListener(this)
-        binding!!.loginStartBtnOther.setOnClickListener(this)
+        binding.loginStartBtnKakao.setOnClickListener(this)
+        binding.loginStartBtnOther.setOnClickListener(this)
 
     }
 
     private fun setPager() {
-        binding!!.loginStartPager.adapter = LoginPagerAdapter(setPagerList(), requireActivity())
-        binding!!.loginStartPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        binding!!.loginStartPager.setCurrentItem((Int.MAX_VALUE / 2 + 1), false)
+        binding.loginStartPager.adapter = LoginPagerAdapter(setPagerList(), requireActivity())
+        binding.loginStartPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        binding.loginStartPager.setCurrentItem((Int.MAX_VALUE / 2 + 1), false)
 
         //인디케이터 추가할 것
     }
@@ -42,11 +46,14 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
         super.onResume()
 
         val handler = Handler()
-        val update = Runnable {
-            run() {
-                binding!!.loginStartPager.currentItem = binding!!.loginStartPager.currentItem + 1
+            update = Runnable {
+                run {
+                    while(isFinish) {
+                        binding.loginStartPager.currentItem =
+                            binding.loginStartPager.currentItem + 1
+                    }
+                }
             }
-        }
         pagerTimer?.schedule(object : TimerTask() {
             override fun run() {
                 handler.post(update)
@@ -59,6 +66,8 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
         super.onPause()
         if(pagerTimer != null) {
             pagerTimer = null
+
+            Log.d("----", "onPause: WHY")
         }
     }
 
@@ -66,6 +75,7 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
         when(view?.id) {
             R.id.login_start_btn_kakao -> {
                 requireActivity().supportFragmentManager.beginTransaction().replace(R.id.login_start_layout, LoginUserFragment()).commit()
+                requireActivity().supportFragmentManager.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE)
             }
 
             R.id.login_start_btn_other -> {
@@ -76,6 +86,7 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
                 loginSheetView.findViewById<LinearLayout>(R.id.dialog_btn_login_phone).setOnClickListener {
                     loginDialog.dismiss()
                     requireActivity().supportFragmentManager.beginTransaction().replace(R.id.login_start_layout, LoginUserFragment()).commit()
+                    requireActivity().supportFragmentManager.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE)
                 }
             }
         }

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jcorp.risingtest.src.main.main.MainActivity
@@ -201,6 +202,7 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
                     //LoginActivity().manageFragment()
                     val intent = Intent(requireActivity(), MainActivity::class.java)
                     startActivity(intent)
+                    requireActivity().supportFragmentManager.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE)
                     activity?.finish()
                 }
             }
