@@ -16,4 +16,8 @@
     <color name="login_user_edittext_unfocused_tint">#E6E6E6</color>
     <color name="login_user_telecom_radio_unclicked">#E6E6E6</color>
     <color name="login_user_telecom_radio_clicked">#D70000</color>
+
+
+    <color name="product_is_safe_color">#00B885</color>
+    <color name="product_location_color">#B2B2B2</color>
 </resources>

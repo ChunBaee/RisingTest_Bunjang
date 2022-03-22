@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/upload_toolbar"
+            android:layout_marginTop="20sp"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/upload_btn_gallery"
+                    android:layout_width="70sp"
+                    android:layout_height="70sp"
+                    app:cardCornerRadius="3sp"
+                    app:cardElevation="0sp"
+                    app:cardBackgroundColor="#F5F5F5"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginStart="15sp"
+                    android:layout_marginEnd="10sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@id/upload_rv_gallery">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/upload_img_camera"
+                        android:layout_width="25sp"
+                        android:layout_height="25sp"
+                        android:src="@drawable/icon_upload_gallery"
+                        app:layout_constraintVertical_bias="0.4"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent" />
+
+                        <TextView
+                            android:id="@+id/upload_txt_gallery"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/product_location_color"
+                            android:text="0/12"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            app:layout_constraintTop_toBottomOf="@id/upload_img_camera"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintRight_toRightOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/upload_rv_gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10sp"
+                    tools:listitem="@layout/item_upload_gallery_image"
+                    app:layout_constraintBottom_toBottomOf="@id/upload_btn_gallery"
+                    app:layout_constraintLeft_toRightOf="@id/upload_btn_gallery" />
+
+                <EditText
+                    android:id="@+id/upload_edt_product_name"
+                    android:layout_width="0sp"
+                    android:layout_height="70sp"
+                    android:hint="상품명"
+                    android:textColorHint="@color/login_user_edittext_unfocused_tint"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="@color/login_user_edittext_unfocused_tint"
+                    app:layout_constraintWidth_percent="0.93"
+                    app:layout_constraintTop_toBottomOf="@id/upload_rv_gallery"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/upload_btn_gallery" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/upload_btn_category"
+                    android:layout_width="0sp"
+                    android:layout_height="60sp"
+                    app:layout_constraintTop_toBottomOf="@id/upload_edt_product_name"
+                    app:layout_constraintRight_toRightOf="@id/upload_edt_product_name"
+                    app:layout_constraintLeft_toLeftOf="@id/upload_edt_product_name" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="카테고리"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/login_user_edittext_unfocused_tint"
+                        android:layout_marginLeft="3sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:layout_marginHorizontal="3sp"
+                        android:background="@color/login_user_edittext_unfocused_tint"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/upload_btn_tag"
+                    android:layout_width="0sp"
+                    android:layout_height="65sp"
+                    android:layout_marginTop="8sp"
+                    app:layout_constraintTop_toBottomOf="@id/upload_btn_category"
+                    app:layout_constraintRight_toRightOf="@id/upload_edt_product_name"
+                    app:layout_constraintLeft_toLeftOf="@id/upload_edt_product_name" >
+
+                    <ImageView
+                        android:id="@+id/upload_img_tag"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:layout_marginLeft="3sp"
+                        android:src="@drawable/icon_upload_tag"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="태그"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/login_user_edittext_unfocused_tint"
+                        android:layout_marginLeft="3sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/upload_img_tag"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:layout_marginHorizontal="3sp"
+                        android:background="@color/login_user_edittext_unfocused_tint"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/upload_layout_price"
+                    android:layout_width="0sp"
+                    android:layout_height="65sp"
+                    app:layout_constraintTop_toBottomOf="@id/upload_btn_tag"
+                    app:layout_constraintStart_toStartOf="@id/upload_edt_product_name"
+                    app:layout_constraintEnd_toEndOf="@id/upload_edt_product_name" >
+
+                    <ImageView
+                        android:id="@+id/upload_img_won"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
+                        android:src="@drawable/icon_upload_won"
+                        android:layout_marginLeft="3sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+
+                <EditText
+                    android:id="@+id/upload_edt_product_price"
+                    android:layout_width="0sp"
+                    android:layout_height="70sp"
+                    android:hint="가격"
+                    android:textColorHint="@color/login_user_edittext_unfocused_tint"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:backgroundTint="@android:color/transparent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/upload_img_won"
+                    app:layout_constraintRight_toLeftOf="@id/upload_btn_include_fee"/>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/upload_btn_include_fee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="3sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toRightOf="parent" >
+
+                        <ImageView
+                            android:id="@+id/upload_check_include_fee"
+                            android:layout_width="20sp"
+                            android:layout_height="20sp"
+                            android:src="@drawable/selector_upload_include_fee_or_not"
+                            android:layout_marginRight="5sp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toLeftOf="@id/upload_txt_include_fee"/>
+
+                        <TextView
+                            android:id="@+id/upload_txt_include_fee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="배송비포함"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="12sp"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintRight_toRightOf="parent" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1sp"
+                        android:layout_marginHorizontal="3sp"
+                        android:background="@color/login_user_edittext_unfocused_tint"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1000sp"
+                    android:background="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/upload_layout_price"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/upload_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/upload_btn_back"
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:src="@drawable/icon_back" />
+
+            <TextView
+                android:id="@+id/upload_txt_myLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="주소"
+                android:layout_gravity="end"
+                android:layout_marginEnd="15sp" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

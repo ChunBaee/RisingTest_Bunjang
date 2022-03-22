@@ -80,7 +80,7 @@
                             app:tabIndicatorFullWidth="false"
                             app:tabTextColor="@color/black"
                             app:tabTextAppearance="@style/tab_text"
-                            android:layout_marginHorizontal="10sp"
+                            android:layout_marginHorizontal="5sp"
                             app:tabMode="auto">
 
                             <com.google.android.material.tabs.TabItem
@@ -92,20 +92,36 @@
                             <com.google.android.material.tabs.TabItem
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout="@layout/item_main_tab_layout_tab"
                                 android:text="@string/txt_brand" />
 
                         </com.google.android.material.tabs.TabLayout>
 
                     </LinearLayout>
 
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/main_home_viewpager"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tabs"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent" />
+
                     <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/main_home_recommend_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@id/tabs"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         android:orientation="vertical"
+                        app:spanCount="2"
                         tools:listitem="@layout/item_main_recommend"
-                        android:layout_marginHorizontal="20sp"/>
+                        android:layout_marginHorizontal="10sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1000sp"
+                        app:layout_constraintTop_toBottomOf="@id/main_home_recommend_rv" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

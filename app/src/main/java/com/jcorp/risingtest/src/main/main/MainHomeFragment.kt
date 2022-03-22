@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.TextView
 import androidx.core.graphics.alpha
 import androidx.fragment.app.Fragment
 import com.jcorp.risingtest.R
@@ -37,7 +38,7 @@ class MainHomeFragment : BaseFragment<FragmentMainHomeBinding>(FragmentMainHomeB
                         Color.argb((p2 * 0.425).toInt(), 255, 255, 255)
                 }
 
-                //binding.mainHomeToolbar.background.alpha = ((p2 * 0.425).toInt())
+                binding.mainHomeToolbar.background.alpha = ((p2 * 0.425).toInt())
                 if(p2 > 300) {
                     binding.mainHomeBtnMenu.background.alpha = ((p2 - 300 )* 0.85).toInt()
                     binding.mainHomeBtnAlarm.background.alpha = ((p2 - 300 )* 0.85).toInt()

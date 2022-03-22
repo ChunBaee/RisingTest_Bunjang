@@ -1,30 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="175sp"
+    android:layout_height="wrap_content"
+    android:layout_margin="10sp">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/item_main_recommend_cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:cardCornerRadius="10sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:cardCornerRadius="10sp">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/item_main_recommend_photo"
-            android:layout_width="150sp"
+            android:layout_width="175sp"
             android:layout_height="200sp"
             android:background="@drawable/ic_launcher_background" />
 
         <ImageView
-            android:layout_width="40sp"
-            android:layout_height="40sp"
-            android:src="@drawable/icon_itemlist_heart"
-            android:layout_gravity="top|right"
+            android:id="@+id/item_main_recommend_heart"
+            android:layout_width="30sp"
+            android:layout_height="30sp"
+            android:layout_gravity="top|end"
             android:layout_margin="10sp"
+            android:src="@drawable/icon_itemlist_heart" />
 
     </com.google.android.material.card.MaterialCardView>
 
+    <TextView
+        android:id="@+id/item_main_recommend_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
+        android:text="0,0원"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_main_recommend_cardView" />
+
+    <TextView
+        android:id="@+id/item_main_recommend_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이템 제목이 이렇게 길어지면 어떻게 하시런가요? 이거보다 더길면요?"
+        android:textSize="15sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_marginTop="5sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/item_main_recommend_price" />
+
+    <TextView
+        android:id="@+id/item_main_recommend_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="지역정보 없음"
+        android:textStyle="bold"
+        android:textColor="@color/product_location_color"
+        android:layout_marginTop="15sp"
+        app:layout_constraintTop_toBottomOf="@id/item_main_recommend_product_name"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageView
+        android:id="@+id/item_main_recommend_divider"
+        android:layout_width="3sp"
+        android:layout_height="3sp"
+        android:src="@drawable/icon_location_time_divider"
+        android:layout_marginLeft="5sp"
+        app:layout_constraintTop_toTopOf="@id/item_main_recommend_location"
+        app:layout_constraintBottom_toBottomOf="@id/item_main_recommend_location"
+        app:layout_constraintLeft_toRightOf="@id/item_main_recommend_location" />
+
+    <TextView
+        android:id="@+id/item_main_recommend_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10분 전"
+        android:textStyle="bold"
+        android:textColor="@color/product_location_color"
+        android:layout_marginLeft="5sp"
+        app:layout_constraintTop_toTopOf="@id/item_main_recommend_location"
+        app:layout_constraintBottom_toBottomOf="@id/item_main_recommend_location"
+        app:layout_constraintLeft_toRightOf="@id/item_main_recommend_divider" />
+
+    <ImageView
+        android:id="@+id/item_main_recommend_isThunderPay"
+        android:layout_width="50sp"
+        android:layout_height="20sp"
+        android:background="@drawable/icon_thunder_pay"
+        app:layout_constraintTop_toBottomOf="@id/item_main_recommend_location"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="10sp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_main_recommend_heart_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
+        app:layout_constraintTop_toBottomOf="@id/item_main_recommend_isThunderPay"
+        app:layout_constraintLeft_toLeftOf="parent" >
+
+        <ImageView
+            android:id="@+id/item_main_recommend_heart_img"
+            android:layout_width="15sp"
+            android:layout_height="15sp"
+            android:src="@drawable/icon_product_heart"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <TextView
+            android:id="@+id/item_main_recommend_heart_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textStyle="bold"
+            android:textColor="@color/product_location_color"
+            android:layout_marginLeft="3sp"
+            app:layout_constraintLeft_toRightOf="@id/item_main_recommend_heart_img"
+            app:layout_constraintTop_toTopOf="@id/item_main_recommend_heart_img"
+            app:layout_constraintBottom_toBottomOf="@id/item_main_recommend_heart_img" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -11,6 +11,7 @@ import com.google.android.material.navigation.NavigationBarView
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.BaseActivity
 import com.jcorp.risingtest.databinding.ActivityMainBinding
+import com.jcorp.risingtest.src.main.upload.UploadFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
@@ -18,6 +19,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
         super.onCreate(savedInstanceState)
 
         setView()
+        setBaseFragment()
+    }
+
+    private fun setBaseFragment() {
+        supportFragmentManager.beginTransaction().replace(R.id.main_container, MainHomeFragment()).commit()
     }
 
     private fun setView() {
@@ -30,7 +36,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
 
                     R.id.bottom_main_search -> {}
 
-                    R.id.bottom_main_upload -> {}
+                    R.id.bottom_main_upload -> {
+                        supportFragmentManager.beginTransaction().addToBackStack(null).replace(R.id.main_container, UploadFragment()).commit()
+                    }
 
                     R.id.bottom_main_chat -> {}
 
