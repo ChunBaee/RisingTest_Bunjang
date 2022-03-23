@@ -74,8 +74,8 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
     override fun onClick(view: View?) {
         when(view?.id) {
             R.id.login_start_btn_kakao -> {
-                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.login_start_layout, LoginUserFragment()).commit()
                 requireActivity().supportFragmentManager.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.login_start_layout, LoginUserFragment()).commit()
             }
 
             R.id.login_start_btn_other -> {
@@ -85,8 +85,8 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
                 loginDialog.show()
                 loginSheetView.findViewById<LinearLayout>(R.id.dialog_btn_login_phone).setOnClickListener {
                     loginDialog.dismiss()
-                    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.login_start_layout, LoginUserFragment()).commit()
                     requireActivity().supportFragmentManager.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.login_start_layout, LoginUserFragment()).commit()
                 }
             }
         }

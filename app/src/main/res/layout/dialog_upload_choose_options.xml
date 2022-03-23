@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/dialog_login_start_other">
+
+        <TextView
+            android:id="@+id/upload_dialog_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="옵션 선택"
+            android:textSize="25sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="50sp"
+            android:layout_marginLeft="30sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/upload_dialog_layout_count"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.65"
+            android:layout_marginTop="30sp"
+            android:layout_marginEnd="30sp"
+            android:background="@drawable/btn_upload_choose_options"
+            android:paddingHorizontal="20sp"
+            app:layout_constraintTop_toBottomOf="@id/upload_dialog_txt"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <TextView
+                android:id="@+id/upload_dialog_txt_much"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="개"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <EditText
+                android:id="@+id/upload_edt_product_count"
+                android:layout_width="0sp"
+                android:layout_height="40sp"
+                android:backgroundTint="@android:color/transparent"
+                android:maxLength="3"
+                android:inputType="number"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/upload_dialog_txt_much" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/upload_dialog_txt_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="수량"
+            android:textColor="@color/product_location_color"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="@id/upload_dialog_layout_count"
+            app:layout_constraintBottom_toBottomOf="@id/upload_dialog_layout_count"
+            app:layout_constraintLeft_toLeftOf="@id/upload_dialog_txt" />
+
+        <LinearLayout
+            android:id="@+id/upload_layout_product_status"
+            android:layout_width="0sp"
+            android:layout_height="40sp"
+            android:layout_marginTop="25sp"
+            app:layout_constraintTop_toBottomOf="@id/upload_dialog_layout_count"
+            app:layout_constraintLeft_toLeftOf="@id/upload_dialog_layout_count"
+            app:layout_constraintRight_toRightOf="@id/upload_dialog_layout_count"
+            android:orientation="horizontal" >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/upload_btn_used"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:text="중고상품"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:textColor="#C2001C"
+                android:textStyle="bold"
+                android:background="@drawable/btn_upload_choose_options_selected" />
+
+            <View
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.03" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/upload_btn_new"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:textColor="@color/product_location_color"
+                android:text="새상품"
+                android:textStyle="bold"
+                android:background="@drawable/btn_upload_choose_options" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="상품상태"
+            android:textColor="@color/product_location_color"
+            app:layout_constraintTop_toTopOf="@id/upload_layout_product_status"
+            app:layout_constraintBottom_toBottomOf="@id/upload_layout_product_status"
+            app:layout_constraintLeft_toLeftOf="@id/upload_dialog_txt_count"/>
+
+        <LinearLayout
+            android:id="@+id/upload_layout_product_Exchange"
+            android:layout_width="0sp"
+            android:layout_height="40sp"
+            android:layout_marginTop="25sp"
+            app:layout_constraintTop_toBottomOf="@id/upload_layout_product_status"
+            app:layout_constraintLeft_toLeftOf="@id/upload_dialog_layout_count"
+            app:layout_constraintRight_toRightOf="@id/upload_dialog_layout_count"
+            android:orientation="horizontal" >
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/upload_btn_no_exchange"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:text="불가"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:textColor="#C2001C"
+                android:textStyle="bold"
+                android:background="@drawable/btn_upload_choose_options_selected" />
+
+            <View
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.03" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/upload_btn_yes_exchange"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.4"
+                android:textColor="@color/product_location_color"
+                android:text="가능"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:textStyle="bold"
+                android:background="@drawable/btn_upload_choose_options" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="교환"
+            android:textColor="@color/product_location_color"
+            app:layout_constraintTop_toTopOf="@id/upload_layout_product_Exchange"
+            app:layout_constraintBottom_toBottomOf="@id/upload_layout_product_Exchange"
+            app:layout_constraintLeft_toLeftOf="@id/upload_dialog_txt_count"/>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/upload_btn_finish_options"
+            android:layout_width="0sp"
+            android:layout_height="50sp"
+            android:background="@drawable/btn_login_user_next"
+            android:text="선택 완료"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            app:layout_constraintStart_toStartOf="@id/upload_dialog_txt_count"
+            app:layout_constraintEnd_toEndOf="@id/upload_dialog_layout_count"
+            app:layout_constraintTop_toBottomOf="@id/upload_layout_product_Exchange"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="40sp"
+            android:layout_marginBottom="20sp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

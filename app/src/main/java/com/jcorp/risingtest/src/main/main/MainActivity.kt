@@ -7,19 +7,24 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.google.android.material.navigation.NavigationBarView
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.BaseActivity
 import com.jcorp.risingtest.databinding.ActivityMainBinding
+import com.jcorp.risingtest.src.MyViewModel
 import com.jcorp.risingtest.src.main.upload.UploadFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
 
+    private val viewModel by viewModels<MyViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setView()
         setBaseFragment()
+        observe()
     }
 
     private fun setBaseFragment() {
@@ -47,6 +52,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 return true
             }
 
+        })
+    }
+
+    private fun observe() {
+        viewModel.hideBottomView.observe(this, Observer {
+            when(it) {
+                true -> binding.mainBottomNavigation.visibility = View.GONE
+                false -> binding.mainBottomNavigation.visibility = View.VISIBLE
+            }
         })
     }
 }

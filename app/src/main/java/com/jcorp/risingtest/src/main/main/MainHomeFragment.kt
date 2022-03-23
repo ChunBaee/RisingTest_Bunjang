@@ -9,15 +9,19 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.graphics.alpha
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentMainHomeBinding
+import com.jcorp.risingtest.src.MyViewModel
 import java.lang.Exception
 
 class MainHomeFragment : BaseFragment<FragmentMainHomeBinding>(FragmentMainHomeBinding::bind, R.layout.fragment_main_home) {
+    private val viewModel by activityViewModels<MyViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.hideBottomView.value = false
 
         setToolbar()
         setTab()
