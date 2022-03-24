@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/background_loading_dialog.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/btn_login_start_kakao.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/btn_login_user_next.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/btn_upload_choose_options.xml" value="0.1" />
@@ -13,23 +14,28 @@
         <entry key="app/src/main/res/drawable/dialog_login_start_other.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/dialog_login_user_telecom.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/main_bottom_nav_margin.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/scrollbar_main_category.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/scrollbar_main_category_inner.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/selector_upload_include_fee_or_not.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/selector_upload_options_toggle.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1945288753799392" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1940222897669706" />
+        <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.14990942028985507" />
         <entry key="app/src/main/res/layout/dialog_login_start_other_way.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/dialog_upload_choose_options.xml" value="0.2074074074074074" />
         <entry key="app/src/main/res/layout/dialog_user_login_telecom.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/fragment_login_start.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login_user.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_main_home.xml" value="0.1826418693371483" />
+        <entry key="app/src/main/res/layout/fragment_main_home.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_main_item_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_main_rv_recommend.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/fragment_upload_home.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_login_pager.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/item_login_user_telecom.xml" value="0.1940222897669706" />
+        <entry key="app/src/main/res/layout/item_main_category.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_main_recommand.xml" value="0.1644021739130435" />
-        <entry key="app/src/main/res/layout/item_main_recommend.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/item_main_recommend.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_main_tab_layout_tab.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/item_upload_gallery_image.xml" value="0.335" />
         <entry key="app/src/main/res/menu/menu_main_bottom.xml" value="0.21041666666666667" />

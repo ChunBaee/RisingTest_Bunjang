@@ -1,5 +1,6 @@
 package com.jcorp.risingtest.config
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.activity.viewModels
@@ -11,7 +12,7 @@ import com.jcorp.risingtest.util.LoadingDialog
 abstract class BaseActivity<B : ViewBinding>(private val inflate : (LayoutInflater) -> B) : AppCompatActivity() {
     protected lateinit var binding : B
         private set
-    lateinit var mLoadingDialog : LoadingDialog
+    //lateinit var mLoadingDialog : LoadingDialog
 
     private val viewModel by viewModels<MyViewModel>()
 
@@ -20,5 +21,16 @@ abstract class BaseActivity<B : ViewBinding>(private val inflate : (LayoutInflat
         binding = inflate(layoutInflater)
         setContentView(binding.root)
     }
+
+    /*fun showLoadingDialog(context : Context) {
+        mLoadingDialog = LoadingDialog(context)
+        mLoadingDialog.show(supportFragmentManager, "loading")
+    }
+    fun dismissLoadingDialog() {
+        if(mLoadingDialog.isAdded) {
+            mLoadingDialog.dismiss()
+        }
+    }*/
+
 
 }

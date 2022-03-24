@@ -1,6 +1,7 @@
 package com.jcorp.risingtest.src.main.upload
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Icon
 import android.net.Uri
@@ -9,10 +10,13 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
+import androidx.core.view.marginBottom
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.jcorp.risingtest.R
@@ -31,6 +35,8 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
     private val GALLERY_REQUEST_CODE = 1000
     private lateinit var adapter : UploadRvAdapter
 
+    private lateinit var immKeyboard : InputMethodManager
+
     private var isFeeIncluded = false
     private var lastWonTxt = ""
 
@@ -43,6 +49,8 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
 
     private lateinit var optionSheetView : View
     private lateinit var optionDialog : BottomSheetDialog
+
+    var testImgUrl : String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -60,6 +68,14 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         setView()
         setDialogLogic()
         observe()
+
+        keyboardVisibilityUtils = KeyboardVisibilityUtils(requireActivity().window,
+        onShowKeyboard = {
+            binding.uploadScrollView.run {
+                smoothScrollTo(scrollX, scrollY + it)
+            }
+        })
+
     }
 
     private fun setRv() {
@@ -76,9 +92,16 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         })
     }
     private fun setView() {
+
+        activity?.window?.apply {
+            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        }
+
         optionSheetView = layoutInflater.inflate(R.layout.dialog_upload_choose_options, null)
         optionDialog = BottomSheetDialog(requireActivity())
         optionDialog.setContentView(optionSheetView)
+
+        immKeyboard = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         binding.uploadEdtProductPrice.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -100,11 +123,13 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         })
 
         binding.uploadEdtProductContent.setOnFocusChangeListener { view : View, isFocus : Boolean ->
-            if(isFocus) {
+            if(isFocus && immKeyboard.isAcceptingText) {
                 Log.d("0000", "setView: it is")
+                binding.customView.visibility = View.VISIBLE
                 binding.uploadAdditionalBottomView.visibility = View.VISIBLE
             } else {
                 Log.d("0000", "setView: it isnt")
+                binding.customView.visibility = View.GONE
                 binding.uploadAdditionalBottomView.visibility = View.GONE
             }
         }
@@ -210,8 +235,10 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
 
     private fun upLoadPhotosToFirebase() {
         for (i in viewModel.mutableUploadUriList) {
-            val mRef = ApplicationClass.fbStorage.child("Image/${i.lastPathSegment}")
+            val mRef = ApplicationClass.fbStorage.child("Image/${viewModel.curUserData.value?.userIdx}/${i.lastPathSegment}")
             val uploadTask = mRef.putFile(i)
+            //TEST
+            viewModel.testImgUrl.setValue("Image/${viewModel.curUserData.value?.userIdx}/${i.lastPathSegment}")
         }
     }
 
@@ -294,7 +321,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         keyboardVisibilityUtils.detachKeyboardListeners()
+        super.onDestroyView()
     }
 }

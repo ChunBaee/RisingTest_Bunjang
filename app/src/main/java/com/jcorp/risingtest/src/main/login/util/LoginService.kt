@@ -1,8 +1,7 @@
-package com.jcorp.risingtest.src.main.login
+package com.jcorp.risingtest.src.main.login.util
 
 import android.util.Log
 import com.jcorp.risingtest.config.ApplicationClass
-import com.jcorp.risingtest.src.main.login.adapter.LoginActivityView
 import com.jcorp.risingtest.src.main.login.model.ChangeShopNameData
 import com.jcorp.risingtest.src.main.login.model.LoginData
 import com.jcorp.risingtest.src.main.login.model.UserData

@@ -14,15 +14,20 @@ import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.BaseActivity
 import com.jcorp.risingtest.databinding.ActivityMainBinding
 import com.jcorp.risingtest.src.MyViewModel
+import com.jcorp.risingtest.src.main.main.model.CurUserData
+import com.jcorp.risingtest.src.main.main.model.MainRecommendRvItem
+import com.jcorp.risingtest.src.main.main.util.MainActivityView
+import com.jcorp.risingtest.src.main.main.util.MainService
 import com.jcorp.risingtest.src.main.upload.UploadFragment
 
-class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate) {
+class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate), MainActivityView {
 
     private val viewModel by viewModels<MyViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setView()
+        getCurUserData()
         setBaseFragment()
         observe()
     }
@@ -62,5 +67,17 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
                 false -> binding.mainBottomNavigation.visibility = View.VISIBLE
             }
         })
+    }
+
+    private fun getCurUserData() {
+        MainService(this).getCurUserData()
+    }
+
+    override fun onGetDataSuccess(response: CurUserData) {
+        viewModel.setCurUserData(response.result)
+        Log.d("0000", "onGetDataSuccess: ${response.result.userName}")
+    }
+
+    override fun onRecommendDataSuccess(response: MainRecommendRvItem) {
     }
 }

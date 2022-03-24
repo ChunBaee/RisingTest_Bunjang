@@ -12,8 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="0sp"
             app:layout_constraintTop_toBottomOf="@id/upload_toolbar"
-            app:layout_constraintBottom_toTopOf="@id/upload_layout_safePay"
-            android:fillViewport="true">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -314,14 +313,32 @@
                     app:layout_constraintRight_toRightOf="parent"
                     android:backgroundTint="@android:color/transparent" />
 
+                <ImageView
+                    android:id="@+id/testimg"
+                    android:layout_width="100sp"
+                    android:layout_height="100sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <View
+                    android:id="@+id/custom_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="500sp"
+                    android:background="@android:color/transparent"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/upload_edt_product_content" />
+
                 <LinearLayout
+                    android:fitsSystemWindows="true"
                     android:id="@+id/upload_additional_bottom_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight="1"
                     style="@style/Widget.AppCompat.ButtonBar"
-                    android:visibility="gone"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -339,6 +356,24 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"/>
 
+                        <TextView
+                            android:id="@+id/upload_count_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0/2000"
+                            android:textSize="10sp"
+                            android:textColor="@color/login_user_edittext_unfocused_tint"
+                            android:layout_marginVertical="10sp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1sp"
+                            android:background="@color/login_user_edittext_unfocused_tint"
+                            app:layout_constraintBottom_toBottomOf="parent"/>
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
@@ -350,7 +385,7 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/upload_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="96sp"
+            android:layout_height="?actionBarSize"
             android:background="@color/white"
             android:fitsSystemWindows="true"
             app:layout_constraintTop_toTopOf="parent">

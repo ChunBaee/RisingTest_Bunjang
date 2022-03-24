@@ -9,9 +9,6 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jcorp.risingtest.src.main.main.MainActivity
@@ -19,12 +16,12 @@ import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.ApplicationClass
 import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentLoginUserBinding
-import com.jcorp.risingtest.src.main.login.adapter.LoginActivityView
+import com.jcorp.risingtest.src.main.login.util.LoginActivityView
 import com.jcorp.risingtest.src.main.login.adapter.LoginUserTelecomAdapter
 import com.jcorp.risingtest.src.main.login.model.ChangeShopNameData
 import com.jcorp.risingtest.src.main.login.model.LoginData
 import com.jcorp.risingtest.src.main.login.model.LoginUserTelecomItem
-import org.w3c.dom.Text
+import com.jcorp.risingtest.src.main.login.util.LoginService
 
 class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
     FragmentLoginUserBinding::bind,
@@ -225,7 +222,7 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
     override fun onClick(p0: View?) {
         when (p0!!.id) {
             R.id.login_user_btn_next -> {
-                if(isShopName) {
+                if(isShopName && isPhone) {
                     LoginService(this).tryChangeShopName(
                         binding.loginUserEdtShopName.text.toString()
                     )

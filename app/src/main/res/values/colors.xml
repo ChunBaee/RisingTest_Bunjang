@@ -24,5 +24,7 @@
     <color name="upload_isnew_txt_selected_color">#C2001C</color>
     <color name="upload_isnew_selected_color">#FDF2F2</color>
 
+    <color name="product_detail_thunderpay_color">#FF1F52</color>
+
 
 </resources>

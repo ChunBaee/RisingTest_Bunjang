@@ -1,12 +1,16 @@
 package com.jcorp.risingtest.src.main.main.model
 
 data class MainRecommendRvItem(
-    var productPhoto: String? = "",
-    var isHeartClicked: Boolean? = false,
-    var price: String? = "",
-    var productName: String? = "",
-    var location: String? = "",
-    var time: String? = "",
-    var isThunderPay: Boolean? = false,
-    var heartCount: Int? = 0
+    val result : List<RecommendRvData>
+)
+data class RecommendRvData(
+    val productIdx : Int,
+    val productImg : String,
+    val title : String,
+    val price : Int,
+    val directAddress : String,
+    val securePayment : String,
+    val myFavorite : String,
+    val createdAt : String,
+    val favoriteCount : String
 )

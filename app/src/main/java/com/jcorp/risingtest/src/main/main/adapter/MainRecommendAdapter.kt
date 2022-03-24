@@ -1,38 +1,71 @@
 package com.jcorp.risingtest.src.main.main.adapter
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.jcorp.risingtest.R
+import com.jcorp.risingtest.config.ApplicationClass
 import com.jcorp.risingtest.databinding.ItemMainRecommendBinding
 import com.jcorp.risingtest.src.main.main.model.MainRecommendRvItem
+import com.jcorp.risingtest.src.main.main.model.RecommendRvData
 
 class MainRecommendAdapter (context : Context) : RecyclerView.Adapter<MainRecommendAdapter.MainRecommendViewHolder>(){
-    private var itemList = mutableListOf<MainRecommendRvItem>()
+    private lateinit var detailClickListener : DetailClickListener
+    private var itemList = mutableListOf<RecommendRvData>()
     private val mContext = context
 
-    inner class MainRecommendViewHolder(val binding : ItemMainRecommendBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : MainRecommendRvItem) {
-            Glide.with(mContext)
-                .load(item.productPhoto)
-                .into(binding.itemMainRecommendPhoto)
+    interface DetailClickListener {
+        fun onClick (view : View, position : Int)
+    }
 
-            binding.itemMainRecommendPrice.text = item.price
-            if(item.isThunderPay == true) {
-                //안전 글자 추가
-            } else if (item.isThunderPay == false) {
-                binding.itemMainRecommendProductName.text = item.productName
+    fun detailClickListener (detailClickListener: DetailClickListener) {
+        this.detailClickListener = detailClickListener
+    }
+
+    inner class MainRecommendViewHolder(val binding : ItemMainRecommendBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item : RecommendRvData) {
+            ApplicationClass.fbStorage.child(item.productImg).downloadUrl.addOnCompleteListener {
+                Glide.with(mContext).load(it.result).into(object : CustomTarget<Drawable>() {
+                    override fun onResourceReady(a_resource: Drawable, a_transition: Transition<in Drawable>?) {
+                        binding.itemMainRecommendPhoto.background = a_resource
+                    }
+
+                    override fun onLoadCleared(placeholder: Drawable?) {}
+                })
+            }
+            binding.itemMainRecommendPrice.text = "${item.price}원"
+            binding.itemMainRecommendLocation.text = item.directAddress
+            if(item.securePayment == "SECURE") {
+                val spannable = SpannableString("안전 ${item.title}")
+                val start : Int = spannable.indexOf("안전")
+                val end : Int = start + 2
+                spannable.setSpan(ForegroundColorSpan(mContext.resources.getColor(R.color.product_is_safe_color)),start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                binding.itemMainRecommendProductName.text = spannable
+                binding.itemMainRecommendIsThunderPay.visibility = View.VISIBLE
+            } else {
+                binding.itemMainRecommendProductName.text = item.title
                 binding.itemMainRecommendIsThunderPay.visibility = View.GONE
             }
-            binding.itemMainRecommendLocation.text = item.location
-            if(item.heartCount != 0) {
-                binding.itemMainRecommendHeartImg.visibility = View.VISIBLE
-                binding.itemMainRecommendHeartTxt.text = item.heartCount.toString()
+            if(item.favoriteCount.toInt() == 0) {
+                binding.itemMainRecommendHeartLayout.visibility = View.INVISIBLE
+            } else {
+                binding.itemMainRecommendHeartLayout.visibility = View.VISIBLE
+                binding.itemMainRecommendHeartTxt.text = item.favoriteCount
             }
+            binding.itemMainRecommendTime.text = item.createdAt
+
+
         }
     }
 
@@ -45,30 +78,46 @@ class MainRecommendAdapter (context : Context) : RecyclerView.Adapter<MainRecomm
     override fun onBindViewHolder(holder: MainRecommendViewHolder, position: Int) {
         holder.bind(itemList[position])
 
-        Glide.with(mContext)
-            .load(itemList[position].productPhoto)
-            .into(holder.binding.itemMainRecommendPhoto)
+        ApplicationClass.fbStorage.child(itemList[position].productImg).downloadUrl.addOnCompleteListener {
+            Glide.with(mContext).load(it.result).into(object : CustomTarget<Drawable>() {
+                override fun onResourceReady(a_resource: Drawable, a_transition: Transition<in Drawable>?) {
+                    holder.binding.itemMainRecommendPhoto.background = a_resource
+                }
 
-        holder.binding.itemMainRecommendPrice.text = itemList[position].price
-        if(itemList[position].isThunderPay == true) {
-            //안전 글자 추가
-        } else if (itemList[position].isThunderPay == false) {
-            holder.binding.itemMainRecommendProductName.text = itemList[position].productName
+                override fun onLoadCleared(placeholder: Drawable?) {}
+            })
+        }
+        holder.binding.itemMainRecommendPrice.text = "${itemList[position].price}원"
+        holder.binding.itemMainRecommendLocation.text = itemList[position].directAddress
+        if(itemList[position].securePayment == "SECURE") {
+            val spannable = SpannableString("안전 ${itemList[position].title}")
+            val start : Int = spannable.indexOf("안전")
+            val end : Int = start + 2
+            spannable.setSpan(ForegroundColorSpan(mContext.resources.getColor(R.color.product_is_safe_color)),start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            holder.binding.itemMainRecommendProductName.text = spannable
+            holder.binding.itemMainRecommendIsThunderPay.visibility = View.VISIBLE
+        } else {
+            holder.binding.itemMainRecommendProductName.text = itemList[position].title
             holder.binding.itemMainRecommendIsThunderPay.visibility = View.GONE
         }
-        holder.binding.itemMainRecommendLocation.text = itemList[position].location
-        if(itemList[position].heartCount != 0) {
-            holder.binding.itemMainRecommendHeartImg.visibility = View.VISIBLE
-            holder.binding.itemMainRecommendHeartTxt.text = itemList[position].heartCount.toString()
+        if(itemList[position].favoriteCount.toInt() == 0) {
+            holder.binding.itemMainRecommendHeartLayout.visibility = View.INVISIBLE
+        } else {
+            holder.binding.itemMainRecommendHeartLayout.visibility = View.VISIBLE
+            holder.binding.itemMainRecommendHeartTxt.text = itemList[position].favoriteCount
         }
+        holder.binding.itemMainRecommendTime.text = itemList[position].createdAt
 
+        holder.itemView.setOnClickListener {
+            detailClickListener.onClick(it, holder.adapterPosition)
+        }
     }
 
     override fun getItemCount(): Int {
         return itemList.size
     }
 
-    fun setRecommendList(list : MutableList<MainRecommendRvItem>) {
+    fun setRecommendList(list : MutableList<RecommendRvData>) {
         itemList = list.toMutableList()
         notifyDataSetChanged()
     }

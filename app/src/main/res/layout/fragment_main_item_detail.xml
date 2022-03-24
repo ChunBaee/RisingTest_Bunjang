@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/product_detail_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="400sp"
+                    android:background="@drawable/ic_launcher_background"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/product_detail_img">
+
+                    <TextView
+                        android:id="@+id/product_detail_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10sp"
+                        android:text="15,000"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/product_detail_txt_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="원"
+                        android:textSize="17sp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="2sp"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_price"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_price" />
+
+                    <ImageView
+                        android:id="@+id/product_detail_img_thunder_pay"
+                        android:layout_width="40sp"
+                        android:layout_height="17sp"
+                        android:src="@drawable/icon_thunder_pay"
+                        android:layout_marginStart="5sp"
+                        app:layout_constraintTop_toTopOf="@id/product_detail_txt_won"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_txt_won"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_txt_won" />
+
+                    <ImageView
+                        android:id="@+id/product_detail_search_price"
+                        android:layout_width="25sp"
+                        android:layout_height="25sp"
+                        android:src="@drawable/icon_detail_search_price"
+                        android:layout_marginTop="10sp"
+                        android:layout_marginEnd="12sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintRight_toRightOf="parent" />
+
+                    <View
+                        android:layout_width="1sp"
+                        android:layout_height="0sp"
+                        android:layout_marginEnd="12sp"
+                        android:background="@color/login_user_edittext_unfocused_tint"
+                        app:layout_constraintTop_toTopOf="@id/product_detail_search_price"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_search_price"
+                        app:layout_constraintRight_toLeftOf="@id/product_detail_search_price"/>
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="20sp"
+                android:layout_height="20sp"
+                android:src="@drawable/icon_back" />
+
+            <ImageView
+                android:layout_width="23sp"
+                android:layout_height="23sp"
+                android:layout_gravity="end"
+                android:layout_marginRight="20sp"
+                android:src="@drawable/icon_share" />
+
+            <ImageView
+                android:layout_width="25sp"
+                android:layout_height="25sp"
+                android:layout_gravity="end"
+                android:layout_marginRight="20sp"
+                android:src="@drawable/icon_main_toolbar_search"
+                app:tint="@color/black" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <LinearLayout
+            android:id="@+id/product_detail_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/product_detail_btn_zzim"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.5">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="@color/login_user_edittext_unfocused_tint"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="1sp"
+                    android:layout_height="match_parent"
+                    android:background="@color/login_user_edittext_unfocused_tint"
+                    app:layout_constraintRight_toRightOf="parent" />
+
+                <ImageView
+                    android:id="@+id/product_detail_heart"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:src="@drawable/icon_product_detail_heart"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/product_detail_btn_thunder_talk"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="3.5">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1sp"
+                    android:background="@color/login_user_edittext_unfocused_tint"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="번개톡"
+                    android:textColor="@color/product_detail_thunderpay_color"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/product_detail_btn_thunder_pay"
+                android:layout_width="0sp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:background="@color/product_detail_thunderpay_color">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="번개페이 안전결제"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

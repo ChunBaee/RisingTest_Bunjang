@@ -1,4 +1,4 @@
-package com.jcorp.risingtest.src.main.login
+package com.jcorp.risingtest.src.main.login.util
 
 import com.jcorp.risingtest.src.main.login.model.ChangeShopNameData
 import com.jcorp.risingtest.src.main.login.model.LoginData
