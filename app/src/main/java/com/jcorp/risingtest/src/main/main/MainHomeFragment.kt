@@ -10,11 +10,10 @@ import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentMainHomeBinding
 import com.jcorp.risingtest.src.MyViewModel
+import com.jcorp.risingtest.src.main.main.adapter.MainBannerAdapter
 import com.jcorp.risingtest.src.main.main.adapter.MainCategoryAdapter
 import com.jcorp.risingtest.src.main.main.adapter.MainRecommendAdapter
-import com.jcorp.risingtest.src.main.main.model.CurUserData
-import com.jcorp.risingtest.src.main.main.model.MainHomeCategoryData
-import com.jcorp.risingtest.src.main.main.model.MainRecommendRvItem
+import com.jcorp.risingtest.src.main.main.model.*
 import com.jcorp.risingtest.src.main.main.util.MainActivityView
 import com.jcorp.risingtest.src.main.main.util.MainService
 
@@ -23,6 +22,8 @@ class MainHomeFragment : BaseFragment<FragmentMainHomeBinding>(
     R.layout.fragment_main_home
 ), MainActivityView {
     private val viewModel by activityViewModels<MyViewModel>()
+
+    private lateinit var bannerAdapter : MainBannerAdapter
     private lateinit var categoryAdapter: MainCategoryAdapter
     private lateinit var recommendAdapter : MainRecommendAdapter
 
@@ -31,7 +32,7 @@ class MainHomeFragment : BaseFragment<FragmentMainHomeBinding>(
         viewModel.hideBottomView.value = false
 
         setToolbar()
-        setTab()
+        setBanner()
         setCategory()
         setRecommend()
 
@@ -91,14 +92,17 @@ class MainHomeFragment : BaseFragment<FragmentMainHomeBinding>(
 private fun setToolbar() {
     activity?.window?.apply {
         decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
     }
     binding.mainHomeToolbar.bringToFront()
     binding.tabs.bringToFront()
     binding.mainHomeToolbar.background.alpha = 0
 }
 
-private fun setTab() {
+private fun setBanner() {
+    bannerAdapter = MainBannerAdapter(requireActivity())
+    binding.mainHomeBanner.adapter = bannerAdapter
+    MainService(this).getMainBannerData()
 
 }
 
@@ -107,12 +111,14 @@ private fun setCategory() {
     categoryAdapter = MainCategoryAdapter(requireActivity())
     binding.mainHomeRvCategory.adapter = categoryAdapter
 
+    MainService(this).getHomeCategoryData()
+
     //임시데이터
     val list = mutableListOf<MainHomeCategoryData>()
     for (i in 0 until 14) {
         list.add(MainHomeCategoryData(i, i.toString(), R.drawable.ic_launcher_background))
     }
-    categoryAdapter.setList(list)
+
 }
 
     private fun setRecommend() {
@@ -130,6 +136,14 @@ private fun setCategory() {
     }
 
     override fun onGetDataSuccess(response: CurUserData) {
+    }
+
+    override fun onHomeBannerDataSuccess(response: MainBannerData) {
+        bannerAdapter.setBannerLists(response.result.toMutableList())
+    }
+
+    override fun onHomeCategoryDataSuccess(response: HomeCategoryData) {
+        categoryAdapter.setList(response.result[0].category.toMutableList())
     }
 
     override fun onRecommendDataSuccess(response: MainRecommendRvItem) {

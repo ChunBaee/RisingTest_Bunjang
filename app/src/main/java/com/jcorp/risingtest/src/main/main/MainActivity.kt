@@ -15,6 +15,8 @@ import com.jcorp.risingtest.config.BaseActivity
 import com.jcorp.risingtest.databinding.ActivityMainBinding
 import com.jcorp.risingtest.src.MyViewModel
 import com.jcorp.risingtest.src.main.main.model.CurUserData
+import com.jcorp.risingtest.src.main.main.model.HomeCategoryData
+import com.jcorp.risingtest.src.main.main.model.MainBannerData
 import com.jcorp.risingtest.src.main.main.model.MainRecommendRvItem
 import com.jcorp.risingtest.src.main.main.util.MainActivityView
 import com.jcorp.risingtest.src.main.main.util.MainService
@@ -76,6 +78,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun onGetDataSuccess(response: CurUserData) {
         viewModel.setCurUserData(response.result)
         Log.d("0000", "onGetDataSuccess: ${response.result.userName}")
+    }
+
+    override fun onHomeBannerDataSuccess(response: MainBannerData) {
+    }
+
+    override fun onHomeCategoryDataSuccess(response: HomeCategoryData) {
     }
 
     override fun onRecommendDataSuccess(response: MainRecommendRvItem) {

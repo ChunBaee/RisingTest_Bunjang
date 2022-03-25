@@ -4,7 +4,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -81,7 +82,83 @@
                         app:layout_constraintBottom_toBottomOf="@id/product_detail_search_price"
                         app:layout_constraintRight_toLeftOf="@id/product_detail_search_price"/>
 
+                    <TextView
+                        android:id="@+id/product_detail_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="제목"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="13sp"
+                        android:layout_margin="10sp"
+                        app:layout_constraintTop_toBottomOf="@id/product_detail_price"
+                        app:layout_constraintLeft_toLeftOf="parent" />
 
+                    <ImageView
+                        android:id="@+id/product_detail_icon_clock"
+                        android:layout_width="12sp"
+                        android:layout_height="12sp"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginStart="10sp"
+                        android:src="@drawable/icon_product_detail_clock"
+                        app:layout_constraintTop_toBottomOf="@id/product_detail_title"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+
+                    <TextView
+                        android:id="@+id/product_detail_txt_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2일 전"
+                        android:textColor="@color/product_detail_tooltip_txt_color"
+                        android:textSize="11sp"
+                        android:layout_marginStart="3sp"
+                        app:layout_constraintTop_toTopOf="@id/product_detail_icon_clock"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_icon_clock"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_icon_clock" />
+
+                    <ImageView
+                        android:id="@+id/product_detail_icon_watch"
+                        android:layout_width="13sp"
+                        android:layout_height="13sp"
+                        android:layout_marginStart="7sp"
+                        android:src="@drawable/icon_product_detail_watch_count"
+                        app:layout_constraintTop_toTopOf="@id/product_detail_icon_clock"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_icon_clock"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_txt_time" />
+                    
+                    <TextView
+                        android:id="@+id/product_detail_txt_visibility"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="70"
+                        android:textSize="11sp"
+                        android:textColor="@color/product_detail_tooltip_txt_color"
+                        android:layout_marginStart="3sp"
+                        app:layout_constraintTop_toTopOf="@id/product_detail_icon_watch"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_icon_watch"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_icon_watch" />
+
+                    <ImageView
+                        android:id="@+id/product_detail_icon_zzim"
+                        android:layout_width="11sp"
+                        android:layout_height="11sp"
+                        android:src="@drawable/icon_product_heart"
+                        app:tint="#C2C1CB"
+                        android:layout_marginStart="7sp"
+                        app:layout_constraintTop_toTopOf="@id/product_detail_icon_watch"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_icon_watch"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_txt_visibility" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4"
+                        android:textSize="11sp"
+                        android:layout_marginStart="3sp"
+                        android:textColor="@color/product_detail_tooltip_txt_color"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_icon_zzim"
+                        app:layout_constraintTop_toTopOf="@id/product_detail_icon_zzim"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_icon_zzim" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

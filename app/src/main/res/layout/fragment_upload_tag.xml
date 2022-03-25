@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/upload_tag_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white" >
+
+        <ImageView
+            android:id="@+id/upload_tag_back"
+            android:layout_width="20sp"
+            android:layout_height="20sp"
+            android:src="@drawable/icon_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="태그"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:paddingStart="10sp" />
+
+        <ImageView
+            android:id="@+id/upload_tag_save"
+            android:layout_width="18sp"
+            android:layout_height="18sp"
+            app:tint="@color/black"
+            android:layout_marginEnd="15sp"
+            android:src="@drawable/icon_upload_safepay_clicked"
+            android:layout_gravity="end" />
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/upload_tag_layout_tags"
+        android:layout_width="match_parent"
+        android:layout_height="70sp"
+        app:layout_constraintTop_toBottomOf="@id/upload_tag_toolbar" >
+
+        <TextView
+            android:id="@+id/upload_tag_first_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="#"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginStart="20sp"
+            android:layout_marginBottom="3sp"/>
+
+        <EditText
+            android:id="@+id/upload_tag_edt_tags"
+            android:layout_width="0sp"
+            android:layout_height="35sp"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:backgroundTint="@android:color/transparent"
+            android:hint="태그를 입력해주세요 (최대 5개)"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginLeft="25sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/upload_tag_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:background="@color/login_user_edittext_unfocused_tint"
+        app:layout_constraintTop_toBottomOf="@id/upload_tag_layout_tags"/>
+
+    <TextView
+        android:id="@+id/upload_tag_additional_txt_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/upload_tag_divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/upload_tag_additional_1"
+        android:textSize="14sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginStart="15sp" />
+
+    <TextView
+        android:id="@+id/upload_tag_additional_txt_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/upload_tag_additional_txt_1"
+        app:layout_constraintTop_toBottomOf="@id/upload_tag_additional_txt_1"
+        android:text="@string/upload_tag_additional_2"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/upload_tag_additional_txt_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/upload_tag_additional_txt_2"
+        app:layout_constraintTop_toBottomOf="@id/upload_tag_additional_txt_2"
+        android:layout_marginStart="15sp"
+        android:text="@string/upload_tag_additional_3"
+        android:textSize="14sp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

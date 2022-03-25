@@ -8,16 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.databinding.ItemMainCategoryBinding
+import com.jcorp.risingtest.src.main.main.model.HomeCategory
 import com.jcorp.risingtest.src.main.main.model.MainHomeCategoryData
 
 class MainCategoryAdapter (context : Context) : RecyclerView.Adapter<MainCategoryAdapter.MainCategoryViewHolder>() {
-    var itemList = mutableListOf<MainHomeCategoryData>()
+    var itemList = mutableListOf<HomeCategory>()
     val mContext = context
 
     inner class MainCategoryViewHolder(val binding : ItemMainCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : MainHomeCategoryData) {
+        fun bind(item : HomeCategory) {
             Glide.with(mContext)
-                .load(item.iconImgUrl)
+                .load(item.iconImageUrl)
                 .into(binding.itemMainCategoryImg)
 
             binding.itemMainCategoryTitle.text = item.categoryLargeName
@@ -34,7 +35,7 @@ class MainCategoryAdapter (context : Context) : RecyclerView.Adapter<MainCategor
         holder.bind(itemList[position])
 
         Glide.with(mContext)
-            .load(itemList[position].iconImgUrl)
+            .load(itemList[position].iconImageUrl)
             .into(holder.binding.itemMainCategoryImg)
 
         holder.binding.itemMainCategoryTitle.text = itemList[position].categoryLargeName
@@ -44,7 +45,7 @@ class MainCategoryAdapter (context : Context) : RecyclerView.Adapter<MainCategor
         return itemList.size
     }
 
-    fun setList(list : MutableList<MainHomeCategoryData>) {
+    fun setList(list : MutableList<HomeCategory>) {
         itemList = list
         notifyDataSetChanged()
     }

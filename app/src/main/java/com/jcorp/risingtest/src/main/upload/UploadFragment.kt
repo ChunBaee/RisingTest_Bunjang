@@ -3,7 +3,6 @@ package com.jcorp.risingtest.src.main.upload
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.drawable.Icon
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -13,10 +12,8 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
-import androidx.core.view.marginBottom
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.jcorp.risingtest.R
@@ -24,6 +21,7 @@ import com.jcorp.risingtest.config.ApplicationClass
 import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentUploadHomeBinding
 import com.jcorp.risingtest.src.MyViewModel
+import com.jcorp.risingtest.src.main.upload.adapter.TagRvAdapter
 import com.jcorp.risingtest.src.main.upload.adapter.UploadRvAdapter
 import com.jcorp.risingtest.util.KeyboardVisibilityUtils
 import java.text.DecimalFormat
@@ -33,7 +31,8 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
     private val viewModel by activityViewModels<MyViewModel>()
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
     private val GALLERY_REQUEST_CODE = 1000
-    private lateinit var adapter : UploadRvAdapter
+    private lateinit var uploadAdapter : UploadRvAdapter
+    private lateinit var tagAdapter : TagRvAdapter
 
     private lateinit var immKeyboard : InputMethodManager
 
@@ -62,6 +61,9 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         binding.uploadEdtProductContent.setOnClickListener(this)
         binding.uploadBtnUploadData.setOnClickListener(this)
         binding.uploadBtnSafepay.setOnClickListener(this)
+        binding.uploadBtnCategory.setOnClickListener(this)
+        binding.uploadBtnTag.setOnClickListener(this)
+        binding.uploadBtnBack.setOnClickListener(this)
 
 
         setRv()
@@ -80,10 +82,10 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
 
     private fun setRv() {
         binding.uploadRvGallery.hasFixedSize()
-        adapter = UploadRvAdapter(requireActivity())
-        binding.uploadRvGallery.adapter = adapter
+        uploadAdapter = UploadRvAdapter(requireActivity())
+        binding.uploadRvGallery.adapter = uploadAdapter
 
-        adapter.deleteClickListener(object : UploadRvAdapter.DeleteClickListener {
+        uploadAdapter.deleteClickListener(object : UploadRvAdapter.DeleteClickListener {
             override fun onDeleteClick(view: View, position: Int) {
                 viewModel.mutableUploadUriList.removeAt(position)
                 viewModel.setUploadUriList()
@@ -226,10 +228,44 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
                 }
             }
         })
+
+        viewModel.categorySelected.observe(requireActivity(), Observer {
+            when(it) {
+                true -> {
+                    binding.uploadTxtCategoryLarge.setTextColor(requireActivity().resources.getColor(R.color.black))
+                    binding.uploadTxtCategoryLarge.text = viewModel.uploadLargeCategoryName.value
+                    binding.uploadImgCategoryDivider.visibility = View.VISIBLE
+                    binding.uploadTxtCategorySmall.visibility = View.VISIBLE
+                    binding.uploadTxtCategorySmall.text = viewModel.uploadSmallCategoryName.value
+                }
+                false -> {
+                    binding.uploadTxtCategoryLarge.setTextColor(requireActivity().resources.getColor(R.color.product_location_color))
+                    binding.uploadTxtCategoryLarge.text = "카테고리"
+                    binding.uploadImgCategoryDivider.visibility = View.GONE
+                    binding.uploadTxtCategorySmall.visibility = View.GONE
+                }
+            }
+        })
+
+        viewModel.uploadTagList.observe(requireActivity(), Observer {
+            if(it[0] == "") {
+                binding.uploadImgTag.visibility = View.VISIBLE
+                binding.uploadTxtTag.visibility = View.VISIBLE
+                binding.uploadRvTag.visibility = View.INVISIBLE
+            } else {
+                binding.uploadImgTag.visibility = View.GONE
+                binding.uploadTxtTag.visibility = View.GONE
+                binding.uploadRvTag.visibility = View.VISIBLE
+
+                tagAdapter = TagRvAdapter()
+                binding.uploadRvTag.adapter = tagAdapter
+                tagAdapter.setTagList(it)
+            }
+        })
     }
 
     private fun setNotify(list : MutableList<Uri>) {
-        adapter.setList(list)
+        uploadAdapter.setList(list)
         binding.uploadTxtGallery.text = "${list.size}/12"
     }
 
@@ -239,7 +275,13 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
             val uploadTask = mRef.putFile(i)
             //TEST
             viewModel.testImgUrl.setValue("Image/${viewModel.curUserData.value?.userIdx}/${i.lastPathSegment}")
+
+            setUpDataToServer()
         }
+    }
+
+    private fun setUpDataToServer() {
+
     }
 
     override fun onClick(p0: View?) {
@@ -278,6 +320,9 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
             R.id.upload_btn_safepay -> {
                 viewModel.safePayClicked()
             }
+            R.id.upload_btn_category -> {
+                requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).add(R.id.main_container, UploadCategoryChooseFragment()).commit()
+            }
 
             R.id.upload_btn_upload_data -> {
                 if(viewModel.upLoadUriList.value?.size == 0) {
@@ -301,6 +346,15 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
                 }
                 //업로드 후 종료하기
                 upLoadPhotosToFirebase()
+            }
+
+            R.id.upload_btn_tag -> {
+                requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).replace(R.id.main_container, UploadTagFragment()).commit()
+            }
+
+            R.id.upload_btn_back -> {
+                requireActivity().supportFragmentManager.beginTransaction().remove(this@UploadFragment).commit()
+                requireActivity().supportFragmentManager.popBackStack()
             }
         }
     }

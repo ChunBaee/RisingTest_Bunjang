@@ -9,6 +9,8 @@ import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentMainItemDetailBinding
 import com.jcorp.risingtest.src.MyViewModel
 import com.jcorp.risingtest.src.main.main.model.CurUserData
+import com.jcorp.risingtest.src.main.main.model.HomeCategoryData
+import com.jcorp.risingtest.src.main.main.model.MainBannerData
 import com.jcorp.risingtest.src.main.main.model.MainRecommendRvItem
 import com.jcorp.risingtest.src.main.main.util.MainActivityView
 
@@ -20,8 +22,19 @@ class MainProductDetailFragment : BaseFragment<FragmentMainItemDetailBinding>(Fr
         viewModel.hideBottomView.value = true
     }
 
+    override fun onPause() {
+        viewModel.hideBottomView.value = false
+        super.onPause()
+    }
+
 
     override fun onGetDataSuccess(response: CurUserData) {
+    }
+
+    override fun onHomeBannerDataSuccess(response: MainBannerData) {
+    }
+
+    override fun onHomeCategoryDataSuccess(response: HomeCategoryData) {
     }
 
     override fun onRecommendDataSuccess(response: MainRecommendRvItem) {

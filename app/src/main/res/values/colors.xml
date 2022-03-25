@@ -25,6 +25,7 @@
     <color name="upload_isnew_selected_color">#FDF2F2</color>
 
     <color name="product_detail_thunderpay_color">#FF1F52</color>
+    <color name="product_detail_tooltip_txt_color">#A09EA8</color>
 
 
 </resources>

@@ -1,9 +1,7 @@
 package com.jcorp.risingtest.src.main.main.util
 
 import com.jcorp.risingtest.config.ApplicationClass
-import com.jcorp.risingtest.src.main.main.model.CurUserData
-import com.jcorp.risingtest.src.main.main.model.MainRecommendRvItem
-import com.jcorp.risingtest.src.main.main.model.RecommendRvData
+import com.jcorp.risingtest.src.main.main.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,6 +29,34 @@ class MainService (val view : MainActivityView) {
             }
             override fun onFailure(call: Call<MainRecommendRvItem>, t: Throwable) {
             }
+        })
+    }
+
+    fun getHomeCategoryData() {
+        mRetrofitInterface.getHomeCategories().enqueue(object : Callback<HomeCategoryData> {
+            override fun onResponse(
+                call: Call<HomeCategoryData>,
+                response: Response<HomeCategoryData>
+            ) {
+                view.onHomeCategoryDataSuccess(response.body() as HomeCategoryData)
+            }
+            override fun onFailure(call: Call<HomeCategoryData>, t: Throwable) {
+            }
+
+        })
+    }
+
+    fun getMainBannerData() {
+        mRetrofitInterface.getHomeBanners().enqueue(object : Callback<MainBannerData> {
+            override fun onResponse(
+                call: Call<MainBannerData>,
+                response: Response<MainBannerData>
+            ) {
+                view.onHomeBannerDataSuccess(response.body() as MainBannerData)
+            }
+            override fun onFailure(call: Call<MainBannerData>, t: Throwable) {
+            }
+
         })
     }
 }

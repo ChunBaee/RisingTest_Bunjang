@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class ApplicationClass : Application() {
-    val API_URL = "https://isileeserver.shop"
+    val API_URL = "https://prod.isileeserver.shop"
     //소셜로그인 추가
 
     companion object {

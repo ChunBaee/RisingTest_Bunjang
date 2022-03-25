@@ -26,6 +26,19 @@ class MyViewModel : ViewModel() {
     var uploadProductCanExchange = MutableLiveData<Boolean>(false)
     //UploadSafePay
     var uploadIsSafePay = MutableLiveData<Boolean>(true)
+    //UploadCategoryChoose
+    var uploadLargeCategoryName = MutableLiveData<String>()
+    var uploadLargeCategoryIdx = MutableLiveData<Int>(0)
+
+    var uploadMiddleCategoryName = MutableLiveData<String>()
+    var uploadMiddleCategoryIdx = MutableLiveData<Int>(0)
+
+    var uploadSmallCategoryName = MutableLiveData<String>()
+    var uploadSmallCategoryIdx = MutableLiveData<Int>(0)
+
+    var categorySelected = MutableLiveData<Boolean>(false)
+    //UploadTag
+    var uploadTagList = MutableLiveData<MutableList<String>>()
 
     fun setCurUserData(result : Result) {
         curUserData.value = result

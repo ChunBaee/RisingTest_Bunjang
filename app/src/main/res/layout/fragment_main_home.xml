@@ -21,12 +21,10 @@
                     android:layout_height="match_parent"
                     android:background="@color/white">
 
-                    <ImageView
-                        android:id="@+id/img"
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/main_home_banner"
                         android:layout_width="match_parent"
                         android:layout_height="330sp"
-                        android:background="@drawable/ic_launcher_background"
-                        android:fitsSystemWindows="true"
                         app:layout_constraintTop_toTopOf="parent" />
                     <!--뷰페이져 넣기-->
 
@@ -34,7 +32,7 @@
                         android:id="@+id/main_home_pager_rv_divider"
                         android:layout_width="match_parent"
                         android:layout_height="5sp"
-                        app:layout_constraintTop_toBottomOf="@id/img" />
+                        app:layout_constraintTop_toBottomOf="@id/main_home_banner" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/main_home_rv_category"
@@ -42,7 +40,7 @@
                         android:layout_height="150sp"
                         android:orientation="horizontal"
                         tools:listitem="@layout/item_main_category"
-                        tools:itemCount="10"
+                        tools:itemCount="14"
                         app:spanCount="2"
                         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         app:layout_constraintTop_toBottomOf="@id/main_home_pager_rv_divider" />
@@ -70,7 +68,7 @@
                         android:layout_width="0sp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="17sp"
-                        android:layout_marginTop="20sp"
+                        android:layout_marginTop="25sp"
                         android:text="@string/text"
                         android:textColor="@color/black"
                         android:textSize="25sp"
@@ -84,7 +82,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@color/white"
-                        android:layout_marginTop="20sp"
+                        android:layout_marginTop="10sp"
                         app:layout_constraintTop_toBottomOf="@id/main_home_txt_changeable">
 
                         <com.google.android.material.tabs.TabLayout
@@ -140,11 +138,11 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/main_home_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="50sp"
-            android:background="@color/white"
-            android:fitsSystemWindows="true"
-            android:orientation="vertical"
+            android:layout_height="?actionBarSize"
             android:layout_marginTop="42.5sp"
+            android:background="@color/white"
+            android:fitsSystemWindows="false"
+            android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
