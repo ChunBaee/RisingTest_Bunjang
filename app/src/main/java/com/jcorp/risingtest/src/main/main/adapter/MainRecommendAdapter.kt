@@ -19,11 +19,14 @@ import com.jcorp.risingtest.config.ApplicationClass
 import com.jcorp.risingtest.databinding.ItemMainRecommendBinding
 import com.jcorp.risingtest.src.main.main.model.MainRecommendRvItem
 import com.jcorp.risingtest.src.main.main.model.RecommendRvData
+import java.text.DecimalFormat
 
 class MainRecommendAdapter (context : Context) : RecyclerView.Adapter<MainRecommendAdapter.MainRecommendViewHolder>(){
     private lateinit var detailClickListener : DetailClickListener
     private var itemList = mutableListOf<RecommendRvData>()
     private val mContext = context
+    val myFormatter = DecimalFormat("###,###")
+
 
     interface DetailClickListener {
         fun onClick (view : View, position : Int)
@@ -44,7 +47,7 @@ class MainRecommendAdapter (context : Context) : RecyclerView.Adapter<MainRecomm
                     override fun onLoadCleared(placeholder: Drawable?) {}
                 })
             }
-            binding.itemMainRecommendPrice.text = "${item.price}원"
+            binding.itemMainRecommendPrice.text = "${myFormatter.format(item.price)}원"
             binding.itemMainRecommendLocation.text = item.directAddress
             if(item.securePayment == "SECURE") {
                 val spannable = SpannableString("안전 ${item.title}")
@@ -87,7 +90,6 @@ class MainRecommendAdapter (context : Context) : RecyclerView.Adapter<MainRecomm
                 override fun onLoadCleared(placeholder: Drawable?) {}
             })
         }
-        holder.binding.itemMainRecommendPrice.text = "${itemList[position].price}원"
         holder.binding.itemMainRecommendLocation.text = itemList[position].directAddress
         if(itemList[position].securePayment == "SECURE") {
             val spannable = SpannableString("안전 ${itemList[position].title}")

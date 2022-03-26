@@ -65,6 +65,9 @@ dependencies {
 
     //lottie
     implementation 'com.airbnb.android:lottie:3.7.0'
+
+    //circlerImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'

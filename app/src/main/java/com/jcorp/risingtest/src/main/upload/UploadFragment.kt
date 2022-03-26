@@ -18,16 +18,23 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.ApplicationClass
+import com.jcorp.risingtest.config.BaseData
 import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentUploadHomeBinding
 import com.jcorp.risingtest.src.MyViewModel
 import com.jcorp.risingtest.src.main.upload.adapter.TagRvAdapter
 import com.jcorp.risingtest.src.main.upload.adapter.UploadRvAdapter
+import com.jcorp.risingtest.src.main.upload.model.UploadCategoryData
+import com.jcorp.risingtest.src.main.upload.model.UploadMyProductData
+import com.jcorp.risingtest.src.main.upload.model.productImgUrl
+import com.jcorp.risingtest.src.main.upload.model.tagName
+import com.jcorp.risingtest.src.main.upload.util.UploadCategoryView
+import com.jcorp.risingtest.src.main.upload.util.UploadService
 import com.jcorp.risingtest.util.KeyboardVisibilityUtils
 import java.text.DecimalFormat
 
 class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHomeBinding::bind, R.layout.fragment_upload_home),
-    View.OnClickListener {
+    View.OnClickListener, UploadCategoryView {
     private val viewModel by activityViewModels<MyViewModel>()
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
     private val GALLERY_REQUEST_CODE = 1000
@@ -49,7 +56,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
     private lateinit var optionSheetView : View
     private lateinit var optionDialog : BottomSheetDialog
 
-    var testImgUrl : String? = null
+    private var fbImgList = mutableListOf<productImgUrl>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -275,13 +282,27 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
             val uploadTask = mRef.putFile(i)
             //TEST
             viewModel.testImgUrl.setValue("Image/${viewModel.curUserData.value?.userIdx}/${i.lastPathSegment}")
-
-            setUpDataToServer()
+            fbImgList.add(productImgUrl("Image/${viewModel.curUserData.value?.userIdx}/${i.lastPathSegment}"))
         }
+        setUpDataToServer()
     }
 
     private fun setUpDataToServer() {
-
+        UploadService(this).uploadMyProduct(UploadMyProductData(
+            productImgList = fbImgList.toList(),
+            title = binding.uploadEdtProductName.text.toString(),
+            categoryLarge = viewModel.uploadLargeCategoryIdx.value!!,
+            categoryMiddle = viewModel.uploadMiddleCategoryIdx.value!!,
+            categorySmall = viewModel.uploadSmallCategoryIdx.value!!,
+            price = (binding.uploadEdtProductPrice.text.toString().replace(",","")).toInt(),
+            productTagList = mutableListOf<tagName>(tagName("#")),
+            explanation = binding.uploadEdtProductContent.text.toString(),
+            shippingFee = if(isFeeIncluded){"INCLUDE"} else {"EXCLUDE"},
+            quantity = viewModel.uploadProductCount.value!!,
+            productStatus = if(viewModel.uploadProductIsNew.value!!){"NEW"} else {"USED"},
+            exchangePossible = if(viewModel.uploadProductCanExchange.value!!){"EXCHANGEABLE"} else {"NONEXCHANGEABLE"},
+            securePayment = if(viewModel.uploadIsSafePay.value!!){"SECURE"} else {"UNSECURE"}
+        ))
     }
 
     override fun onClick(p0: View?) {
@@ -377,5 +398,23 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
     override fun onDestroyView() {
         keyboardVisibilityUtils.detachKeyboardListeners()
         super.onDestroyView()
+    }
+
+    override fun onGetLargeCategorySuccess(response: UploadCategoryData) {
+    }
+
+    override fun onGetMiddleCategorySuccess(response: UploadCategoryData) {
+    }
+
+    override fun onGetSmallCategorySuccess(response: UploadCategoryData) {
+    }
+
+    override fun onUploadUserProductSuccess(response: BaseData) {
+        if(response.isSuccess) {
+            Log.d("0000", "onUploadUserProductSuccess: 등록 성공")
+            requireActivity().supportFragmentManager.beginTransaction().remove(this@UploadFragment).commit()
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
     }
 }

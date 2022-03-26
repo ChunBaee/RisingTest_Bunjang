@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/background_home_banner_count.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/background_loading_dialog.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/background_product_detail_review.xml" value="0.114" />
         <entry key="app/src/main/res/drawable/btn_login_start_kakao.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/btn_login_user_next.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/btn_upload_choose_options.xml" value="0.1" />
@@ -29,7 +30,7 @@
         <entry key="app/src/main/res/layout/fragment_login_start.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login_user.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_main_home.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/fragment_main_item_detail.xml" value="0.2520775623268698" />
+        <entry key="app/src/main/res/layout/fragment_main_item_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_main_rv_recommend.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/fragment_upload_category_form.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_upload_choose_category.xml" value="0.25" />
@@ -43,6 +44,10 @@
         <entry key="app/src/main/res/layout/item_main_recommand.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/item_main_recommend.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_main_tab_layout_tab.xml" value="0.1644021739130435" />
+        <entry key="app/src/main/res/layout/item_product_detail_other_product.xml" value="0.1940222897669706" />
+        <entry key="app/src/main/res/layout/item_product_detail_pager.xml" value="0.1933876811594203" />
+        <entry key="app/src/main/res/layout/item_product_detail_review.xml" value="0.1940222897669706" />
+        <entry key="app/src/main/res/layout/item_product_detail_tag.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_upload_category_form.xml" value="0.2520775623268698" />
         <entry key="app/src/main/res/layout/item_upload_gallery_image.xml" value="0.335" />
         <entry key="app/src/main/res/layout/item_upload_tag_list.xml" value="0.375" />

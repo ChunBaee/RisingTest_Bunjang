@@ -7,7 +7,7 @@ data class RecommendRvData(
     val productIdx : Int,
     val productImg : String,
     val title : String,
-    val price : Int,
+    val price : String,
     val directAddress : String,
     val securePayment : String,
     val myFavorite : String,

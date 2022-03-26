@@ -5,16 +5,17 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import com.jcorp.risingtest.R
+import com.jcorp.risingtest.config.BaseData
 import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentUploadCategoryFormBinding
 import com.jcorp.risingtest.src.MyViewModel
 import com.jcorp.risingtest.src.main.upload.adapter.CategoryRvAdapter
 import com.jcorp.risingtest.src.main.upload.model.UploadCategoryData
-import com.jcorp.risingtest.src.main.upload.util.UploadActivityView
+import com.jcorp.risingtest.src.main.upload.util.UploadCategoryView
 import com.jcorp.risingtest.src.main.upload.util.UploadService
 
 class UploadCategoryFormFragment(depth: Int) : BaseFragment<FragmentUploadCategoryFormBinding>(FragmentUploadCategoryFormBinding::bind, R.layout.fragment_upload_category_form),
-    UploadActivityView {
+    UploadCategoryView {
     private lateinit var categoryAdapter : CategoryRvAdapter
     private val viewModel by activityViewModels<MyViewModel>()
     private var mDepth = depth
@@ -97,5 +98,8 @@ class UploadCategoryFormFragment(depth: Int) : BaseFragment<FragmentUploadCatego
 
     override fun onGetSmallCategorySuccess(response: UploadCategoryData) {
         categoryAdapter.setData(response.result.toMutableList())
+    }
+
+    override fun onUploadUserProductSuccess(response: BaseData) {
     }
 }
