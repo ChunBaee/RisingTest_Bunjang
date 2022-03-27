@@ -37,8 +37,11 @@ class MyViewModel : ViewModel() {
     var uploadSmallCategoryIdx = MutableLiveData<Int>(0)
 
     var categorySelected = MutableLiveData<Boolean>(false)
-    //UploadTag
+    //uploadTag
     var uploadTagList = MutableLiveData<MutableList<String>>()
+
+    //BuyProduct
+    var isDirect = MutableLiveData<Boolean>()
 
     fun setCurUserData(result : Result) {
         curUserData.value = result

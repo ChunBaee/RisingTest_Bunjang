@@ -23,7 +23,7 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/product_detail_pager"
                     android:layout_width="match_parent"
-                    android:layout_height="420sp"
+                    android:layout_height="410sp"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,7 +39,7 @@
                         android:id="@+id/product_detail_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10sp"
+                        android:layout_marginTop="5sp"
                         android:text="15,000"
                         android:textColor="@color/black"
                         android:textSize="20sp"
@@ -90,19 +90,19 @@
                         android:id="@+id/product_detail_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10sp"
+                        android:layout_marginTop="7sp"
                         android:text="제목을 길게 해봅시다"
                         android:textColor="@color/black"
-                        android:textSize="13sp"
+                        android:textSize="15sp"
                         android:textStyle="bold"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/product_detail_price" />
 
                     <ImageView
                         android:id="@+id/product_detail_icon_clock"
-                        android:layout_width="12sp"
-                        android:layout_height="12sp"
-                        android:layout_marginTop="5sp"
+                        android:layout_width="11sp"
+                        android:layout_height="11sp"
+                        android:layout_marginTop="10sp"
                         android:src="@drawable/icon_product_detail_clock"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/product_detail_title" />
@@ -121,8 +121,8 @@
 
                     <ImageView
                         android:id="@+id/product_detail_icon_watch"
-                        android:layout_width="13sp"
-                        android:layout_height="13sp"
+                        android:layout_width="14sp"
+                        android:layout_height="14sp"
                         android:layout_marginStart="7sp"
                         android:src="@drawable/icon_product_detail_watch_count"
                         app:layout_constraintBottom_toBottomOf="@id/product_detail_icon_clock"
@@ -130,7 +130,7 @@
                         app:layout_constraintTop_toTopOf="@id/product_detail_icon_clock" />
 
                     <TextView
-                        android:id="@+id/product_detail_txt_visibility"
+                        android:id="@+id/product_detail_txt_watch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3sp"
@@ -143,16 +143,17 @@
 
                     <ImageView
                         android:id="@+id/product_detail_icon_zzim"
-                        android:layout_width="11sp"
-                        android:layout_height="11sp"
+                        android:layout_width="10sp"
+                        android:layout_height="10sp"
                         android:layout_marginStart="7sp"
                         android:src="@drawable/icon_product_heart"
                         app:layout_constraintBottom_toBottomOf="@id/product_detail_icon_watch"
-                        app:layout_constraintLeft_toRightOf="@id/product_detail_txt_visibility"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_txt_watch"
                         app:layout_constraintTop_toTopOf="@id/product_detail_icon_watch"
                         app:tint="#C2C1CB" />
 
                     <TextView
+                        android:id="@+id/product_detail_txt_zzim"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="3sp"
@@ -169,7 +170,7 @@
                     android:id="@+id/product_detail_event_cardview"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
+                    android:layout_marginTop="15sp"
                     app:cardCornerRadius="5sp"
                     app:cardElevation="5sp"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -220,7 +221,8 @@
                     android:id="@+id/product_detail_share_tab"
                     android:layout_width="0sp"
                     android:layout_height="?actionBarSize"
-                    android:layout_marginVertical="10sp"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginBottom="7sp"
                     android:orientation="horizontal"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/product_detail_event_cardview"
@@ -273,14 +275,14 @@
 
                     <ImageView
                         android:id="@+id/product_detail_share_custom"
-                        android:layout_width="25sp"
-                        android:layout_height="25sp"
+                        android:layout_width="20sp"
+                        android:layout_height="20sp"
                         android:layout_marginEnd="10sp"
                         android:src="@drawable/icon_share"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/product_location_color" />
+                        app:tint="@color/product_detail_tooltip_txt_color" />
 
                     <View
                         android:layout_width="1sp"
@@ -304,7 +306,7 @@
                     android:id="@+id/product_detail_layout_2"
                     android:layout_width="0sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20sp"
+                    android:layout_marginTop="5sp"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/product_detail_divider"
@@ -312,8 +314,9 @@
 
                     <ImageView
                         android:id="@+id/product_detail_location_icon"
-                        android:layout_width="14sp"
-                        android:layout_height="14sp"
+                        android:layout_width="13sp"
+                        android:layout_height="13sp"
+                        android:layout_marginTop="20sp"
                         android:src="@drawable/icon_product_detail_location"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -391,9 +394,9 @@
                         android:id="@+id/product_detail_main_content"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="20sp"
                         android:textColor="@color/black"
                         android:textSize="14sp"
-                        android:layout_marginTop="20sp"
                         app:layout_constraintTop_toBottomOf="@id/product_detail_sub_layout" />
 
                     <LinearLayout
@@ -401,24 +404,24 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20sp"
-                        app:layout_constraintTop_toBottomOf="@id/product_detail_main_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toBottomOf="@id/product_detail_main_content">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="10sp"
                             android:text="태그로 검색하기"
-                            android:textSize="14sp"
                             android:textColor="@color/black"
-                            android:textStyle="bold"
-                            android:layout_marginBottom="10sp"/>
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/product_detail_tag_rv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            android:orientation="horizontal" />
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
                     </LinearLayout>
@@ -544,96 +547,99 @@
 
                     <LinearLayout
                         android:id="@+id/product_detail_layout_shop_info"
-                        android:layout_width="match_parent"
+                        android:layout_width="0sp"
                         android:layout_height="50sp"
                         android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="9">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/product_detail_shop_profile"
-                            android:layout_width="40sp"
-                            android:layout_height="40sp"
-                            android:src="@drawable/img_user_default_profile"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/product_detail_shop_profile"
+                                android:layout_width="40sp"
+                                android:layout_height="40sp"
+                                android:src="@drawable/img_user_default_profile"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/product_detail_shop_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5sp"
-                            android:text="상점명"
-                            android:textColor="@color/black"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            app:layout_constraintLeft_toRightOf="@id/product_detail_shop_profile"
-                            app:layout_constraintTop_toTopOf="@id/product_detail_shop_profile" />
+                            <TextView
+                                android:id="@+id/product_detail_shop_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5sp"
+                                android:text="상점명"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                app:layout_constraintLeft_toRightOf="@id/product_detail_shop_profile"
+                                app:layout_constraintTop_toTopOf="@id/product_detail_shop_profile" />
 
-                        <ImageView
-                            android:id="@+id/prouct_detail_icon_shopishuman"
-                            android:layout_width="14sp"
-                            android:layout_height="14sp"
-                            android:layout_marginTop="5sp"
-                            android:src="@drawable/icon_product_detail_shop_ishuman"
-                            app:layout_constraintStart_toStartOf="@id/product_detail_shop_name"
-                            app:layout_constraintTop_toBottomOf="@id/product_detail_shop_name" />
+                            <ImageView
+                                android:id="@+id/prouct_detail_icon_shopishuman"
+                                android:layout_width="14sp"
+                                android:layout_height="14sp"
+                                android:layout_marginTop="5sp"
+                                android:src="@drawable/icon_product_detail_shop_ishuman"
+                                app:layout_constraintStart_toStartOf="@id/product_detail_shop_name"
+                                app:layout_constraintTop_toBottomOf="@id/product_detail_shop_name" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="본인인증"
-                            android:textColor="@color/product_detail_thunderpay_color"
-                            android:textSize="12sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@id/prouct_detail_icon_shopishuman"
-                            app:layout_constraintLeft_toRightOf="@id/prouct_detail_icon_shopishuman"
-                            app:layout_constraintTop_toTopOf="@id/prouct_detail_icon_shopishuman" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="본인인증"
+                                android:textColor="@color/product_detail_thunderpay_color"
+                                android:textSize="12sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="@id/prouct_detail_icon_shopishuman"
+                                app:layout_constraintLeft_toRightOf="@id/prouct_detail_icon_shopishuman"
+                                app:layout_constraintTop_toTopOf="@id/prouct_detail_icon_shopishuman" />
 
                             <TextView
                                 android:id="@+id/product_detail_shop_follow_count"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="10sp"
                                 android:text="0"
-                                android:textSize="12sp"
                                 android:textColor="@color/black"
+                                android:textSize="12sp"
                                 android:textStyle="bold"
-                                app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
-                                android:layout_margin="10sp" />
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="팔로워"
-                                android:textSize="12sp"
                                 android:layout_marginRight="2sp"
+                                android:text="팔로워"
                                 android:textColor="@color/product_detail_tooltip_txt_color"
-                                app:layout_constraintTop_toTopOf="@id/product_detail_shop_follow_count"
+                                android:textSize="12sp"
                                 app:layout_constraintBottom_toBottomOf="@id/product_detail_shop_follow_count"
-                                app:layout_constraintRight_toLeftOf="@id/product_detail_shop_follow_count"/>
+                                app:layout_constraintRight_toLeftOf="@id/product_detail_shop_follow_count"
+                                app:layout_constraintTop_toTopOf="@id/product_detail_shop_follow_count" />
 
                             <RatingBar
                                 android:id="@+id/product_detail_shop_rating"
+                                style="@style/Widget.AppCompat.RatingBar.Small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="14sp"
-                                android:numStars="5"
-                                style="@style/Widget.AppCompat.RatingBar.Small"
                                 android:layout_marginRight="10sp"
-                                app:layout_constraintTop_toBottomOf="@id/product_detail_shop_follow_count"
-                                app:layout_constraintRight_toRightOf="parent" />
+                                android:numStars="5"
+                                android:progressTint="@color/product_detail_thunderpay_color"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/product_detail_shop_follow_count" />
 
                             <View
                                 android:id="@+id/shop_info_divider"
                                 android:layout_width="1sp"
                                 android:layout_height="match_parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                android:background="@color/login_user_edittext_unfocused_tint" />
+                                android:background="@color/login_user_edittext_unfocused_tint"
+                                app:layout_constraintRight_toRightOf="parent" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -641,23 +647,25 @@
                             android:id="@+id/product_detail_btn_shop_follow"
                             android:layout_width="25sp"
                             android:layout_height="25sp"
-                            android:src="@drawable/icon_shop_follow"
                             android:layout_gravity="center"
                             android:layout_marginLeft="10sp"
+                            android:src="@drawable/icon_shop_follow"
                             app:layout_constraintRight_toRightOf="parent" />
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/product_detail_layout_shop_other_product"
-                        android:layout_width="match_parent"
+                        android:layout_width="0sp"
                         android:layout_height="30sp"
-                        android:orientation="horizontal"
                         android:layout_marginTop="20sp"
+                        android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/product_detail_layout_shop_info">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="0sp"
                             android:layout_height="match_parent"
                             android:layout_weight="9">
 
@@ -666,9 +674,9 @@
                                 android:layout_width="20sp"
                                 android:layout_height="20sp"
                                 android:src="@drawable/icon_product_detail_shop_other_product"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -685,31 +693,31 @@
                                 android:id="@+id/product_detail_shop_product_count"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="10sp"
                                 android:text="27"
-                                android:textSize="12sp"
                                 android:textColor="@color/black"
+                                android:textSize="12sp"
                                 android:textStyle="bold"
-                                app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
-                                android:layout_margin="10sp" />
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="전체"
-                                android:textSize="12sp"
                                 android:layout_marginRight="3sp"
+                                android:text="전체"
                                 android:textColor="@color/product_detail_tooltip_txt_color"
-                                app:layout_constraintTop_toTopOf="@id/product_detail_shop_product_count"
+                                android:textSize="12sp"
                                 app:layout_constraintBottom_toBottomOf="@id/product_detail_shop_product_count"
-                                app:layout_constraintRight_toLeftOf="@id/product_detail_shop_product_count"/>
+                                app:layout_constraintRight_toLeftOf="@id/product_detail_shop_product_count"
+                                app:layout_constraintTop_toTopOf="@id/product_detail_shop_product_count" />
 
                             <View
                                 android:id="@+id/shop_product_divider"
                                 android:layout_width="1sp"
                                 android:layout_height="match_parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                android:background="@color/login_user_edittext_unfocused_tint" />
+                                android:background="@color/login_user_edittext_unfocused_tint"
+                                app:layout_constraintRight_toRightOf="parent" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -717,9 +725,9 @@
                             android:id="@+id/product_detail_btn_goto_shop_product"
                             android:layout_width="25sp"
                             android:layout_height="25sp"
-                            android:src="@drawable/icon_product_detail_goto_shop"
                             android:layout_gravity="center"
                             android:layout_marginLeft="10sp"
+                            android:src="@drawable/icon_product_detail_goto_shop"
                             app:layout_constraintRight_toRightOf="parent" />
 
                     </LinearLayout>
@@ -729,21 +737,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10sp"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                         android:orientation="vertical"
-                        app:spanCount="3"
-                        app:layout_constraintTop_toBottomOf="@id/product_detail_layout_shop_other_product" />
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@id/product_detail_layout_shop_other_product"
+                        app:spanCount="3" />
 
                     <LinearLayout
                         android:id="@+id/product_detail_layout_shop_review"
-                        android:layout_width="match_parent"
+                        android:layout_width="0sp"
                         android:layout_height="30sp"
-                        android:orientation="horizontal"
                         android:layout_marginTop="20sp"
+                        android:orientation="horizontal"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/product_detail_other_product_rv">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="0sp"
                             android:layout_height="match_parent"
                             android:layout_weight="9">
 
@@ -752,9 +762,9 @@
                                 android:layout_width="20sp"
                                 android:layout_height="20sp"
                                 android:src="@drawable/icon_product_detail_review"
+                                app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintTop_toTopOf="parent"
-                                app:layout_constraintBottom_toBottomOf="parent"/>
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
                                 android:id="@+id/product_detail_txt_review"
@@ -770,44 +780,45 @@
 
                             <RatingBar
                                 android:id="@+id/product_detail_review_rating"
+                                style="@style/Widget.AppCompat.RatingBar.Small"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/Widget.AppCompat.RatingBar.Small"
-                                android:numStars="5"
                                 android:layout_marginStart="5sp"
-                                app:layout_constraintTop_toTopOf="@id/product_detail_icon_review"
+                                android:numStars="5"
+                                android:progressTint="@color/product_detail_thunderpay_color"
                                 app:layout_constraintBottom_toBottomOf="@id/product_detail_icon_review"
-                                app:layout_constraintLeft_toRightOf="@id/product_detail_txt_review"/>
+                                app:layout_constraintLeft_toRightOf="@id/product_detail_txt_review"
+                                app:layout_constraintTop_toTopOf="@id/product_detail_icon_review" />
 
                             <TextView
                                 android:id="@+id/product_detail_shop_review_count"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_margin="10sp"
                                 android:text="9"
-                                android:textSize="12sp"
                                 android:textColor="@color/black"
+                                android:textSize="12sp"
                                 android:textStyle="bold"
-                                app:layout_constraintTop_toTopOf="parent"
                                 app:layout_constraintRight_toRightOf="parent"
-                                android:layout_margin="10sp" />
+                                app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="전체"
-                                android:textSize="12sp"
                                 android:layout_marginRight="3sp"
+                                android:text="전체"
                                 android:textColor="@color/product_detail_tooltip_txt_color"
-                                app:layout_constraintTop_toTopOf="@id/product_detail_shop_review_count"
+                                android:textSize="12sp"
                                 app:layout_constraintBottom_toBottomOf="@id/product_detail_shop_review_count"
-                                app:layout_constraintRight_toLeftOf="@id/product_detail_shop_review_count"/>
+                                app:layout_constraintRight_toLeftOf="@id/product_detail_shop_review_count"
+                                app:layout_constraintTop_toTopOf="@id/product_detail_shop_review_count" />
 
                             <View
                                 android:id="@+id/shop_review_divider"
                                 android:layout_width="1sp"
                                 android:layout_height="match_parent"
-                                app:layout_constraintRight_toRightOf="parent"
-                                android:background="@color/login_user_edittext_unfocused_tint" />
+                                android:background="@color/login_user_edittext_unfocused_tint"
+                                app:layout_constraintRight_toRightOf="parent" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -815,9 +826,9 @@
                             android:id="@+id/product_detail_btn_goto_shop_review"
                             android:layout_width="25sp"
                             android:layout_height="25sp"
-                            android:src="@drawable/icon_product_detail_goto_shop"
                             android:layout_gravity="center"
                             android:layout_marginLeft="10sp"
+                            android:src="@drawable/icon_product_detail_goto_shop"
                             app:layout_constraintRight_toRightOf="parent" />
 
                     </LinearLayout>
@@ -826,10 +837,10 @@
                         android:id="@+id/product_detail_review_rv"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_marginTop="10sp"
+                        android:orientation="vertical"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@id/product_detail_layout_shop_review"/>
+                        app:layout_constraintTop_toBottomOf="@id/product_detail_layout_shop_review" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -837,39 +848,40 @@
                     android:id="@+id/product_detail_divider_2"
                     android:layout_width="match_parent"
                     android:layout_height="1sp"
+                    android:layout_marginVertical="20sp"
                     android:background="@color/login_user_edittext_unfocused_tint"
-                    app:layout_constraintTop_toBottomOf="@id/product_detail_layout_3"
-                    android:layout_marginVertical="20sp" />
+                    app:layout_constraintTop_toBottomOf="@id/product_detail_layout_3" />
 
                 <TextView
                     android:id="@+id/product_detail_txt_similar_products"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="이 상품과 비슷해요"
-                    android:textSize="15sp"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
                     android:layout_margin="10sp"
-                    app:layout_constraintTop_toBottomOf="@id/product_detail_divider_2"
-                    app:layout_constraintLeft_toLeftOf="parent" />
+                    android:text="이 상품과 비슷해요"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/product_detail_divider_2" />
 
                 <ImageView
                     android:layout_width="15sp"
                     android:layout_height="15sp"
-                    android:src="@drawable/icon_product_detail_similar"
                     android:layout_marginLeft="5sp"
-                    app:layout_constraintTop_toTopOf="@id/product_detail_txt_similar_products"
+                    android:src="@drawable/icon_product_detail_similar"
                     app:layout_constraintBottom_toBottomOf="@id/product_detail_txt_similar_products"
-                    app:layout_constraintLeft_toRightOf="@id/product_detail_txt_similar_products" />
+                    app:layout_constraintLeft_toRightOf="@id/product_detail_txt_similar_products"
+                    app:layout_constraintTop_toTopOf="@id/product_detail_txt_similar_products" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/product_detail_similar_rv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10sp"
                     android:orientation="vertical"
-                    app:spanCount="3"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:layout_constraintTop_toBottomOf="@id/product_detail_txt_similar_products" />
+                    app:layout_constraintTop_toBottomOf="@id/product_detail_txt_similar_products"
+                    app:spanCount="3" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -880,31 +892,207 @@
             android:id="@+id/product_detail_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
-            android:layout_marginTop="43.5sp"
-            android:background="@android:color/transparent"
+            android:layout_marginTop="42.5sp"
+            android:background="@color/white"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
+                android:id="@+id/product_detail_btn_back"
                 android:layout_width="20sp"
                 android:layout_height="20sp"
-                android:src="@drawable/icon_back" />
+                android:background="@drawable/icon_back"
+                android:backgroundTint="@color/white" />
+
+            <TextView
+                android:id="@+id/product_detail_toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:text="상품 정보"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <ImageView
+                android:id="@+id/product_detail_btn_share"
                 android:layout_width="23sp"
                 android:layout_height="23sp"
                 android:layout_gravity="end"
                 android:layout_marginRight="20sp"
-                android:src="@drawable/icon_share" />
+                android:background="@drawable/icon_share"
+                android:backgroundTint="@color/white" />
 
             <ImageView
+                android:id="@+id/product_detail_btn_search"
                 android:layout_width="25sp"
                 android:layout_height="25sp"
                 android:layout_gravity="end"
                 android:layout_marginRight="20sp"
-                android:src="@drawable/icon_main_toolbar_search"
-                app:tint="@color/black" />
+                android:background="@drawable/icon_main_toolbar_search"
+                android:backgroundTint="@color/white" />
 
         </com.google.android.material.appbar.MaterialToolbar>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/product_detail_small_layout"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@color/white"
+            app:layout_constraintTop_toBottomOf="@id/product_detail_toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.75">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/product_detail_small_toolbar_photo_layout"
+                        android:layout_width="45sp"
+                        android:layout_height="45sp"
+                        android:layout_margin="8sp"
+                        app:cardCornerRadius="5sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent">
+
+                        <ImageView
+                            android:id="@+id/product_detail_small_toolbar_photo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/ic_launcher_background" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/product_detail_small_toolbar_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10,000"
+                        android:textSize="14sp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginStart="5sp"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_small_toolbar_photo_layout"
+                        app:layout_constraintTop_toTopOf="@id/product_detail_small_toolbar_photo_layout" />
+
+                    <TextView
+                        android:id="@+id/product_detail_small_toolbar_price_won"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="원"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:layout_marginStart="2sp"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_small_toolbar_price"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_small_toolbar_price" />
+
+                    <TextView
+                        android:id="@+id/product_detail_small_shipping_fee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="배송비별도"
+                        android:textSize="12sp"
+                        android:textColor="@color/product_detail_tooltip_txt_color"
+                        android:layout_marginStart="5sp"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_small_toolbar_price_won"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_small_toolbar_price_won" />
+
+                    <TextView
+                        android:id="@+id/product_detail_small_toolbar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="글제목입니다."
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:ellipsize="end"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_small_toolbar_photo_layout"
+                        app:layout_constraintStart_toStartOf="@id/product_detail_small_toolbar_price" />
+
+                    <View
+                        android:layout_width="1sp"
+                        android:layout_height="0sp"
+                        android:background="@color/login_user_edittext_unfocused_tint"
+                        app:layout_constraintTop_toTopOf="@id/product_detail_small_toolbar_photo_layout"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_small_toolbar_photo_layout"
+                        app:layout_constraintRight_toRightOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0sp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25">
+
+                    <TextView
+                        android:id="@+id/product_detail_small_shopName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="상점제목"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:ellipsize="end"
+                        android:layout_marginTop="5sp"
+                        android:layout_marginStart="5sp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent" />
+
+                    <RatingBar
+                        android:id="@+id/product_detail_small_ratingbar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="1"
+                        style="@style/Widget.AppCompat.RatingBar.Small"
+                        android:progressTint="@color/product_detail_thunderpay_color"
+                        android:layout_marginTop="2sp"
+                        app:layout_constraintTop_toBottomOf="@id/product_detail_small_shopName"
+                        app:layout_constraintStart_toStartOf="@id/product_detail_small_shopName" />
+
+                    <TextView
+                        android:id="@+id/product_detail_small_rating_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5.0"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="1sp"
+                        app:layout_constraintTop_toTopOf="@id/product_detail_small_ratingbar"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_small_ratingbar"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_small_ratingbar" />
+
+                    <TextView
+                        android:id="@+id/product_detail_small_review_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="(1)"
+                        android:textSize="12sp"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="2sp"
+                        android:layout_marginBottom="1.5sp"
+                        app:layout_constraintTop_toTopOf="@id/product_detail_small_ratingbar"
+                        app:layout_constraintBottom_toBottomOf="@id/product_detail_small_ratingbar"
+                        app:layout_constraintLeft_toRightOf="@id/product_detail_small_rating_txt" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:background="@color/login_user_edittext_unfocused_tint"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
             android:id="@+id/product_detail_bottom"
@@ -960,7 +1148,7 @@
                     android:layout_height="wrap_content"
                     android:text="번개톡"
                     android:textColor="@color/product_detail_thunderpay_color"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -982,6 +1170,7 @@
                     android:text="번개페이 안전결제"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"

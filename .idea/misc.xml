@@ -23,10 +23,12 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1945288753799392" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1940222897669706" />
+        <entry key="app/src/main/res/layout/dialog_detail_order_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.14990942028985507" />
         <entry key="app/src/main/res/layout/dialog_login_start_other_way.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/dialog_upload_choose_options.xml" value="0.2074074074074074" />
         <entry key="app/src/main/res/layout/dialog_user_login_telecom.xml" value="0.1940222897669706" />
+        <entry key="app/src/main/res/layout/fragment_buy_main.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/fragment_login_start.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login_user.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_main_home.xml" value="0.2" />
@@ -46,7 +48,8 @@
         <entry key="app/src/main/res/layout/item_main_tab_layout_tab.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/item_product_detail_other_product.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/item_product_detail_pager.xml" value="0.1933876811594203" />
-        <entry key="app/src/main/res/layout/item_product_detail_review.xml" value="0.1940222897669706" />
+        <entry key="app/src/main/res/layout/item_product_detail_review.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/item_product_detail_similar_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_product_detail_tag.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_upload_category_form.xml" value="0.2520775623268698" />
         <entry key="app/src/main/res/layout/item_upload_gallery_image.xml" value="0.335" />

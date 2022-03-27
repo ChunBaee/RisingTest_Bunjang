@@ -10,7 +10,7 @@ data class ProductDetailResult(
     val productInfo: ProductInfo,
     val productTagList: List<ProductTag>,
     val relateProductList: List<RelateProduct>,
-    val reviewList: List<Any>,
+    val reviewList: List<ReviewProduct>,
     val sellProductList: List<SellProduct>,
     val storeInfo: StoreInfo
 )
@@ -28,14 +28,26 @@ data class ProductInfo(
     val myFavorite: String,
     val price: Int,
     val productInquiry: String,
-    val productOption: String,
+    val productStatus : String,
+    val shippingFee : String,
+    val quantity : Int,
     val securePayment: String,
     val sellStatus: String,
-    val title: String
+    val title: String,
+    val viewCount : Int
 )
 data class ProductTag(
     val tagId: Int,
     val tagName: String
+)
+data class ReviewProduct(
+    val title : String,
+    val rate : Double,
+    val explanation : String,
+    val securePayment : String,
+    val profileUrl : String,
+    val storeName : String
+
 )
 data class SellProduct(
     val price: Int,

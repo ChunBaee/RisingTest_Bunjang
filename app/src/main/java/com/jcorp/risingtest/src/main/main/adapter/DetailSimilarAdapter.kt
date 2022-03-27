@@ -11,67 +11,68 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.ApplicationClass
-import com.jcorp.risingtest.databinding.ItemProductDetailOtherProductBinding
-import com.jcorp.risingtest.src.main.main.model.SellProduct
+import com.jcorp.risingtest.databinding.ItemProductDetailSimilarProductBinding
+import com.jcorp.risingtest.src.main.main.model.RelateProduct
 import java.text.DecimalFormat
 
-class DetailOtherProductAdapter (context : Context) : RecyclerView.Adapter<DetailOtherProductAdapter.DetailOtherProductViewHolder>() {
-    private var productList = mutableListOf<SellProduct>()
+class DetailSimilarAdapter (context : Context): RecyclerView.Adapter<DetailSimilarAdapter.DetailSimilarViewHolder>() {
+
+    private var similarList = mutableListOf<RelateProduct>()
     private val mContext = context
     val myFormatter = DecimalFormat("###,###")
 
-    inner class DetailOtherProductViewHolder(val binding : ItemProductDetailOtherProductBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : SellProduct) {
-
+    inner class DetailSimilarViewHolder(val binding : ItemProductDetailSimilarProductBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item : RelateProduct) {
             ApplicationClass.fbStorage.child(item.productImgUrl).downloadUrl.addOnCompleteListener {
                 Glide.with(mContext).load(it.result).into(object : CustomTarget<Drawable>() {
                     override fun onResourceReady(
                         a_resource: Drawable,
                         a_transition: Transition<in Drawable>?
                     ) {
-                        binding.detailOtherProductImg.background = a_resource
+                        binding.productOtherProductPhoto.background = a_resource
                     }
                     override fun onLoadCleared(placeholder: Drawable?) {
                     }
                 })
             }
-            binding.detailPriceTxt.text = myFormatter.format(item.price.toDouble())
+            binding.productOtherProductPrice.text = myFormatter.format(item.price.toDouble())
+            binding.productOtherProductName.text = item.title
         }
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): DetailOtherProductViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailSimilarViewHolder {
         val layoutInflater = LayoutInflater.from(mContext)
-        val binding = DataBindingUtil.inflate<ItemProductDetailOtherProductBinding>(layoutInflater, R.layout.item_product_detail_other_product, parent, false)
-        return DetailOtherProductViewHolder(binding)
+        val binding = DataBindingUtil.inflate<ItemProductDetailSimilarProductBinding>(layoutInflater, R.layout.item_product_detail_similar_product, parent, false)
+        return DetailSimilarViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: DetailOtherProductViewHolder, position: Int) {
-        holder.bind(productList[position])
+    override fun onBindViewHolder(holder: DetailSimilarViewHolder, position: Int) {
+        holder.bind(similarList[position])
 
-        ApplicationClass.fbStorage.child(productList[position].productImgUrl).downloadUrl.addOnCompleteListener {
+        ApplicationClass.fbStorage.child(similarList[position].productImgUrl).downloadUrl.addOnCompleteListener {
             Glide.with(mContext).load(it.result).into(object : CustomTarget<Drawable>() {
                 override fun onResourceReady(
                     a_resource: Drawable,
                     a_transition: Transition<in Drawable>?
                 ) {
-                    holder.binding.detailOtherProductImg.background = a_resource
+                    holder.binding.productOtherProductPhoto.background = a_resource
                 }
                 override fun onLoadCleared(placeholder: Drawable?) {
                 }
             })
         }
-        holder.binding.detailPriceTxt.text = myFormatter.format(productList[position].price.toDouble())
+
+        holder.binding.productOtherProductPrice.text = myFormatter.format(similarList[position].price.toDouble())
+        holder.binding.productOtherProductName.text = similarList[position].title
+
     }
 
     override fun getItemCount(): Int {
-        return productList.size
+        return similarList.size
     }
 
-    fun setOtherProductList(list : MutableList<SellProduct>) {
-        productList = list.toMutableList()
+    fun setSimilarList(list : MutableList<RelateProduct>) {
+        similarList = list.toMutableList()
         notifyDataSetChanged()
     }
 }

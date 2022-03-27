@@ -47,7 +47,7 @@ class MainRecommendAdapter (context : Context) : RecyclerView.Adapter<MainRecomm
                     override fun onLoadCleared(placeholder: Drawable?) {}
                 })
             }
-            binding.itemMainRecommendPrice.text = "${myFormatter.format(item.price)}원"
+            binding.itemMainRecommendPrice.text = "${myFormatter.format(item.price.toDouble())}원"
             binding.itemMainRecommendLocation.text = item.directAddress
             if(item.securePayment == "SECURE") {
                 val spannable = SpannableString("안전 ${item.title}")
@@ -111,7 +111,8 @@ class MainRecommendAdapter (context : Context) : RecyclerView.Adapter<MainRecomm
         holder.binding.itemMainRecommendTime.text = itemList[position].createdAt
 
         holder.itemView.setOnClickListener {
-            detailClickListener.onClick(it, holder.adapterPosition)
+            detailClickListener.onClick(it, itemList[holder.adapterPosition].productIdx)
+
         }
     }
 

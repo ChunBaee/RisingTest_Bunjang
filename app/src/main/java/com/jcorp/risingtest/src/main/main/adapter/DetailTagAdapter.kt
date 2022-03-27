@@ -32,4 +32,9 @@ class DetailTagAdapter : RecyclerView.Adapter<DetailTagAdapter.DetailTagViewHold
     override fun getItemCount(): Int {
         return tagList.size
     }
+
+    fun setTagList(list : MutableList<ProductTag>) {
+        tagList = list.toMutableList()
+        notifyDataSetChanged()
+    }
 }

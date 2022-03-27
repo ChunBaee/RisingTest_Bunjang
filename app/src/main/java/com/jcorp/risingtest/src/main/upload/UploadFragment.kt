@@ -33,28 +33,31 @@ import com.jcorp.risingtest.src.main.upload.util.UploadService
 import com.jcorp.risingtest.util.KeyboardVisibilityUtils
 import java.text.DecimalFormat
 
-class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHomeBinding::bind, R.layout.fragment_upload_home),
+class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
+    FragmentUploadHomeBinding::bind,
+    R.layout.fragment_upload_home
+),
     View.OnClickListener, UploadCategoryView {
     private val viewModel by activityViewModels<MyViewModel>()
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
     private val GALLERY_REQUEST_CODE = 1000
-    private lateinit var uploadAdapter : UploadRvAdapter
-    private lateinit var tagAdapter : TagRvAdapter
+    private lateinit var uploadAdapter: UploadRvAdapter
+    private lateinit var tagAdapter: TagRvAdapter
 
-    private lateinit var immKeyboard : InputMethodManager
+    private lateinit var immKeyboard: InputMethodManager
 
     private var isFeeIncluded = false
     private var lastWonTxt = ""
 
-    private var count : EditText? = null
-    private var used : Button? = null
-    private var new : Button? = null
-    private var canExchange : Button? = null
-    private var cantExchange : Button? = null
-    private var chooseFinish : Button? = null
+    private var count: EditText? = null
+    private var used: Button? = null
+    private var new: Button? = null
+    private var canExchange: Button? = null
+    private var cantExchange: Button? = null
+    private var chooseFinish: Button? = null
 
-    private lateinit var optionSheetView : View
-    private lateinit var optionDialog : BottomSheetDialog
+    private lateinit var optionSheetView: View
+    private lateinit var optionDialog: BottomSheetDialog
 
     private var fbImgList = mutableListOf<productImgUrl>()
 
@@ -79,11 +82,11 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         observe()
 
         keyboardVisibilityUtils = KeyboardVisibilityUtils(requireActivity().window,
-        onShowKeyboard = {
-            binding.uploadScrollView.run {
-                smoothScrollTo(scrollX, scrollY + it)
-            }
-        })
+            onShowKeyboard = {
+                binding.uploadScrollView.run {
+                    smoothScrollTo(scrollX, scrollY + it)
+                }
+            })
 
     }
 
@@ -100,6 +103,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
 
         })
     }
+
     private fun setView() {
 
         activity?.window?.apply {
@@ -110,16 +114,17 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         optionDialog = BottomSheetDialog(requireActivity())
         optionDialog.setContentView(optionSheetView)
 
-        immKeyboard = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        immKeyboard =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         binding.uploadEdtProductPrice.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(p0?.isNotEmpty() == true && p0.toString() != lastWonTxt) {
+                if (p0?.isNotEmpty() == true && p0.toString() != lastWonTxt) {
                     val myFormatter = DecimalFormat("###,###")
-                    lastWonTxt = myFormatter.format((p0.toString().replace(",","")).toDouble())
+                    lastWonTxt = myFormatter.format((p0.toString().replace(",", "")).toDouble())
                     binding.uploadEdtProductPrice.setText(lastWonTxt)
                     binding.uploadEdtProductPrice.setSelection(lastWonTxt.length)
                 }
@@ -131,8 +136,8 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
 
         })
 
-        binding.uploadEdtProductContent.setOnFocusChangeListener { view : View, isFocus : Boolean ->
-            if(isFocus && immKeyboard.isAcceptingText) {
+        binding.uploadEdtProductContent.setOnFocusChangeListener { view: View, isFocus: Boolean ->
+            if (isFocus && immKeyboard.isAcceptingText) {
                 Log.d("0000", "setView: it is")
                 binding.customView.visibility = View.VISIBLE
                 binding.uploadAdditionalBottomView.visibility = View.VISIBLE
@@ -160,7 +165,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
     }
 
     private fun setDialogResult() {
-        if(count?.text?.isEmpty() == true) {
+        if (count?.text?.isEmpty() == true) {
             viewModel.uploadProductCount.value = 1
         } else {
             viewModel.uploadProductCount.value = count?.text.toString().toInt()
@@ -169,11 +174,11 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         optionDialog.dismiss()
 
         binding.uploadTxtProductCount.text = "${viewModel.uploadProductCount.value}개"
-        when(viewModel.uploadProductIsNew.value) {
+        when (viewModel.uploadProductIsNew.value) {
             true -> binding.uploadTxtProductIsUsed.text = "새상품"
             false -> binding.uploadTxtProductIsUsed.text = "중고상품"
         }
-        when(viewModel.uploadProductCanExchange.value) {
+        when (viewModel.uploadProductCanExchange.value) {
             true -> binding.uploadTxtCanChange.text = "교환가능"
             false -> binding.uploadTxtCanChange.text = "교환불가"
         }
@@ -186,7 +191,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         })
 
         viewModel.uploadProductIsNew.observe(requireActivity(), Observer {
-            when(it) {
+            when (it) {
                 true -> {
                     new?.setBackgroundResource(R.drawable.btn_upload_choose_options_selected)
                     new?.setTextColor(requireActivity().getColor(R.color.upload_isnew_txt_selected_color))
@@ -205,7 +210,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         })
 
         viewModel.uploadProductCanExchange.observe(requireActivity(), Observer {
-            when(it) {
+            when (it) {
                 true -> {
                     canExchange?.setBackgroundResource(R.drawable.btn_upload_choose_options_selected)
                     canExchange?.setTextColor(requireActivity().getColor(R.color.upload_isnew_txt_selected_color))
@@ -224,7 +229,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         })
 
         viewModel.uploadIsSafePay.observe(requireActivity(), Observer {
-            when(it) {
+            when (it) {
                 true -> {
                     binding.uploadBtnSafepay.setBackgroundResource(R.drawable.btn_upload_safepay_clicked)
                     binding.uploadImgSafepay.setImageResource(R.drawable.icon_upload_safepay_clicked)
@@ -237,16 +242,24 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         })
 
         viewModel.categorySelected.observe(requireActivity(), Observer {
-            when(it) {
+            when (it) {
                 true -> {
-                    binding.uploadTxtCategoryLarge.setTextColor(requireActivity().resources.getColor(R.color.black))
+                    binding.uploadTxtCategoryLarge.setTextColor(
+                        requireActivity().resources.getColor(
+                            R.color.black
+                        )
+                    )
                     binding.uploadTxtCategoryLarge.text = viewModel.uploadLargeCategoryName.value
                     binding.uploadImgCategoryDivider.visibility = View.VISIBLE
                     binding.uploadTxtCategorySmall.visibility = View.VISIBLE
                     binding.uploadTxtCategorySmall.text = viewModel.uploadSmallCategoryName.value
                 }
                 false -> {
-                    binding.uploadTxtCategoryLarge.setTextColor(requireActivity().resources.getColor(R.color.product_location_color))
+                    binding.uploadTxtCategoryLarge.setTextColor(
+                        requireActivity().resources.getColor(
+                            R.color.product_location_color
+                        )
+                    )
                     binding.uploadTxtCategoryLarge.text = "카테고리"
                     binding.uploadImgCategoryDivider.visibility = View.GONE
                     binding.uploadTxtCategorySmall.visibility = View.GONE
@@ -255,11 +268,15 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
         })
 
         viewModel.uploadTagList.observe(requireActivity(), Observer {
-            if(it[0] == "") {
+            for (i in it) {
+                Log.d("0000", "observe: $i")
+            }
+            Log.d("0000", "observe: ${binding.uploadTxtTag.text}")
+            /*if(it[0] == "") {
                 binding.uploadImgTag.visibility = View.VISIBLE
                 binding.uploadTxtTag.visibility = View.VISIBLE
                 binding.uploadRvTag.visibility = View.INVISIBLE
-            } else {
+            } else if(it[0] != "") {
                 binding.uploadImgTag.visibility = View.GONE
                 binding.uploadTxtTag.visibility = View.GONE
                 binding.uploadRvTag.visibility = View.VISIBLE
@@ -267,18 +284,21 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
                 tagAdapter = TagRvAdapter()
                 binding.uploadRvTag.adapter = tagAdapter
                 tagAdapter.setTagList(it)
-            }
+            } else {
+                Log.d("0000", "observe: 넌 뭐냐..")
+            }*/
         })
     }
 
-    private fun setNotify(list : MutableList<Uri>) {
+    private fun setNotify(list: MutableList<Uri>) {
         uploadAdapter.setList(list)
         binding.uploadTxtGallery.text = "${list.size}/12"
     }
 
     private fun upLoadPhotosToFirebase() {
         for (i in viewModel.mutableUploadUriList) {
-            val mRef = ApplicationClass.fbStorage.child("Image/${viewModel.curUserData.value?.userIdx}/${i.lastPathSegment}")
+            val mRef =
+                ApplicationClass.fbStorage.child("Image/${viewModel.curUserData.value?.userIdx}/${i.lastPathSegment}")
             val uploadTask = mRef.putFile(i)
             //TEST
             viewModel.testImgUrl.setValue("Image/${viewModel.curUserData.value?.userIdx}/${i.lastPathSegment}")
@@ -288,25 +308,43 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
     }
 
     private fun setUpDataToServer() {
-        UploadService(this).uploadMyProduct(UploadMyProductData(
-            productImgList = fbImgList.toList(),
-            title = binding.uploadEdtProductName.text.toString(),
-            categoryLarge = viewModel.uploadLargeCategoryIdx.value!!,
-            categoryMiddle = viewModel.uploadMiddleCategoryIdx.value!!,
-            categorySmall = viewModel.uploadSmallCategoryIdx.value!!,
-            price = (binding.uploadEdtProductPrice.text.toString().replace(",","")).toInt(),
-            productTagList = mutableListOf<tagName>(tagName("#")),
-            explanation = binding.uploadEdtProductContent.text.toString(),
-            shippingFee = if(isFeeIncluded){"INCLUDE"} else {"EXCLUDE"},
-            quantity = viewModel.uploadProductCount.value!!,
-            productStatus = if(viewModel.uploadProductIsNew.value!!){"NEW"} else {"USED"},
-            exchangePossible = if(viewModel.uploadProductCanExchange.value!!){"EXCHANGEABLE"} else {"NONEXCHANGEABLE"},
-            securePayment = if(viewModel.uploadIsSafePay.value!!){"SECURE"} else {"UNSECURE"}
-        ))
+        UploadService(this).uploadMyProduct(
+            UploadMyProductData(
+                productImgList = fbImgList.toList(),
+                title = binding.uploadEdtProductName.text.toString(),
+                categoryLarge = viewModel.uploadLargeCategoryIdx.value!!,
+                categoryMiddle = viewModel.uploadMiddleCategoryIdx.value!!,
+                categorySmall = viewModel.uploadSmallCategoryIdx.value!!,
+                price = (binding.uploadEdtProductPrice.text.toString().replace(",", "")).toInt(),
+                productTagList = mutableListOf<tagName>(tagName("#")),
+                explanation = binding.uploadEdtProductContent.text.toString(),
+                shippingFee = if (isFeeIncluded) {
+                    "INCLUDE"
+                } else {
+                    "EXCLUDE"
+                },
+                quantity = viewModel.uploadProductCount.value!!,
+                productStatus = if (viewModel.uploadProductIsNew.value!!) {
+                    "NEW"
+                } else {
+                    "USED"
+                },
+                exchangePossible = if (viewModel.uploadProductCanExchange.value!!) {
+                    "EXCHANGEABLE"
+                } else {
+                    "NONEXCHANGEABLE"
+                },
+                securePayment = if (viewModel.uploadIsSafePay.value!!) {
+                    "SECURE"
+                } else {
+                    "UNSECURE"
+                }
+            )
+        )
     }
 
     override fun onClick(p0: View?) {
-        when(p0!!.id) {
+        when (p0!!.id) {
             R.id.upload_btn_gallery -> {
                 val intent = Intent()
                 intent.type = "image/*"
@@ -315,7 +353,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
             }
 
             R.id.upload_btn_include_fee -> {
-                when(isFeeIncluded) {
+                when (isFeeIncluded) {
                     true -> {
                         binding.uploadCheckIncludeFee.setImageResource(R.drawable.icon_upload_include_fee)
                     }
@@ -342,27 +380,49 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
                 viewModel.safePayClicked()
             }
             R.id.upload_btn_category -> {
-                requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).add(R.id.main_container, UploadCategoryChooseFragment()).commit()
+                requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null)
+                    .add(R.id.main_container, UploadCategoryChooseFragment()).commit()
             }
 
             R.id.upload_btn_upload_data -> {
-                if(viewModel.upLoadUriList.value?.size == 0) {
-                    Snackbar.make(binding.uploadScrollView, "상품 사진을 등록해주세요.", Snackbar.LENGTH_SHORT).show()
+                if (viewModel.upLoadUriList.value?.size == 0) {
+                    Snackbar.make(binding.uploadScrollView, "상품 사진을 등록해주세요.", Snackbar.LENGTH_SHORT)
+                        .show()
                     return
                 }
-                if(binding.uploadEdtProductName.text.length < 2) {
-                    Snackbar.make(binding.uploadScrollView, "상품명을 2글자 이상 입력해주세요.", Snackbar.LENGTH_SHORT).show()
+                if (binding.uploadEdtProductName.text.length < 2) {
+                    Snackbar.make(
+                        binding.uploadScrollView,
+                        "상품명을 2글자 이상 입력해주세요.",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                     return
                 }
-                if(binding.uploadEdtProductPrice.text.isEmpty() || binding.uploadEdtProductPrice.text.toString().replace(",","").toInt() < 100) {
-                    Snackbar.make(binding.uploadScrollView, "100원 이상 입력해주세요.", Snackbar.LENGTH_SHORT).show()
+                if (binding.uploadEdtProductPrice.text.isEmpty() || binding.uploadEdtProductPrice.text.toString()
+                        .replace(",", "").toInt() < 100
+                ) {
+                    Snackbar.make(
+                        binding.uploadScrollView,
+                        "100원 이상 입력해주세요.",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                     return
-                } else if(binding.uploadEdtProductPrice.text.toString().replace(",","").toInt() < 1000 && viewModel.uploadIsSafePay.value == true) {
-                    Snackbar.make(binding.uploadScrollView, "가격이 1000원 미만인 경우 안전결제를 사용할 수 없어요.", Snackbar.LENGTH_SHORT).show()
+                } else if (binding.uploadEdtProductPrice.text.toString().replace(",", "")
+                        .toInt() < 1000 && viewModel.uploadIsSafePay.value == true
+                ) {
+                    Snackbar.make(
+                        binding.uploadScrollView,
+                        "가격이 1000원 미만인 경우 안전결제를 사용할 수 없어요.",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                     return
                 }
-                if(binding.uploadEdtProductContent.text.length < 10) {
-                    Snackbar.make(binding.uploadScrollView, "상품설명을 10글자 이상 입력해주세요.", Snackbar.LENGTH_SHORT).show()
+                if (binding.uploadEdtProductContent.text.length < 10) {
+                    Snackbar.make(
+                        binding.uploadScrollView,
+                        "상품설명을 10글자 이상 입력해주세요.",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                     return
                 }
                 //업로드 후 종료하기
@@ -370,11 +430,13 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
             }
 
             R.id.upload_btn_tag -> {
-                requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).replace(R.id.main_container, UploadTagFragment()).commit()
+                requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null)
+                    .replace(R.id.main_container, UploadTagFragment()).commit()
             }
 
             R.id.upload_btn_back -> {
-                requireActivity().supportFragmentManager.beginTransaction().remove(this@UploadFragment).commit()
+                requireActivity().supportFragmentManager.beginTransaction()
+                    .remove(this@UploadFragment).commit()
                 requireActivity().supportFragmentManager.popBackStack()
             }
         }
@@ -382,10 +444,10 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode != Activity.RESULT_OK) {
+        if (resultCode != Activity.RESULT_OK) {
             return
         }
-        when(requestCode) {
+        when (requestCode) {
             GALLERY_REQUEST_CODE -> {
                 val uri = data!!.data as Uri
 
@@ -410,9 +472,10 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(FragmentUploadHom
     }
 
     override fun onUploadUserProductSuccess(response: BaseData) {
-        if(response.isSuccess) {
+        if (response.isSuccess) {
             Log.d("0000", "onUploadUserProductSuccess: 등록 성공")
-            requireActivity().supportFragmentManager.beginTransaction().remove(this@UploadFragment).commit()
+            requireActivity().supportFragmentManager.beginTransaction().remove(this@UploadFragment)
+                .commit()
             requireActivity().supportFragmentManager.popBackStack()
         }
 

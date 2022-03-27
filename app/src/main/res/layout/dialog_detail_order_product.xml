@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dialog_pay_dismiss_btn"
+            android:layout_width="13sp"
+            android:layout_height="13sp"
+            android:src="@drawable/icon_x"
+            android:layout_marginTop="20sp"
+            android:layout_marginEnd="15sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <TextView
+            android:id="@+id/dialog_pay_safepay_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="안전결제"
+            android:textSize="24sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginTop="30sp"
+            android:layout_marginStart="20sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <ImageView
+            android:id="@+id/dialog_pay_safepay_img"
+            android:layout_width="75sp"
+            android:layout_height="55sp"
+            android:src="@drawable/icon_thunderpay_big"
+            android:layout_marginTop="18.5sp"
+            android:layout_marginStart="5sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/dialog_pay_safepay_txt" />
+
+        <ImageView
+            android:layout_width="18sp"
+            android:layout_height="18sp"
+            android:src="@drawable/icon_dialog_pay_guide_icon"
+            android:layout_marginStart="7sp"
+            app:layout_constraintTop_toTopOf="@id/dialog_pay_safepay_img"
+            app:layout_constraintBottom_toBottomOf="@id/dialog_pay_safepay_img"
+            app:layout_constraintLeft_toRightOf="@id/dialog_pay_safepay_img" />
+
+
+        <LinearLayout
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            app:layout_constraintWidth_percent="0.9"
+            android:layout_marginTop="45sp"
+            android:layout_marginBottom="25sp"
+            app:layout_constraintTop_toBottomOf="@id/dialog_pay_safepay_txt"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dialog_pay_shipping_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/dialog_pay_shipping_txt0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="택배거래"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <TextView
+                    android:id="@+id/dialog_pay_shipping_txt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="안전하게 상품을 받을 때까지,"
+                    android:textSize="14sp"
+                    android:textColor="@color/product_detail_tooltip_txt_color"
+                    android:layout_marginTop="8sp"
+                    app:layout_constraintTop_toBottomOf="@id/dialog_pay_shipping_txt0"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="번개장터가 결제금액을 보관해요"
+                    android:textSize="14sp"
+                    android:textColor="@color/product_detail_tooltip_txt_color"
+                    app:layout_constraintTop_toBottomOf="@id/dialog_pay_shipping_txt1"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1sp"
+                android:layout_marginVertical="15sp"
+                android:background="@color/login_user_edittext_unfocused_tint" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/dialog_pay_direct_btn"
+                android:layout_marginTop="10sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:id="@+id/dialog_pay_direct_txt0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="직거래"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0sp"
+                    android:layout_marginStart="5sp"
+                    android:background="@color/upload_isnew_selected_color"
+                    app:layout_constraintTop_toTopOf="@id/dialog_pay_direct_txt0"
+                    app:layout_constraintBottom_toBottomOf="@id/dialog_pay_direct_txt0"
+                    app:layout_constraintLeft_toRightOf="@id/dialog_pay_direct_txt0">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="카드가능"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:layout_marginHorizontal="4sp"
+                        android:textColor="@color/upload_isnew_txt_selected_color"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="직거래도 현금없이 간편하게 결제할 수 있어요"
+                    android:textSize="14sp"
+                    android:layout_marginTop="8sp"
+                    app:layout_constraintTop_toBottomOf="@id/dialog_pay_direct_txt0"
+                    app:layout_constraintLeft_toLeftOf="@id/dialog_pay_direct_txt0" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

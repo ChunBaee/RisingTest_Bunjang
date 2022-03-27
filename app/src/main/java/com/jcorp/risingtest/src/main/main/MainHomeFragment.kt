@@ -46,48 +46,44 @@ class MainHomeFragment : BaseFragment<FragmentMainHomeBinding>(
     val tabLocation = IntArray(2)
     binding.mainHomeToolbar.getLocationOnScreen(outLocation)
     binding.tabs.getLocationOnScreen(tabLocation)
-    binding.mainHomeScrollview.setOnScrollChangeListener(
-    object : View.OnScrollChangeListener {
-        override fun onScrollChange(p0: View?, p1: Int, p2: Int, p3: Int, p4: Int) {
-
-            if (p2 > 600) {
-                requireActivity().window.statusBarColor =
-                    Color.argb(255, 255, 255, 255)
-            } else {
-                requireActivity().window.statusBarColor =
-                    Color.argb((p2 * 0.425).toInt(), 255, 255, 255)
-            }
-
-            binding.mainHomeToolbar.background.alpha = ((p2 * 0.425).toInt())
-            if (p2 > 300) {
-                binding.mainHomeBtnMenu.background.alpha = ((p2 - 300) * 0.85).toInt()
-                binding.mainHomeBtnAlarm.background.alpha = ((p2 - 300) * 0.85).toInt()
-                binding.mainHomeBtnSearch.background.alpha = ((p2 - 300) * 0.85).toInt()
-                binding.mainHomeBtnMenu.background.setTint(requireActivity().resources.getColor(R.color.black))
-                binding.mainHomeBtnAlarm.background.setTint(requireActivity().resources.getColor(R.color.black))
-                binding.mainHomeBtnSearch.background.setTint(requireActivity().resources.getColor(R.color.black))
-            } else if (p2 < 300) {
-                binding.mainHomeBtnMenu.background.alpha = (255 - (p2 * 0.85).toInt())
-                binding.mainHomeBtnAlarm.background.alpha = (255 - (p2 * 0.5).toInt())
-                binding.mainHomeBtnSearch.background.alpha = (255 - (p2 * 0.5).toInt())
-                binding.mainHomeBtnMenu.background.setTint(requireActivity().resources.getColor(R.color.white))
-                binding.mainHomeBtnAlarm.background.setTint(requireActivity().resources.getColor(R.color.white))
-                binding.mainHomeBtnSearch.background.setTint(requireActivity().resources.getColor(R.color.white))
-            }
-            if ((binding.mainHomeToolbar.bottom + p2) >= binding.tabs.top) {
-                binding.tabs.translationY =
-                    ((p2 + binding.mainHomeToolbar.bottom) - binding.tabs.top).toFloat()
-                Log.d("----", "onScrollChange: IT IS")
-            } else {
-                binding.tabs.y = 1543F
-            }
-            Log.d(
-                "----",
-                "Toolbar : ${binding.mainHomeToolbar.bottom} / Tab: ${binding.tabs.top} / $p2"
-            )
+    binding.mainHomeScrollview.setOnScrollChangeListener { p0, p1, p2, p3, p4 ->
+        if (p2 > 600) {
+            requireActivity().window.statusBarColor =
+                Color.argb(255, 255, 255, 255)
+        } else {
+            requireActivity().window.statusBarColor =
+                Color.argb((p2 * 0.425).toInt(), 255, 255, 255)
         }
-    })
-}
+
+        binding.mainHomeToolbar.background.alpha = ((p2 * 0.425).toInt())
+        if (p2 > 300) {
+            binding.mainHomeBtnMenu.background.alpha = ((p2 - 300) * 0.85).toInt()
+            binding.mainHomeBtnAlarm.background.alpha = ((p2 - 300) * 0.85).toInt()
+            binding.mainHomeBtnSearch.background.alpha = ((p2 - 300) * 0.85).toInt()
+            binding.mainHomeBtnMenu.background.setTint(requireActivity().resources.getColor(R.color.black))
+            binding.mainHomeBtnAlarm.background.setTint(requireActivity().resources.getColor(R.color.black))
+            binding.mainHomeBtnSearch.background.setTint(requireActivity().resources.getColor(R.color.black))
+        } else if (p2 < 300) {
+            binding.mainHomeBtnMenu.background.alpha = (255 - (p2 * 0.85).toInt())
+            binding.mainHomeBtnAlarm.background.alpha = (255 - (p2 * 0.5).toInt())
+            binding.mainHomeBtnSearch.background.alpha = (255 - (p2 * 0.5).toInt())
+            binding.mainHomeBtnMenu.background.setTint(requireActivity().resources.getColor(R.color.white))
+            binding.mainHomeBtnAlarm.background.setTint(requireActivity().resources.getColor(R.color.white))
+            binding.mainHomeBtnSearch.background.setTint(requireActivity().resources.getColor(R.color.white))
+        }
+        if ((binding.mainHomeToolbar.bottom + p2) >= binding.tabs.top) {
+            binding.tabs.translationY =
+                ((p2 + binding.mainHomeToolbar.bottom) - binding.tabs.top).toFloat()
+            Log.d("----", "onScrollChange: IT IS")
+        } else {
+            binding.tabs.y = 1543F
+        }
+        Log.d(
+            "----",
+            "Toolbar : ${binding.mainHomeToolbar.bottom} / Tab: ${binding.tabs.top} / $p2"
+        )
+    }
+    }
 
 private fun setToolbar() {
     activity?.window?.apply {
@@ -129,7 +125,7 @@ private fun setCategory() {
 
         recommendAdapter.detailClickListener(object : MainRecommendAdapter.DetailClickListener{
             override fun onClick(view: View, position: Int) {
-                requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).add(R.id.main_container, MainProductDetailFragment()).commit()
+                requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).add(R.id.main_container, MainProductDetailFragment(position)).commit()
             }
 
         })
@@ -148,5 +144,8 @@ private fun setCategory() {
 
     override fun onRecommendDataSuccess(response: MainRecommendRvItem) {
         recommendAdapter.setRecommendList(response.result.toMutableList())
+    }
+
+    override fun onProductDetailDataSuccess(response: ProductDetailData) {
     }
 }

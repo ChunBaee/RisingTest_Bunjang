@@ -183,10 +183,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:background="@color/black"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:visibility="gone"
                         tools:listitem="@layout/item_upload_tag_list"
-                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintLeft_toRightOf="@id/upload_txt_tag"
                         app:layout_constraintTop_toTopOf="@id/upload_txt_tag"
                         app:layout_constraintBottom_toBottomOf="@id/upload_txt_tag" />
 

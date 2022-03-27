@@ -14,10 +14,7 @@ import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.BaseActivity
 import com.jcorp.risingtest.databinding.ActivityMainBinding
 import com.jcorp.risingtest.src.MyViewModel
-import com.jcorp.risingtest.src.main.main.model.CurUserData
-import com.jcorp.risingtest.src.main.main.model.HomeCategoryData
-import com.jcorp.risingtest.src.main.main.model.MainBannerData
-import com.jcorp.risingtest.src.main.main.model.MainRecommendRvItem
+import com.jcorp.risingtest.src.main.main.model.*
 import com.jcorp.risingtest.src.main.main.util.MainActivityView
 import com.jcorp.risingtest.src.main.main.util.MainService
 import com.jcorp.risingtest.src.main.upload.UploadFragment
@@ -87,5 +84,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     override fun onRecommendDataSuccess(response: MainRecommendRvItem) {
+    }
+
+    override fun onProductDetailDataSuccess(response: ProductDetailData) {
     }
 }

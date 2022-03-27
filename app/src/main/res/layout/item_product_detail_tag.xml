@@ -8,11 +8,12 @@
 
         <ImageView
             android:id="@+id/icon_tag"
-            android:layout_width="20sp"
-            android:layout_height="20sp"
+            android:layout_width="12sp"
+            android:layout_height="12sp"
             android:src="@drawable/icon_upload_tag"
             app:tint="@color/black"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
         <TextView
@@ -23,6 +24,7 @@
             android:textColor="@color/black"
             android:layout_marginLeft="3sp"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/icon_tag"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

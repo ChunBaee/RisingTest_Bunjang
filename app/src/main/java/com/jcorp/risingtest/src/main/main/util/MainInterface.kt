@@ -7,6 +7,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface MainInterface {
     @GET("app/users")
@@ -20,4 +21,9 @@ interface MainInterface {
 
     @GET("app/products")
     fun getRecommendItemData() : Call<MainRecommendRvItem>
+
+    @GET("app/products/{productId}")
+    fun getProductDetailData(
+        @Path (value = "productId", encoded = true) productId : Int
+    ) : Call<ProductDetailData>
 }

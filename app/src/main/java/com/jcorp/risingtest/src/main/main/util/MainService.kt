@@ -59,4 +59,18 @@ class MainService (val view : MainActivityView) {
 
         })
     }
+
+    fun getProductDetailData(productId : Int) {
+        mRetrofitInterface.getProductDetailData(productId).enqueue(object : Callback<ProductDetailData> {
+            override fun onResponse(
+                call: Call<ProductDetailData>,
+                response: Response<ProductDetailData>
+            ) {
+                view.onProductDetailDataSuccess(response.body() as ProductDetailData)
+            }
+            override fun onFailure(call: Call<ProductDetailData>, t: Throwable) {
+            }
+
+        })
+    }
 }

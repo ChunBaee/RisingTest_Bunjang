@@ -62,4 +62,9 @@ class DetailImageAdapter(context : Context) : RecyclerView.Adapter<DetailImageAd
     override fun getItemCount(): Int {
         return imgList.size
     }
+
+    fun setImgList(list : MutableList<ProductImg>) {
+        imgList = list.toMutableList()
+        notifyDataSetChanged()
+    }
 }
