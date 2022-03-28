@@ -1,5 +1,6 @@
 package com.jcorp.risingtest.src.main.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -7,7 +8,17 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.fragment.app.FragmentManager
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentLoginStartBinding
@@ -17,6 +28,8 @@ import java.util.*
 class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLoginStartBinding::bind, R.layout.fragment_login_start),
     View.OnClickListener {
 
+    private lateinit var googleSignInClient: GoogleSignInClient
+    private lateinit var auth : FirebaseAuth
     private var pagerTimer : Timer? = Timer()
     lateinit var update : Runnable
     var isFinish = false
@@ -24,6 +37,13 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
         super.onViewCreated(view, savedInstanceState)
 
         setPager()
+
+        var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("345942039389-je0lkre25blpih25ah5gpu8ckuve486f.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+
+        googleSignInClient = GoogleSignIn.getClient(requireActivity(), gso)
 
         binding.loginStartBtnKakao.setOnClickListener(this)
         binding.loginStartBtnOther.setOnClickListener(this)
@@ -40,6 +60,26 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
 
     private fun setPagerList() : MutableList<Int> {
         return mutableListOf(R.drawable.img_login_pager_1,R.drawable.img_login_pager_2,R.drawable.img_login_pager_3,R.drawable.img_login_pager_4)
+    }
+
+    private fun loginGoogle(idToken : String) {
+        auth = Firebase.auth
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener {
+                if(it.isSuccessful) {
+                    val user = auth.currentUser
+                    if(user != null) {
+                        changeFrag()
+                        Log.d("0000", "loginGoogle: ${user.displayName}")
+                    }
+                }
+            }
+    }
+
+    private fun changeFrag() {
+        requireActivity().supportFragmentManager.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        requireActivity().supportFragmentManager.beginTransaction().replace(R.id.login_start_layout, LoginUserFragment()).commit()
     }
 
     override fun onResume() {
@@ -74,8 +114,7 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
     override fun onClick(view: View?) {
         when(view?.id) {
             R.id.login_start_btn_kakao -> {
-                requireActivity().supportFragmentManager.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                requireActivity().supportFragmentManager.beginTransaction().replace(R.id.login_start_layout, LoginUserFragment()).commit()
+                changeFrag()
             }
 
             R.id.login_start_btn_other -> {
@@ -85,9 +124,27 @@ class LoginStartFragment : BaseFragment<FragmentLoginStartBinding>(FragmentLogin
                 loginDialog.show()
                 loginSheetView.findViewById<LinearLayout>(R.id.dialog_btn_login_phone).setOnClickListener {
                     loginDialog.dismiss()
-                    requireActivity().supportFragmentManager.popBackStack(null,FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    requireActivity().supportFragmentManager.beginTransaction().replace(R.id.login_start_layout, LoginUserFragment()).commit()
+                    changeFrag()
                 }
+
+                loginDialog.findViewById<LinearLayout>(R.id.dialog_btn_login_google)?.setOnClickListener {
+                    loginDialog.dismiss()
+                    val googleSigninIntent = googleSignInClient.signInIntent
+                    startActivityForResult(googleSigninIntent, 1000)
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == 1000) {
+            val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
+                val account = task.getResult(ApiException::class.java)
+                loginGoogle(account.idToken!!)
+            } catch (e : ApiException){
             }
         }
     }

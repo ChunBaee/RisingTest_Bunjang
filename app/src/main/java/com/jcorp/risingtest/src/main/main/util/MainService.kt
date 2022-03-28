@@ -1,12 +1,13 @@
 package com.jcorp.risingtest.src.main.main.util
 
 import com.jcorp.risingtest.config.ApplicationClass
+import com.jcorp.risingtest.src.main.main.MainProductBuyFragment
 import com.jcorp.risingtest.src.main.main.model.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainService (val view : MainActivityView) {
+class MainService(val view: MainActivityView) {
     private val mRetrofitInterface = ApplicationClass.mRetrofit.create(MainInterface::class.java)
 
     fun getCurUserData() {
@@ -69,6 +70,20 @@ class MainService (val view : MainActivityView) {
                 view.onProductDetailDataSuccess(response.body() as ProductDetailData)
             }
             override fun onFailure(call: Call<ProductDetailData>, t: Throwable) {
+            }
+
+        })
+    }
+
+    fun getBuyProductData(productId : Int) {
+        mRetrofitInterface.getBuyProductData(productId).enqueue(object : Callback<BuyProductData> {
+            override fun onResponse(
+                call: Call<BuyProductData>,
+                response: Response<BuyProductData>
+            ) {
+                view.onGetBuyProductDataSuccess(response.body() as BuyProductData)
+            }
+            override fun onFailure(call: Call<BuyProductData>, t: Throwable) {
             }
 
         })

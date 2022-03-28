@@ -9,30 +9,33 @@ import com.jcorp.risingtest.config.BaseActivity
 import com.jcorp.risingtest.databinding.ActivitySplashBinding
 import com.jcorp.risingtest.src.main.login.LoginActivity
 import com.jcorp.risingtest.src.main.main.MainActivity
+import com.jcorp.risingtest.src.splash.model.AutoLoginData
+import com.jcorp.risingtest.src.splash.util.SplashService
+import com.jcorp.risingtest.src.splash.util.SplashView
 
-class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate) {
+class SplashActivity : BaseActivity<ActivitySplashBinding>(ActivitySplashBinding::inflate),
+    SplashView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         Handler(Looper.getMainLooper()).postDelayed({
             finish()
         }, 1500)
-        checkUserToken()
+        SplashService(this).getAutoLoginData()
     }
 
-    private fun checkUserToken() {
-        val token = ApplicationClass.mLoginSharedPreferences.getString("X-ACCESS-TOKEN", "")
-        if (token?.isEmpty() == true) {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        } else {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+    override fun onCheckTokenSuccess(response: AutoLoginData) {
+        when(response.code) {
+            1000 -> {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else -> {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
-
-    // 로그인 API가 올 경우, Preference에 토큰값이 있는지 확인 후 넘어가기!
-    // 있을경우 -> MainActivity / 없을경우 -> LoginActivity
 }

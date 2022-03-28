@@ -4,5 +4,6 @@ data class UserData(
     var userName: String = "",
     var email: String = "",
     var password: String = "",
+    var shopName : String = "",
     var phone: String = ""
 )

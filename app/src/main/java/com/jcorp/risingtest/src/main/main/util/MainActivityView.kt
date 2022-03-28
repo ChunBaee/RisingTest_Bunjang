@@ -12,4 +12,6 @@ interface MainActivityView {
     fun onRecommendDataSuccess (response: MainRecommendRvItem)
 
     fun onProductDetailDataSuccess (response : ProductDetailData)
+
+    fun onGetBuyProductDataSuccess(response : BuyProductData)
 }

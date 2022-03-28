@@ -210,6 +210,9 @@ class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItem
 
     }
 
+    override fun onGetBuyProductDataSuccess(response: BuyProductData) {
+    }
+
     override fun onClick(p0: View?) {
         when(p0!!.id) {
             R.id.product_detail_btn_back -> {
@@ -232,9 +235,13 @@ class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItem
                 }
                 shippingBtn?.setOnClickListener {
                     viewModel.isDirect.value = false
+                    payDialog.dismiss()
+                    requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).replace(R.id.main_container, MainProductBuyFragment(false, mPosition)).commit()
                 }
                 directBtn?.setOnClickListener {
                     viewModel.isDirect.value = true
+                    payDialog.dismiss()
+                    requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).replace(R.id.main_container, MainProductBuyFragment(true, mPosition)).commit()
                 }
             }
         }

@@ -25,10 +25,10 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/dialog_detail_order_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_loading.xml" value="0.14990942028985507" />
-        <entry key="app/src/main/res/layout/dialog_login_start_other_way.xml" value="0.1940222897669706" />
+        <entry key="app/src/main/res/layout/dialog_login_start_other_way.xml" value="0.25" />
         <entry key="app/src/main/res/layout/dialog_upload_choose_options.xml" value="0.2074074074074074" />
         <entry key="app/src/main/res/layout/dialog_user_login_telecom.xml" value="0.1940222897669706" />
-        <entry key="app/src/main/res/layout/fragment_buy_main.xml" value="0.1940222897669706" />
+        <entry key="app/src/main/res/layout/fragment_buy_main.xml" value="0.4096109839816934" />
         <entry key="app/src/main/res/layout/fragment_login_start.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login_user.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_main_home.xml" value="0.2" />

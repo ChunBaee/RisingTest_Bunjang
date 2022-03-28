@@ -1,9 +1,1146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/buy_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@id/buy_toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/buy_layout_1"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.9">
+
+                    <TextView
+                        android:id="@+id/buy_changeable_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="택배거래, 안전결제로"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="구매합니다"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20sp">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/buy_product_img_layout"
+                            android:layout_width="60sp"
+                            android:layout_height="60sp"
+                            app:cardCornerRadius="5sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:id="@+id/buy_product_img"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/ic_launcher_background" />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:id="@+id/buy_product_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10sp"
+                            android:layout_marginTop="3sp"
+                            android:text="100,000,000원"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@id/buy_product_title"
+                            app:layout_constraintLeft_toRightOf="@id/buy_product_img_layout"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/buy_product_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2sp"
+                            android:text="상품 제목입니다"
+                            android:textColor="@color/product_detail_tooltip_txt_color"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="@id/buy_product_price"
+                            app:layout_constraintStart_toStartOf="@id/buy_product_price"
+                            app:layout_constraintTop_toBottomOf="@id/buy_product_price" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/buy_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="10sp"
+                    android:layout_marginTop="30sp"
+                    android:background="@color/login_user_edittext_unfocused_tint"
+                    app:layout_constraintTop_toBottomOf="@id/buy_layout_1" />
+
+                <LinearLayout
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50sp"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/buy_divider"
+                    app:layout_constraintWidth_percent="0.9">
+
+                    <LinearLayout
+                        android:id="@+id/buy_layout_shipping"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="배송지"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/btn_upload_choose_options">
+
+                            <TextView
+                                android:id="@+id/buy_ship_location_hideable"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="20sp"
+                                android:text="배송지를 등록해주세요"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/buy_btn_set_or_change_location"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20sp"
+                                android:layout_marginEnd="15sp"
+                                android:text="등록"
+                                android:textColor="@color/product_is_safe_color"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/buy_txt_ship_location"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15sp"
+                                android:text="배송지 이름"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                android:textStyle="bold"
+                                android:visibility="gone"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/buy_btn_set_or_change_location" />
+
+                            <TextView
+                                android:id="@+id/buy_txt_ship_detail_location"
+                                android:layout_width="0sp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10sp"
+                                android:text="상 세 주 소"
+                                android:textSize="15sp"
+                                android:visibility="gone"
+                                app:layout_constraintEnd_toStartOf="@id/buy_btn_set_or_change_location"
+                                app:layout_constraintStart_toStartOf="@id/buy_txt_ship_location"
+                                app:layout_constraintTop_toBottomOf="@id/buy_txt_ship_location" />
+
+                            <TextView
+                                android:id="@+id/buy_txt_ship_detail_location2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="상 세 주 소 2"
+                                android:textSize="15sp"
+                                android:visibility="gone"
+                                app:layout_constraintStart_toStartOf="@id/buy_txt_ship_detail_location"
+                                app:layout_constraintTop_toBottomOf="@id/buy_txt_ship_detail_location" />
+
+                            <TextView
+                                android:id="@+id/buy_txt_phone_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="20sp"
+                                android:text="01000000000"
+                                android:textSize="15sp"
+                                android:visibility="gone"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/buy_txt_ship_detail_location"
+                                app:layout_constraintTop_toBottomOf="@id/buy_txt_ship_detail_location2" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/buy_btn_shipping_request"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10sp"
+                            android:background="@drawable/btn_upload_choose_options">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="20sp"
+                                android:text="배송 요청사항 (선택)"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:layout_width="20sp"
+                                android:layout_height="20sp"
+                                android:layout_marginEnd="15sp"
+                                android:src="@drawable/icon_login_telecom_down"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30sp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="번개포인트"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:background="@drawable/btn_upload_choose_options">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/buy_btn_use_all_point"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8sp"
+                                app:cardBackgroundColor="#FAFAFA"
+                                app:cardCornerRadius="5sp"
+                                app:cardElevation="0sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="10sp"
+                                    android:text="전액사용"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <EditText
+                                android:id="@+id/buy_edt_use_point"
+                                android:layout_width="0sp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="10sp"
+                                android:layout_marginStart="15sp"
+                                android:backgroundTint="@android:color/transparent"
+                                android:hint="0"
+                                android:inputType="number"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toLeftOf="@id/buy_btn_use_all_point"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10sp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="사용 가능한 번개 포인트" />
+
+                            <TextView
+                                android:id="@+id/buy_txt_cur_point"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5sp"
+                                android:text="0"
+                                android:textColor="@color/black"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30sp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="결제금액"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            app:cardBackgroundColor="#FFF7D8"
+                            app:cardCornerRadius="5sp"
+                            app:cardElevation="0sp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:id="@+id/buy_discount_spinning_coin"
+                                    android:layout_width="60sp"
+                                    android:layout_height="60sp"
+                                    android:layout_margin="25sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <ImageView
+                                    android:id="@+id/buy_discount_explain"
+                                    android:layout_width="0sp"
+                                    android:layout_height="30sp"
+                                    android:layout_marginLeft="15sp"
+                                    android:src="@drawable/img_buy_discount_explain"
+                                    app:layout_constraintLeft_toRightOf="@id/buy_discount_spinning_coin"
+                                    app:layout_constraintTop_toTopOf="@id/buy_discount_spinning_coin"
+                                    app:layout_constraintWidth_percent="0.6" />
+
+                                <ImageView
+                                    android:layout_width="70sp"
+                                    android:layout_height="30sp"
+                                    android:background="@drawable/img_buy_discount_btn"
+                                    app:layout_constraintBottom_toBottomOf="@id/buy_discount_spinning_coin"
+                                    app:layout_constraintStart_toStartOf="@id/buy_discount_explain"
+                                    app:layout_constraintTop_toBottomOf="@id/buy_discount_explain" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10sp"
+                        android:background="@drawable/btn_upload_choose_options"
+                        android:padding="15sp">
+
+                        <TextView
+                            android:id="@+id/buy_txt_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10sp"
+                            android:text="상품금액"
+                            android:textSize="17sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/buy_txt_price_won"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="원"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_price" />
+
+                        <TextView
+                            android:id="@+id/buy_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="100,000,000"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintRight_toLeftOf="@id/buy_txt_price_won"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_price" />
+
+                        <TextView
+                            android:id="@+id/buy_txt_tax"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15sp"
+                            android:text="안심 수수료"
+                            android:textSize="17sp"
+                            app:layout_constraintStart_toStartOf="@id/buy_txt_price"
+                            app:layout_constraintTop_toBottomOf="@id/buy_txt_price" />
+
+                        <ImageView
+                            android:layout_width="17sp"
+                            android:layout_height="17sp"
+                            android:layout_marginLeft="5sp"
+                            android:src="@drawable/icon_buy_guide_tax"
+                            app:layout_constraintBottom_toBottomOf="@id/buy_txt_tax"
+                            app:layout_constraintLeft_toRightOf="@id/buy_txt_tax"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_tax" />
+
+                        <TextView
+                            android:id="@+id/buy_txt_tax_won"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="원"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/buy_txt_tax"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_tax" />
+
+                        <TextView
+                            android:id="@+id/buy_tax"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+3,496,500"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/buy_txt_tax"
+                            app:layout_constraintRight_toLeftOf="@id/buy_txt_tax_won"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_tax" />
+
+                        <TextView
+                            android:id="@+id/buy_past_tax_won"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5sp"
+                            android:text="원"
+                            android:textColor="@color/product_detail_tooltip_txt_color"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/buy_txt_tax"
+                            app:layout_constraintRight_toLeftOf="@id/buy_tax"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_tax" />
+
+                        <TextView
+                            android:id="@+id/buy_past_tax"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="3,500,000"
+                            android:textColor="@color/product_detail_tooltip_txt_color"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/buy_txt_tax"
+                            app:layout_constraintRight_toLeftOf="@id/buy_past_tax_won"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_tax" />
+
+                        <LinearLayout
+                            android:id="@+id/buy_balloon_tax_free"
+                            android:layout_width="0sp"
+                            android:layout_height="60sp"
+                            android:background="@drawable/background_buy_tax_free"
+                            android:orientation="horizontal"
+                            app:layout_constraintEnd_toEndOf="@id/buy_tax"
+                            app:layout_constraintStart_toStartOf="@id/buy_txt_tax"
+                            app:layout_constraintTop_toBottomOf="@id/buy_txt_tax">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="15sp"
+                                android:paddingLeft="5sp"
+                                android:paddingTop="8sp"
+                                android:text="번개페이 첫 구매 수수료 무료 (최대 3,500원)"
+                                android:textColor="@color/product_is_safe_color"
+                                android:textSize="12sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/buy_txt_total_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15sp"
+                            android:text="결제금액"
+                            android:textSize="17sp"
+                            app:layout_constraintStart_toStartOf="@id/buy_txt_price"
+                            app:layout_constraintTop_toBottomOf="@id/buy_balloon_tax_free" />
+
+                        <TextView
+                            android:id="@+id/buy_txt_total_price_won"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="원"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/buy_txt_total_price"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_total_price" />
+
+                        <TextView
+                            android:id="@+id/buy_total_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="103,496,600"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintRight_toLeftOf="@id/buy_txt_total_price_won"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_total_price" />
+
+                        <TextView
+                            android:id="@+id/buy_txt_use_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15sp"
+                            android:text="번개 포인트 사용"
+                            android:textSize="17sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/buy_txt_total_price" />
+
+                        <TextView
+                            android:id="@+id/buy_txt_use_point_won"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="원"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_use_point" />
+
+                        <TextView
+                            android:id="@+id/buy_use_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintRight_toLeftOf="@id/buy_txt_use_point_won"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_use_point" />
+
+                        <TextView
+                            android:id="@+id/buy_txt_shipping_fee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15sp"
+                            android:text="배송비"
+                            android:textSize="17sp"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/buy_txt_use_point" />
+
+                        <TextView
+                            android:id="@+id/buy_shipping_fee"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="배송비별도"
+                            android:textColor="@color/black"
+                            android:textSize="17sp"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_shipping_fee" />
+
+                        <View
+                            android:id="@+id/buy_divider_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1sp"
+                            android:layout_marginTop="15sp"
+                            android:background="@color/login_user_edittext_unfocused_tint"
+                            app:layout_constraintTop_toBottomOf="@id/buy_txt_shipping_fee" />
+
+                        <TextView
+                            android:id="@+id/buy_txt_final_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15sp"
+                            android:layout_marginBottom="10sp"
+                            android:text="총 결제금액"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/buy_divider_1" />
+
+                        <TextView
+                            android:id="@+id/buy_txt_final_price_won"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" 원"
+                            android:textColor="#D50000"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_final_price" />
+
+                        <TextView
+                            android:id="@+id/buy_final_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="103,496,500"
+                            android:textColor="#D50000"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            app:layout_constraintRight_toLeftOf="@id/buy_txt_final_price_won"
+                            app:layout_constraintTop_toTopOf="@id/buy_txt_final_price" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30sp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="결제수단"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="24sp"
+                                android:layout_height="24sp"
+                                android:src="@drawable/img_buy_not_choose_other_payment" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10sp"
+                                android:text="번개장터 간편결제"
+                                android:textColor="@color/login_start_other_text"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            app:cardBackgroundColor="#E8FCF6"
+                            app:cardCornerRadius="5sp"
+                            app:cardElevation="0sp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:id="@+id/img_banner_simplepay"
+                                    android:layout_width="90sp"
+                                    android:layout_height="70sp"
+                                    android:layout_marginVertical="25sp"
+                                    android:layout_marginStart="30sp"
+                                    android:src="@drawable/img_buy_banner_simplepay"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20sp"
+                                    android:text="0.5% 번개포인트 적립"
+                                    android:textColor="@color/product_is_safe_color"
+                                    android:textSize="12sp"
+                                    app:layout_constraintStart_toEndOf="@id/img_banner_simplepay"
+                                    app:layout_constraintTop_toTopOf="@id/img_banner_simplepay" />
+
+                                <ImageView
+                                    android:layout_width="140sp"
+                                    android:layout_height="40sp"
+                                    android:layout_marginStart="20sp"
+                                    android:src="@drawable/img_buy_banner_simplepay2"
+                                    app:layout_constraintBottom_toBottomOf="@id/img_banner_simplepay"
+                                    app:layout_constraintStart_toEndOf="@id/img_banner_simplepay" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10sp"
+                            app:cardBackgroundColor="#FAFAFA"
+                            app:cardCornerRadius="5sp"
+                            app:cardElevation="0sp">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/buy_benefit_top1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="15sp"
+                                    android:text="최대혜택"
+                                    android:textColor="@color/black"
+                                    android:textSize="12sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_marginStart="10sp"
+                                    android:text="롯데, NH농협, 현대, 국민"
+                                    android:textColor="@color/product_detail_tooltip_txt_color"
+                                    android:textSize="12sp"
+                                    app:layout_constraintBottom_toBottomOf="@id/buy_benefit_top1"
+                                    app:layout_constraintLeft_toRightOf="@id/buy_benefit_top1"
+                                    app:layout_constraintTop_toTopOf="@id/buy_benefit_top1" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="15sp"
+                                    android:text="자세히"
+                                    android:textColor="@color/black"
+                                    app:layout_constraintBottom_toBottomOf="@id/buy_benefit_top1"
+                                    app:layout_constraintRight_toRightOf="parent"
+                                    app:layout_constraintTop_toTopOf="@id/buy_benefit_top1" />
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="24sp"
+                                android:layout_height="24sp"
+                                android:src="@drawable/img_buy_choose_other_payment" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10sp"
+                                android:text="다른 결제수단"
+                                android:textColor="@color/black"
+                                android:textSize="17sp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/buy_btn_other_payment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15sp"
+                            android:background="@drawable/btn_upload_choose_options">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="20sp"
+                                android:layout_marginStart="25sp"
+                                android:text="결제수단을 등록해주세요"
+                                android:textColor="@color/product_detail_tooltip_txt_color"
+                                android:textSize="17sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/buy_btn_new_payment"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15sp"
+                                android:text="등록"
+                                android:textColor="@color/product_is_safe_color"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <View
+                            android:id="@+id/divider_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1sp"
+                            android:layout_marginTop="20sp"
+                            android:background="@color/login_user_edittext_unfocused_tint" />
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20sp">
+
+                            <TextView
+                                android:id="@+id/buy_todays_benefit_txt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="오늘의 혜택 놓치지마세요"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                android:textStyle="bold"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="더보기"
+                                android:textSize="13sp"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <ImageView
+                                android:id="@+id/buy_benefit_kakaopay"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginTop="15sp"
+                                android:src="@drawable/img_buy_benefit_kakaopay"
+                                app:layout_constraintTop_toBottomOf="@id/buy_todays_benefit_txt" />
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/buy_benefit_kb_layout"
+                                android:layout_width="0sp"
+                                android:layout_height="50dp"
+                                android:layout_marginRight="3sp"
+                                app:cardBackgroundColor="#FAFAFA"
+                                app:cardCornerRadius="5sp"
+                                app:cardElevation="0sp"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintRight_toLeftOf="@id/buy_benefit_lotte_layout"
+                                app:layout_constraintTop_toBottomOf="@id/buy_benefit_kakaopay">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <ImageView
+                                        android:id="@+id/buy_img_benefit_kb"
+                                        android:layout_width="20sp"
+                                        android:layout_height="20sp"
+                                        android:src="@drawable/icon_buy_benefit_kb"
+                                        android:layout_margin="20sp"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"/>
+
+                                    <TextView
+                                        android:id="@+id/buy_benefit_kb_txt1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="KB국민카드"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp"
+                                        app:layout_constraintVertical_bias="0.35"
+                                        android:layout_marginLeft="8dp"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toRightOf="@id/buy_img_benefit_kb"/>
+
+                                    <TextView
+                                        android:id="@+id/buy_benefit_kb_txt2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="최대 2천원 할인"
+                                        android:textColor="#B00032"
+                                        android:textSize="10sp"
+                                        app:layout_constraintTop_toBottomOf="@id/buy_benefit_kb_txt1"
+                                        app:layout_constraintStart_toStartOf="@id/buy_benefit_kb_txt1" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/buy_benefit_lotte_layout"
+                                android:layout_width="0sp"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="3sp"
+                                app:cardBackgroundColor="#FAFAFA"
+                                app:cardCornerRadius="5sp"
+                                app:cardElevation="0sp"
+                                app:layout_constraintLeft_toRightOf="@id/buy_benefit_kb_layout"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/buy_benefit_kakaopay">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <ImageView
+                                        android:id="@+id/buy_img_benefit_lotte"
+                                        android:layout_width="20sp"
+                                        android:layout_height="20sp"
+                                        android:src="@drawable/icon_buy_benefit_lotte"
+                                        android:layout_margin="20sp"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"/>
+
+                                    <TextView
+                                        android:id="@+id/buy_benefit_lotte_txt1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="롯데카드"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp"
+                                        app:layout_constraintVertical_bias="0.35"
+                                        android:layout_marginLeft="8dp"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toRightOf="@id/buy_img_benefit_lotte"/>
+
+                                    <TextView
+                                        android:id="@+id/buy_benefit_lotte_txt2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="최대 2천원 할인"
+                                        android:textColor="#B00032"
+                                        android:textSize="10sp"
+                                        app:layout_constraintTop_toBottomOf="@id/buy_benefit_lotte_txt1"
+                                        app:layout_constraintStart_toStartOf="@id/buy_benefit_lotte_txt1" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="0sp"
+                                android:layout_height="50dp"
+                                app:cardBackgroundColor="#FAFAFA"
+                                app:cardCornerRadius="5sp"
+                                app:cardElevation="0sp"
+                                android:layout_marginTop="6sp"
+                                app:layout_constraintTop_toBottomOf="@id/buy_benefit_kb_layout"
+                                app:layout_constraintStart_toStartOf="@id/buy_benefit_kb_layout"
+                                app:layout_constraintEnd_toEndOf="@id/buy_benefit_kb_layout">
+
+                                <androidx.constraintlayout.widget.ConstraintLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                    <ImageView
+                                        android:id="@+id/buy_img_benefit_hyundai"
+                                        android:layout_width="20sp"
+                                        android:layout_height="20sp"
+                                        android:src="@drawable/icon_buy_benefit_hyundai"
+                                        android:layout_margin="20sp"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toLeftOf="parent"/>
+
+                                    <TextView
+                                        android:id="@+id/buy_benefit_hyundai_txt1"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="현대카드"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp"
+                                        app:layout_constraintVertical_bias="0.35"
+                                        android:layout_marginLeft="8dp"
+                                        app:layout_constraintTop_toTopOf="parent"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintLeft_toRightOf="@id/buy_img_benefit_hyundai"/>
+
+                                    <TextView
+                                        android:id="@+id/buy_benefit_hyundai_txt2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="최대 2천원 할인"
+                                        android:textColor="#B00032"
+                                        android:textSize="10sp"
+                                        app:layout_constraintTop_toBottomOf="@id/buy_benefit_hyundai_txt1"
+                                        app:layout_constraintStart_toStartOf="@id/buy_benefit_hyundai_txt1" />
+
+                                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="60sp">
+
+                            <ImageView
+                                android:id="@+id/buy_btn_agree"
+                                android:layout_width="30sp"
+                                android:layout_height="30sp"
+                                android:src="@drawable/btn_pay_agree_unchecked"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/buy_txt_agree"
+                                android:layout_width="0sp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10sp"
+                                android:gravity="start"
+                                android:text="@string/upload_agree_txt"
+                                android:textColor="@color/black"
+                                android:textSize="20sp"
+                                android:textStyle="bold"
+                                app:layout_constraintLeft_toRightOf="@id/buy_btn_agree"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintTop_toTopOf="@id/buy_btn_agree" />
+
+                            <TextView
+                                android:id="@+id/buy_btn_agree_see_more"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10sp"
+                                android:text="자세히 보기"
+                                android:textColor="@color/black"
+                                android:textSize="15sp"
+                                app:layout_constraintStart_toStartOf="@id/buy_txt_agree"
+                                app:layout_constraintTop_toBottomOf="@id/buy_txt_agree" />
+
+                            <LinearLayout
+                                android:layout_width="0sp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="20sp"
+                                android:orientation="vertical"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintStart_toStartOf="@id/buy_txt_agree"
+                                app:layout_constraintTop_toBottomOf="@id/buy_btn_agree_see_more">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="&quot;번개장터_인증폰&quot;, &quot;BGZT Lab 1&quot;, &quot;BGZT Lab2&quot;, &quot;BGZT 컬렉션 상점&quot;의"
+                                    android:textColor="@color/product_location_color"
+                                    android:textSize="11sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5sp"
+                                    android:text="@string/upload_agree_more_info2"
+                                    android:textColor="@color/product_location_color"
+                                    android:textSize="11sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5sp"
+                                    android:text="@string/upload_agree_more_info3"
+                                    android:textColor="@color/product_location_color"
+                                    android:textSize="11sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="5sp"
+                                    android:text="@string/upload_agree_more_info4"
+                                    android:textColor="@color/product_location_color"
+                                    android:textSize="11sp" />
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="150sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/buy_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_marginTop="42.5dp"
+            android:background="@color/white"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/buy_btn_back"
+                android:layout_width="15sp"
+                android:layout_height="15sp"
+                android:layout_gravity="end"
+                android:layout_marginRight="15sp"
+                android:src="@drawable/icon_x" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

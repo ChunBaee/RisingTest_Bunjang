@@ -148,4 +148,7 @@ private fun setCategory() {
 
     override fun onProductDetailDataSuccess(response: ProductDetailData) {
     }
+
+    override fun onGetBuyProductDataSuccess(response: BuyProductData) {
+    }
 }

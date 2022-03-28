@@ -42,6 +42,8 @@ class MyViewModel : ViewModel() {
 
     //BuyProduct
     var isDirect = MutableLiveData<Boolean>()
+    var productPrice = MutableLiveData<Int>(0)
+    var usePoint = MutableLiveData<Int>(0)
 
     fun setCurUserData(result : Result) {
         curUserData.value = result

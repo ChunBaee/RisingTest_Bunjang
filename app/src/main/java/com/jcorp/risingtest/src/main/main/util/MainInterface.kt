@@ -26,4 +26,9 @@ interface MainInterface {
     fun getProductDetailData(
         @Path (value = "productId", encoded = true) productId : Int
     ) : Call<ProductDetailData>
+
+    @GET("app/orders/{productId}")
+    fun getBuyProductData(
+        @Path(value = "productId", encoded = true) productId: Int
+    ) : Call<BuyProductData>
 }

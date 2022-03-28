@@ -1,12 +1,9 @@
 package com.jcorp.risingtest.src.main.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.navigation.NavigationBarView
@@ -87,5 +84,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     override fun onProductDetailDataSuccess(response: ProductDetailData) {
+    }
+
+    override fun onGetBuyProductDataSuccess(response: BuyProductData) {
     }
 }
