@@ -47,6 +47,7 @@
         <entry key="app/src/main/res/layout/fragment_upload_tag.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_add_address.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_choose_how_to_pay.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_dialog_accept_permission.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_dialog_address.xml" value="0.375" />
         <entry key="app/src/main/res/layout/item_login_pager.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/item_login_start_pager.xml" value="0.1945288753799392" />

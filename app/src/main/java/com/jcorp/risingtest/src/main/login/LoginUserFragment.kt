@@ -9,6 +9,8 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jcorp.risingtest.src.main.main.MainActivity
@@ -16,10 +18,12 @@ import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.ApplicationClass
 import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentLoginUserBinding
+import com.jcorp.risingtest.src.main.login.adapter.LoginPermissionAdapter
 import com.jcorp.risingtest.src.main.login.util.LoginActivityView
 import com.jcorp.risingtest.src.main.login.adapter.LoginUserTelecomAdapter
 import com.jcorp.risingtest.src.main.login.model.ChangeShopNameData
 import com.jcorp.risingtest.src.main.login.model.LoginData
+import com.jcorp.risingtest.src.main.login.model.LoginPermissionData
 import com.jcorp.risingtest.src.main.login.model.LoginUserTelecomItem
 import com.jcorp.risingtest.src.main.login.util.LoginService
 
@@ -40,6 +44,11 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
     private lateinit var telecomSheetView : View
     private lateinit var telecomDialog : BottomSheetDialog
     private lateinit var telecomAdapter : LoginUserTelecomAdapter
+
+    private lateinit var permissionSheetView : View
+    private lateinit var permissionDialog : BottomSheetDialog
+    private lateinit var permissionAdapter : LoginPermissionAdapter
+    var isAllClicked = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -67,11 +76,11 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
         telecomDialog.setContentView(telecomSheetView)
         telecomAdapter = LoginUserTelecomAdapter(requireActivity())
 
-        telecomAdapter.setTelecomItem(setDialogItem())
+        telecomAdapter.setTelecomItem(setTelecomDialogItem())
 
-        val rv = telecomSheetView.findViewById<RecyclerView>(R.id.login_user_telecom_rv)
-        rv.hasFixedSize()
-        rv.adapter = telecomAdapter
+        val telecomRv = telecomSheetView.findViewById<RecyclerView>(R.id.login_user_telecom_rv)
+        telecomRv.hasFixedSize()
+        telecomRv.adapter = telecomAdapter
 
         telecomAdapter.clickListener(object : LoginUserTelecomAdapter.ClickListener {
             override fun onClick(view: View, position: Int) {
@@ -82,15 +91,77 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
                 }
                 telecomAdapter.mItemList[position].click = true
                 telecomAdapter.notifyDataSetChanged()
-
                 telecomDialog.dismiss()
                 checkPhoneNumber()
             }
-
         })
+
+        permissionSheetView = layoutInflater.inflate(R.layout.dialog_user_login_permission, null)
+        permissionDialog = BottomSheetDialog(requireActivity())
+        permissionDialog.setContentView(permissionSheetView)
+        permissionAdapter = LoginPermissionAdapter()
+        permissionAdapter.setList(setPermissionDialogItem())
+
+        val permissionRv = permissionSheetView.findViewById<RecyclerView>(R.id.dialog_permission_list)
+        permissionRv.hasFixedSize()
+        permissionRv.adapter = permissionAdapter
+
+        permissionAdapter.clickListener(object : LoginPermissionAdapter.ClickListener {
+            override fun onClick(view: View, position: Int) {
+                permissionAdapter.permissionList[position].isClicked = !permissionAdapter.permissionList[position].isClicked
+                permissionAdapter.notifyDataSetChanged()
+                if(permissionAdapter.permissionList[0].isClicked && permissionAdapter.permissionList[1].isClicked&& permissionAdapter.permissionList[2].isClicked) {
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).alpha = 1F
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).isClickable = true
+                } else {
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).alpha = 0.3F
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).isClickable = false
+                }
+            }
+        })
+        permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_accept_all).setOnClickListener {
+            if(isAllClicked) {
+                permissionSheetView.findViewById<ImageView>(R.id.dialog_permission_accept_all_img).setImageResource(R.drawable.btn_pay_agree_unchecked)
+                for(i in 0 until permissionAdapter.permissionList.size) {
+                    permissionAdapter.permissionList[i].isClicked = false
+                }
+                permissionAdapter.notifyDataSetChanged()
+                if(permissionAdapter.permissionList[0].isClicked && permissionAdapter.permissionList[1].isClicked&& permissionAdapter.permissionList[2].isClicked) {
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).alpha = 1F
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).isClickable = true
+                } else {
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).alpha = 0.3F
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).isClickable = false
+                }
+            }
+            else {
+                permissionSheetView.findViewById<ImageView>(R.id.dialog_permission_accept_all_img).setImageResource(R.drawable.btn_pay_agree_checked)
+                for(i in 0 until permissionAdapter.permissionList.size) {
+                    permissionAdapter.permissionList[i].isClicked = true
+                }
+                permissionAdapter.notifyDataSetChanged()
+                if(permissionAdapter.permissionList[0].isClicked && permissionAdapter.permissionList[1].isClicked&& permissionAdapter.permissionList[2].isClicked) {
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).alpha = 1F
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).isClickable = true
+                } else {
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).alpha = 0.3F
+                    permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).isClickable = false
+                }
+            }
+        }
+        permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).setOnClickListener {
+            permissionDialog.dismiss()
+            LoginService(this).trySignIn(
+                binding.loginUserEdtName.text.toString(),
+                binding.loginUserEdtUserEmail.text.toString(),
+                binding.loginUserEdtUserPassword.text.toString(),
+                binding.loginUserEdtPhoneNumber.text.toString()
+            )
+
+        }
     }
 
-    private fun setDialogItem() : MutableList<LoginUserTelecomItem> {
+    private fun setTelecomDialogItem() : MutableList<LoginUserTelecomItem> {
         val list = mutableListOf<LoginUserTelecomItem>()
         list.add(LoginUserTelecomItem("SKT", R.drawable.icon_radio_unclicked, false))
         list.add(LoginUserTelecomItem("KT", R.drawable.icon_radio_unclicked, false))
@@ -98,6 +169,19 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
         list.add(LoginUserTelecomItem("SKT 알뜰폰", R.drawable.icon_radio_unclicked, false))
         list.add(LoginUserTelecomItem("KT 알뜰폰", R.drawable.icon_radio_unclicked, false))
         list.add(LoginUserTelecomItem("LG U+ 알뜰폰", R.drawable.icon_radio_unclicked, false))
+
+        return list
+    }
+
+    private fun setPermissionDialogItem() : MutableList<LoginPermissionData> {
+        val list = mutableListOf<LoginPermissionData>()
+        list.add(LoginPermissionData("번개장터 이용약관 (필수)", false))
+        list.add(LoginPermissionData("개인정보 수집 이용 동의 (필수)", false))
+        list.add(LoginPermissionData("휴대폰 본인확인서비스 (필수)", false))
+        list.add(LoginPermissionData("개인정보 수집 이용 동의 (선택)", false))
+        list.add(LoginPermissionData("위치정보 이용약관 동의 (선택)", false))
+        list.add(LoginPermissionData("마케팅 수신 동의 (선택)", false))
+        list.add(LoginPermissionData("개인정보 광고활용 동의 (선택)", false))
 
         return list
     }
@@ -228,13 +312,7 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
                     )
                 }
                 if(isPhone && !isShopName) {
-                    //데이터 올려주기
-                    LoginService(this).trySignIn(
-                        binding.loginUserEdtName.text.toString(),
-                        binding.loginUserEdtUserEmail.text.toString(),
-                        binding.loginUserEdtUserPassword.text.toString(),
-                        binding.loginUserEdtPhoneNumber.text.toString()
-                    )
+                    permissionDialog.show()
                 }
                 if(isPassword && !isPhone) {
                     checkPhone()
