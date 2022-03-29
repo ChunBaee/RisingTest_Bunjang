@@ -9,6 +9,9 @@ import com.jcorp.risingtest.src.main.main.model.CurUserData
 import com.jcorp.risingtest.src.main.main.model.Result
 
 class MyViewModel : ViewModel() {
+
+    var choosePayment = MutableLiveData<Boolean>(false)
+
     var testImgUrl = MutableLiveData<String>()
     //Current User Data
     var curUserData = MutableLiveData<Result>()
@@ -44,6 +47,11 @@ class MyViewModel : ViewModel() {
     var isDirect = MutableLiveData<Boolean>()
     var productPrice = MutableLiveData<Int>(0)
     var usePoint = MutableLiveData<Int>(0)
+    var isSimplePay = MutableLiveData<Boolean>(true)
+    var curLiveChoosePayment = MutableLiveData<Int>()
+    var curChoosePayment : Int = 10
+
+
 
     fun setCurUserData(result : Result) {
         curUserData.value = result

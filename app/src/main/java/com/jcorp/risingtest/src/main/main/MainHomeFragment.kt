@@ -7,6 +7,7 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.jcorp.risingtest.R
+import com.jcorp.risingtest.config.BaseData
 import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentMainHomeBinding
 import com.jcorp.risingtest.src.MyViewModel
@@ -150,5 +151,11 @@ private fun setCategory() {
     }
 
     override fun onGetBuyProductDataSuccess(response: BuyProductData) {
+    }
+
+    override fun onPostUserAddress(response: BaseData) {
+    }
+
+    override fun onPostBuyData(response: BaseData) {
     }
 }

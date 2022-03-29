@@ -14,6 +14,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.ApplicationClass
+import com.jcorp.risingtest.config.BaseData
 import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentMainItemDetailBinding
 import com.jcorp.risingtest.src.MyViewModel
@@ -211,6 +212,12 @@ class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItem
     }
 
     override fun onGetBuyProductDataSuccess(response: BuyProductData) {
+    }
+
+    override fun onPostUserAddress(response: BaseData) {
+    }
+
+    override fun onPostBuyData(response: BaseData) {
     }
 
     override fun onClick(p0: View?) {

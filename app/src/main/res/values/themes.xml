@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.RisingTest" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">#009774</item>
+        <item name="colorPrimaryVariant">#88D3C5</item>
         <item name="colorOnPrimary">@android:color/transparent</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

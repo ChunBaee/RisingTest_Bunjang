@@ -1,6 +1,7 @@
 package com.jcorp.risingtest.src.main.main.util
 
 import com.jcorp.risingtest.config.ApplicationClass
+import com.jcorp.risingtest.config.BaseData
 import com.jcorp.risingtest.src.main.main.MainProductBuyFragment
 import com.jcorp.risingtest.src.main.main.model.*
 import retrofit2.Call
@@ -86,6 +87,26 @@ class MainService(val view: MainActivityView) {
             override fun onFailure(call: Call<BuyProductData>, t: Throwable) {
             }
 
+        })
+    }
+
+    fun postUserAddrData(addr : PostUserAddrData) {
+        mRetrofitInterface.postUserAddrData(addr).enqueue(object : Callback<BaseData> {
+            override fun onResponse(call: Call<BaseData>, response: Response<BaseData>) {
+                view.onPostUserAddress(response.body() as BaseData)
+            }
+            override fun onFailure(call: Call<BaseData>, t: Throwable) {
+            }
+        })
+    }
+
+    fun postBuyData (buyData : PostBuyData) {
+        mRetrofitInterface.postBuyData(buyData).enqueue(object : Callback<BaseData> {
+            override fun onResponse(call: Call<BaseData>, response: Response<BaseData>) {
+                view.onPostBuyData(response.body() as BaseData)
+            }
+            override fun onFailure(call: Call<BaseData>, t: Throwable) {
+            }
         })
     }
 }

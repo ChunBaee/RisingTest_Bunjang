@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import com.google.android.material.navigation.NavigationBarView
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.BaseActivity
+import com.jcorp.risingtest.config.BaseData
 import com.jcorp.risingtest.databinding.ActivityMainBinding
 import com.jcorp.risingtest.src.MyViewModel
 import com.jcorp.risingtest.src.main.main.model.*
@@ -87,5 +88,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     }
 
     override fun onGetBuyProductDataSuccess(response: BuyProductData) {
+    }
+
+    override fun onPostUserAddress(response: BaseData) {
+    }
+
+    override fun onPostBuyData(response: BaseData) {
     }
 }

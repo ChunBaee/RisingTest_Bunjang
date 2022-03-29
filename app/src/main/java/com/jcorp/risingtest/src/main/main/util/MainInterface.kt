@@ -31,4 +31,14 @@ interface MainInterface {
     fun getBuyProductData(
         @Path(value = "productId", encoded = true) productId: Int
     ) : Call<BuyProductData>
+
+    @POST("app/addresses/delivery")
+    fun postUserAddrData (
+        @Body uploadUserAddrData : PostUserAddrData
+    ) : Call<BaseData>
+
+    @POST("app/orders")
+    fun postBuyData(
+        @Body postBuyData : PostBuyData
+    ) : Call<BaseData>
 }

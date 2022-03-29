@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/choose_pay_toolbar"
+            android:fillViewport="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/linear"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintWidth_percent="0.9">
+
+                    <TextView
+                        android:id="@+id/choose_how_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="결제수단"
+                        android:textColor="@color/black"
+                        android:textSize="30sp"
+                        android:textStyle="bold"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/choose_how_rv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                        app:layout_constraintTop_toBottomOf="@id/choose_how_title"
+                        app:spanCount="2"
+                        tools:listitem="@layout/item_choose_how_to_pay"
+                        android:layout_marginTop="30dp" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="5dp"
+                        app:cardElevation="0dp"
+                        app:cardBackgroundColor="#FAFAFA"
+                        android:layout_marginTop="20dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/choose_how_btn_choose_company"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                app:layout_constraintWidth_percent="0.9"
+                                android:layout_marginTop="25dp"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                android:background="@drawable/btn_upload_choose_options">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="카드사 선택"
+                                    android:layout_margin="20dp"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/icon_login_telecom_down"
+                                    app:tint="@color/product_detail_tooltip_txt_color"
+                                    android:layout_margin="20dp"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintRight_toRightOf="parent" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="30dp"
+                                android:layout_marginBottom="25dp"
+                                app:layout_constraintWidth_percent="0.9"
+                                app:layout_constraintTop_toBottomOf="@id/choose_how_btn_choose_company"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintRight_toRightOf="parent"
+                                app:layout_constraintLeft_toLeftOf="parent">
+
+                                <TextView
+                                    android:id="@+id/choose_how_txt_notion"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="신용/체크카드 안내"
+                                    android:textSize="15sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#4C4C4C"
+                                    app:layout_constraintTop_toBottomOf="@id/choose_how_btn_choose_company"
+                                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/txt_notion1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="20dp"
+                                    android:text="ㆍ결제시 BC카드 TOP포인트, 현대카드 M포인트 사용가능" />
+
+                                <TextView
+                                    android:id="@+id/txt_notion2"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="3dp"
+                                    android:text="ㆍ체크카드는 카드사 점검시간에 따라 이용이 불가" />
+
+                                <TextView
+                                    android:id="@+id/txt_notion3"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="3dp"
+                                    android:text="ㆍ카드사별 무이자 할부 지원 : BC카드, NH농협카드, KB국민카드, 삼성카드, 신한카드, 하나카드, 롯데카드, 현대카드, 우리카드" />
+
+                                <TextView
+                                    android:id="@+id/txt_notion4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="3dp"
+                                    android:text="ㆍ일부 상품은 무이자 혜택 적용이 불가" />
+
+                                <TextView
+                                    android:id="@+id/txt_notion_info"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textSize="12sp"
+                                    android:layout_marginTop="3dp"
+                                    android:textColor="@color/black"
+                                    android:text="포인트/무이자 할부" />
+
+                            </LinearLayout>
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/choose_how_btn_finish"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_login_user_next"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintWidth_percent="0.9"
+                    app:layout_constraintTop_toBottomOf="@id/linear"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="결제수단 적용하기"
+                        android:textSize="15sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_margin="15dp" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/choose_pay_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_marginTop="42dp"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/icon_back" />
+
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="end"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/icon_x" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
