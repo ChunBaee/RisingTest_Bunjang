@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/upload_category_title_layout"
         android:layout_width="match_parent"
-        android:layout_height="45sp"
+        android:layout_height="45dp"
         android:background="#F4F4F4"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,14 +21,14 @@
             android:textSize="14sp"
             android:textColor="#4D4D4D"
             android:textStyle="bold"
-            android:layout_margin="10sp"
+            android:layout_margin="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent" />
 
         <ImageView
             android:id="@+id/category_main_title_img_next"
-            android:layout_width="15sp"
-            android:layout_height="15sp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:src="@drawable/icon_next"
             app:tint="#4D4D4D"
             app:layout_constraintLeft_toRightOf="@id/category_main_title"

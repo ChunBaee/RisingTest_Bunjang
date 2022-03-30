@@ -5,13 +5,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="2sp"
+        android:layout_marginVertical="2dp"
         android:layout_marginHorizontal="1sp">
 
         <ImageView
             android:id="@+id/detail_other_product_img"
-            android:layout_width="130sp"
-            android:layout_height="130sp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -24,8 +24,8 @@
             android:text="원"
             android:textColor="@color/white"
             android:textSize="13sp"
-            android:layout_marginRight="10sp"
-            android:layout_marginBottom="5sp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
@@ -34,7 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="1,000"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textColor="@color/white"
             android:textStyle="bold"
             app:layout_constraintTop_toTopOf="@id/txt_won"

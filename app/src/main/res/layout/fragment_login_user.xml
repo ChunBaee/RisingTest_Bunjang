@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/login_user_back"
-        android:layout_width="20sp"
-        android:layout_height="20sp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:src="@drawable/icon_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -23,8 +23,8 @@
         android:textSize="27sp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:layout_marginTop="30sp"
-        android:layout_marginStart="20sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
         app:layout_constraintTop_toBottomOf="@id/login_user_back"
         app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -40,8 +40,8 @@
         app:layout_constraintTop_toBottomOf="@id/login_user_txt_changeable1"/>
 
     <LinearLayout
-        android:layout_width="0sp"
-        android:layout_height="0sp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintWidth_percent="0.9"
         app:layout_constraintTop_toBottomOf="@id/login_user_txt_changeable2"
@@ -52,8 +52,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/login_user_layout_shop_name"
             android:layout_width="match_parent"
-            android:layout_height="70sp"
-            android:layout_marginTop="25sp"
+            android:layout_height="70dp"
+            android:layout_marginTop="25dp"
             android:visibility="gone">
 
             <TextView
@@ -68,7 +68,7 @@
 
             <EditText
                 android:id="@+id/login_user_edt_shop_name"
-                android:layout_width="0sp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:maxLength="10"
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_shopname_additional1"
-                android:layout_marginTop="10sp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@id/login_user_edt_shop_name"
                 app:layout_constraintTop_toBottomOf="@id/login_user_edt_shop_name"/>
 
@@ -101,8 +101,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/login_user_layout_phone_number"
             android:layout_width="match_parent"
-            android:layout_height="70sp"
-            android:layout_marginTop="25sp"
+            android:layout_height="70dp"
+            android:layout_marginTop="25dp"
             android:visibility="gone">
 
             <TextView
@@ -117,7 +117,7 @@
 
             <EditText
                 android:id="@+id/login_user_edt_phone_number"
-                android:layout_width="0sp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:maxLength="11"
@@ -136,8 +136,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_user_btn_telecom"
         android:layout_width="match_parent"
-        android:layout_height="50sp"
-        android:layout_marginTop="40sp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
         android:visibility="gone"
         app:layout_constraintWidth_percent="0.9"
         app:layout_constraintHeight_percent="0.07"
@@ -157,8 +157,8 @@
             app:layout_constraintLeft_toLeftOf="parent"/>
         
         <ImageView
-            android:layout_width="20sp"
-            android:layout_height="20sp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/icon_login_telecom_down"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -166,7 +166,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="1dp"
             android:background="@color/login_user_edittext_unfocused_tint"
             app:layout_constraintBottom_toBottomOf="parent"/>
         
@@ -175,10 +175,10 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/login_user_layout_password"
             android:layout_width="match_parent"
-            android:layout_height="70sp"
+            android:layout_height="70dp"
             android:visibility="gone"
             app:layout_constraintHeight_percent="0.08"
-            android:layout_marginTop="25sp"
+            android:layout_marginTop="25dp"
             app:layout_constraintStart_toStartOf="@id/login_user_btn_telecom"
             app:layout_constraintEnd_toEndOf="@id/login_user_btn_telecom"
             app:layout_constraintTop_toBottomOf="@id/login_user_btn_telecom" >
@@ -212,10 +212,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_user_layout_email"
         android:layout_width="match_parent"
-        android:layout_height="70sp"
+        android:layout_height="70dp"
         android:visibility="gone"
         app:layout_constraintHeight_percent="0.08"
-        android:layout_marginTop="25sp"
+        android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="@id/login_user_btn_telecom"
         app:layout_constraintEnd_toEndOf="@id/login_user_btn_telecom"
         app:layout_constraintTop_toBottomOf="@id/login_user_btn_telecom" >
@@ -246,8 +246,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_user_layout_name"
         android:layout_width="match_parent"
-        android:layout_height="70sp"
-        android:layout_marginTop="25sp"
+        android:layout_height="70dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintWidth_percent="0.9"
         app:layout_constraintHeight_percent="0.08"
         app:layout_constraintTop_toBottomOf="@id/login_user_layout_email"
@@ -266,7 +266,7 @@
 
         <EditText
             android:id="@+id/login_user_edt_name"
-            android:layout_width="0sp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:maxLength="6"
@@ -285,9 +285,9 @@
 
     <LinearLayout
         android:id="@+id/login_user_btn_next"
-        android:layout_width="0sp"
-        android:layout_height="40sp"
-        android:layout_marginBottom="40sp"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="40dp"
         android:layout_weight="1"
         android:background="@drawable/btn_login_user_next"
         app:layout_constraintWidth_percent="0.9"

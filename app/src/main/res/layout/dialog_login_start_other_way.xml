@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:behavior_draggable="false"
-        app:behavior_peekHeight="300sp"
+        app:behavior_peekHeight="300dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,8 +18,8 @@
                 android:id="@+id/dialog_txt_login_other_way"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20sp"
-                android:layout_marginTop="45sp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="45dp"
                 android:text="@string/login_start_other"
                 android:textColor="@color/black"
                 android:textSize="28sp"
@@ -28,7 +28,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:layout_width="0sp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintWidth_percent="0.9"
@@ -40,12 +40,12 @@
                     android:id="@+id/dialog_btn_login_facebook"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25sp"
+                    android:layout_marginTop="25dp"
                     android:orientation="horizontal" >
 
                     <ImageView
-                        android:layout_width="45sp"
-                        android:layout_height="45sp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:src="@drawable/icon_login_facebook" />
 
                     <TextView
@@ -64,12 +64,12 @@
                     android:id="@+id/dialog_btn_login_google"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20sp"
+                    android:layout_marginTop="20dp"
                     android:orientation="horizontal" >
 
                     <ImageView
-                        android:layout_width="45sp"
-                        android:layout_height="45sp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:src="@drawable/icon_login_google" />
 
                     <TextView
@@ -88,21 +88,21 @@
                     android:id="@+id/dialog_btn_login_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20sp"
-                    android:layout_marginBottom="40sp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="40dp"
                     android:orientation="horizontal">
 
                     <ImageView
                         android:id="@+id/dialog_img_login_phone"
-                        android:layout_width="45sp"
-                        android:layout_height="45sp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         android:src="@drawable/img_login_start_phone" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="10sp"
+                        android:layout_marginStart="10dp"
                         android:text="@string/login_dialog_phone"
                         android:textColor="@color/black"
                         android:textSize="18sp"

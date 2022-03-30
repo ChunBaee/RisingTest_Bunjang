@@ -36,8 +36,8 @@
 
                 <ImageView
                     android:id="@+id/dialog_permission_accept_all_img"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:src="@drawable/btn_pay_agree_unchecked"
                     android:layout_marginLeft="20dp"
                     app:layout_constraintTop_toTopOf="parent"
@@ -48,10 +48,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="전체 동의"
-                    android:textSize="15sp"
+                    android:textSize="18sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="10dp"
                     app:layout_constraintTop_toTopOf="@id/dialog_permission_accept_all_img"
                     app:layout_constraintBottom_toBottomOf="@id/dialog_permission_accept_all_img"
                     app:layout_constraintLeft_toRightOf="@id/dialog_permission_accept_all_img" />

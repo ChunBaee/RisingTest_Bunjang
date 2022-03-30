@@ -5,8 +5,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingVertical="15sp"
-        android:paddingHorizontal="20sp">
+        android:paddingVertical="15dp"
+        android:paddingHorizontal="20dp">
 
         <TextView
             android:id="@+id/item_login_user_telecom_txt"
@@ -22,8 +22,8 @@
 
         <ImageView
             android:id="@+id/item_login_user_telecom_btn"
-            android:layout_width="18sp"
-            android:layout_height="18sp"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
             android:src="@drawable/icon_radio_unclicked"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

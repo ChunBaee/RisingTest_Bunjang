@@ -16,7 +16,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
             tools:listitem="@layout/item_login_user_telecom"
-            android:layout_marginVertical="30sp"/>
+            android:layout_marginVertical="30dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
