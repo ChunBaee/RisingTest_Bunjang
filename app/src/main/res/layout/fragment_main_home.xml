@@ -7,134 +7,186 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/main_home_scrollview"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/main_home_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="?actionBarSize"
+            android:background="@color/white">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/view2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/white"
-                android:layout_marginBottom="?actionBarSize">
+                android:background="@color/white">
+
+                <com.asksira.loopingviewpager.LoopingViewPager
+                    android:id="@+id/main_home_banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="330dp"
+                    app:autoScroll="true"
+                    app:isInfinite="true"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:scrollInterval="4000" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/view2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white">
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/main_home_banner"
-                        android:layout_width="match_parent"
-                        android:layout_height="330dp"
-                        app:layout_constraintTop_toTopOf="parent" />
-                    <!--뷰페이져 넣기-->
-
-                    <View
-                        android:id="@+id/main_home_pager_rv_divider"
-                        android:layout_width="match_parent"
-                        android:layout_height="5dp"
-                        app:layout_constraintTop_toBottomOf="@id/main_home_banner" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/main_home_rv_category"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:orientation="horizontal"
-                        tools:listitem="@layout/item_main_category"
-                        tools:itemCount="14"
-                        app:spanCount="2"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        app:layout_constraintTop_toBottomOf="@id/main_home_pager_rv_divider" />
-
-                    <HorizontalScrollView
-                        android:layout_width="70dp"
-                        android:layout_height="5dp"
-                        android:fillViewport="true"
-                        android:background="@drawable/scrollbar_main_category"
-                        app:layout_constraintTop_toBottomOf="@id/main_home_rv_category"
-                        app:layout_constraintLeft_toLeftOf="@id/main_home_rv_category"
-                        app:layout_constraintRight_toRightOf="@id/main_home_rv_category" >
-
-                        <View
-                            android:layout_width="150dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/black" />
-
-                    </HorizontalScrollView>
-
-                    <!--리사이클러뷰 넣기-->
+                    android:id="@+id/main_home_banner_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/background_home_banner_count"
+                    app:layout_constraintBottom_toBottomOf="@id/main_home_banner"
+                    app:layout_constraintRight_toRightOf="parent">
 
                     <TextView
-                        android:id="@+id/main_home_txt_changeable"
-                        android:layout_width="0dp"
+                        android:id="@+id/main_banner_counter"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginTop="25dp"
-                        android:text="@string/text"
-                        android:textColor="@color/black"
-                        android:textSize="25sp"
+                        android:layout_marginHorizontal="13dp"
+                        android:text="1/11"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
                         android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/main_home_rv_category"
-                        app:layout_constraintWidth_percent="0.7" />
-
-                    <LinearLayout
-                        android:id="@+id/tabs"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:layout_marginTop="10dp"
-                        app:layout_constraintTop_toBottomOf="@id/main_home_txt_changeable">
-
-                        <com.google.android.material.tabs.TabLayout
-                            android:layout_width="160dp"
-                            android:layout_height="match_parent"
-                            app:tabIndicatorHeight="3dp"
-                            app:tabIndicatorColor="@color/black"
-                            app:tabIndicatorGravity="bottom"
-                            app:tabIndicatorFullWidth="false"
-                            app:tabTextColor="@color/black"
-                            app:tabTextAppearance="@style/tab_text"
-                            android:layout_marginHorizontal="5dp"
-                            app:tabMode="auto">
-
-                            <com.google.android.material.tabs.TabItem
-                                android:id="@+id/tab1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="추천상품" />
-
-                            <com.google.android.material.tabs.TabItem
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout="@layout/item_main_tab_layout_tab" />
-
-                        </com.google.android.material.tabs.TabLayout>
-
-                    </LinearLayout>
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/main_home_viewpager"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/tabs"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/main_home_recommend_rv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/tabs"
-                        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                        android:orientation="vertical"
-                        app:spanCount="2"
-                        tools:listitem="@layout/item_main_recommend"
-                        android:layout_marginHorizontal="10dp"/>
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+                <!--뷰페이져 넣기-->
 
-            </androidx.core.widget.NestedScrollView>
+                <View
+                    android:id="@+id/main_home_pager_rv_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    app:layout_constraintTop_toBottomOf="@id/main_home_banner" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_home_rv_category"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/main_home_pager_rv_divider"
+                    app:spanCount="2"
+                    tools:itemCount="14"
+                    tools:listitem="@layout/item_main_category" />
+
+                <HorizontalScrollView
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/scrollbar_main_category"
+                    android:scrollbars="none"
+                    app:layout_constraintLeft_toLeftOf="@id/main_home_rv_category"
+                    app:layout_constraintRight_toRightOf="@id/main_home_rv_category"
+                    app:layout_constraintTop_toBottomOf="@id/main_home_rv_category">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent">
+
+                        <View
+                            android:id="@+id/test"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            app:layout_constraintRight_toLeftOf="@id/main_horizontal_scroll_handle" />
+
+                        <View
+                            android:id="@+id/main_horizontal_scroll_handle"
+                            android:layout_width="24dp"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/scrollbar_main_category_inner"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <View
+                            android:id="@+id/test2"
+                            android:layout_width="60dp"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            app:layout_constraintRight_toRightOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </HorizontalScrollView>
+
+                <!--리사이클러뷰 넣기-->
+
+                <TextView
+                    android:id="@+id/main_home_txt_changeable"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/text"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/main_home_rv_category"
+                    app:layout_constraintWidth_percent="0.8" />
+
+                <LinearLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_constraintTop_toBottomOf="@id/main_home_txt_changeable">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:layout_width="160dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="5dp"
+                        app:tabIndicatorColor="@color/black"
+                        app:tabIndicatorFullWidth="false"
+                        app:tabIndicatorGravity="bottom"
+                        app:tabIndicatorHeight="3dp"
+                        app:tabMode="auto"
+                        app:tabTextAppearance="@style/tab_text"
+                        app:tabTextColor="@color/black">
+
+                        <com.google.android.material.tabs.TabItem
+                            android:id="@+id/tab1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="추천상품" />
+
+                        <com.google.android.material.tabs.TabItem
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout="@layout/item_main_tab_layout_tab" />
+
+                    </com.google.android.material.tabs.TabLayout>
+
+                </LinearLayout>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/main_home_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tabs" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_home_recommend_rv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/tabs"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_main_recommend" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/main_home_toolbar"

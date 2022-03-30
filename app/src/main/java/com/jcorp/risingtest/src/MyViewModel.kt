@@ -19,6 +19,9 @@ class MyViewModel : ViewModel() {
     //HIDE_BOTTOMVIEW
     var hideBottomView = MutableLiveData<Boolean>(false)
 
+    //MainBanner
+    var curBannerPosition = MutableLiveData<Int>()
+
     //Upload_GALLERY
     var mutableUploadUriList = mutableListOf<Uri>()
     private val _upLoadUriList = MutableLiveData<MutableList<Uri>>()

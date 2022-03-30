@@ -19,9 +19,6 @@ class MainBannerAdapter(context : Context) : RecyclerView.Adapter<MainBannerAdap
 
     inner class MainBannerViewHolder(val binding : ItemMainBannerPagerBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : MainBannerResult) {
-            binding.homeBannerCountCurrent.text = item.eventIdx.toString()
-            binding.homeBannerCountTotal.text = bannerList.size.toString()
-
             Glide.with(mContext).load(item.eventImageUrl).into(object : CustomTarget<Drawable>() {
                 override fun onResourceReady(a_resource: Drawable, a_transition: Transition<in Drawable>?) {
                     binding.mainBannerImage.background = a_resource
@@ -46,8 +43,6 @@ class MainBannerAdapter(context : Context) : RecyclerView.Adapter<MainBannerAdap
             }
             override fun onLoadCleared(placeholder: Drawable?) {}
         })
-        holder.binding.homeBannerCountCurrent.text = bannerList[position].eventIdx.toString()
-        holder.binding.homeBannerCountTotal.text = bannerList.size.toString()
     }
 
     override fun getItemCount(): Int {

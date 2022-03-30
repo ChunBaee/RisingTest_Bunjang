@@ -6,12 +6,15 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.BaseData
 import com.jcorp.risingtest.config.BaseFragment
 import com.jcorp.risingtest.databinding.FragmentMainHomeBinding
 import com.jcorp.risingtest.src.MyViewModel
 import com.jcorp.risingtest.src.main.main.adapter.MainBannerAdapter
+import com.jcorp.risingtest.src.main.main.adapter.MainBannerAutoAdapter
 import com.jcorp.risingtest.src.main.main.adapter.MainCategoryAdapter
 import com.jcorp.risingtest.src.main.main.adapter.MainRecommendAdapter
 import com.jcorp.risingtest.src.main.main.model.*
@@ -24,7 +27,7 @@ class MainHomeFragment : BaseFragment<FragmentMainHomeBinding>(
 ), MainActivityView {
     private val viewModel by activityViewModels<MyViewModel>()
 
-    private lateinit var bannerAdapter : MainBannerAdapter
+    private lateinit var bannerAdapter : MainBannerAutoAdapter
     private lateinit var categoryAdapter: MainCategoryAdapter
     private lateinit var recommendAdapter : MainRecommendAdapter
 
@@ -77,7 +80,7 @@ class MainHomeFragment : BaseFragment<FragmentMainHomeBinding>(
                 ((p2 + binding.mainHomeToolbar.bottom) - binding.tabs.top).toFloat()
             Log.d("----", "onScrollChange: IT IS")
         } else {
-            binding.tabs.y = 1543F
+            binding.tabs.y = 1523F
         }
         Log.d(
             "----",
@@ -97,10 +100,7 @@ private fun setToolbar() {
 }
 
 private fun setBanner() {
-    bannerAdapter = MainBannerAdapter(requireActivity())
-    binding.mainHomeBanner.adapter = bannerAdapter
     MainService(this).getMainBannerData()
-
 }
 
 private fun setCategory() {
@@ -136,7 +136,23 @@ private fun setCategory() {
     }
 
     override fun onHomeBannerDataSuccess(response: MainBannerData) {
-        bannerAdapter.setBannerLists(response.result.toMutableList())
+        bannerAdapter = MainBannerAutoAdapter(response.result.toMutableList(), true, requireActivity())
+        binding.mainHomeBanner.adapter = bannerAdapter
+        binding.mainHomeBanner.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
+            override fun onPageSelected(position: Int) {
+                binding.mainBannerCounter.text = "$position / ${bannerAdapter.lastItemPosition}"
+            }
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+        })
     }
 
     override fun onHomeCategoryDataSuccess(response: HomeCategoryData) {
@@ -157,5 +173,15 @@ private fun setCategory() {
     }
 
     override fun onPostBuyData(response: BaseData) {
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.mainHomeBanner.resumeAutoScroll()
+    }
+
+    override fun onPause() {
+        binding.mainHomeBanner.pauseAutoScroll()
+        super.onPause()
     }
 }

@@ -38,7 +38,7 @@
         <entry key="app/src/main/res/layout/fragment_finish_trade.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_login_start.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_login_user.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_main_home.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_main_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_main_item_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_main_rv_recommend.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/fragment_upload_category_form.xml" value="0.25" />
@@ -52,7 +52,7 @@
         <entry key="app/src/main/res/layout/item_login_pager.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/item_login_start_pager.xml" value="0.1945288753799392" />
         <entry key="app/src/main/res/layout/item_login_user_telecom.xml" value="0.1940222897669706" />
-        <entry key="app/src/main/res/layout/item_main_banner_pager.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/item_main_banner_pager.xml" value="0.3308641975308642" />
         <entry key="app/src/main/res/layout/item_main_category.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_main_recommand.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/item_main_recommend.xml" value="0.25" />

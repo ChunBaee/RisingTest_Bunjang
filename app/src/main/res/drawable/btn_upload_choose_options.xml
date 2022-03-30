@@ -5,7 +5,7 @@
             <solid android:color="@color/white" />
             <stroke android:color="@color/login_user_edittext_unfocused_tint"
                  android:width="1sp" />
-            <corners android:radius="dsp" />
+            <corners android:radius="5dp" />
         </shape>
     </item>
 </selector>

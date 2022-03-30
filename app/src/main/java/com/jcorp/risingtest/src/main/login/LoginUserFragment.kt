@@ -133,6 +133,7 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
                     permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).alpha = 0.3F
                     permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).isClickable = false
                 }
+                isAllClicked = false
             }
             else {
                 permissionSheetView.findViewById<ImageView>(R.id.dialog_permission_accept_all_img).setImageResource(R.drawable.btn_pay_agree_checked)
@@ -147,6 +148,7 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
                     permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).alpha = 0.3F
                     permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).isClickable = false
                 }
+                isAllClicked = true
             }
         }
         permissionSheetView.findViewById<ConstraintLayout>(R.id.dialog_permission_next).setOnClickListener {
