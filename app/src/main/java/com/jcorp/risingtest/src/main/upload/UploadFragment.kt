@@ -3,6 +3,8 @@ package com.jcorp.risingtest.src.main.upload
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Paint
+import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
@@ -24,10 +26,7 @@ import com.jcorp.risingtest.databinding.FragmentUploadHomeBinding
 import com.jcorp.risingtest.src.MyViewModel
 import com.jcorp.risingtest.src.main.upload.adapter.TagRvAdapter
 import com.jcorp.risingtest.src.main.upload.adapter.UploadRvAdapter
-import com.jcorp.risingtest.src.main.upload.model.UploadCategoryData
-import com.jcorp.risingtest.src.main.upload.model.UploadMyProductData
-import com.jcorp.risingtest.src.main.upload.model.productImgUrl
-import com.jcorp.risingtest.src.main.upload.model.tagName
+import com.jcorp.risingtest.src.main.upload.model.*
 import com.jcorp.risingtest.src.main.upload.util.UploadCategoryView
 import com.jcorp.risingtest.src.main.upload.util.UploadService
 import com.jcorp.risingtest.util.KeyboardVisibilityUtils
@@ -38,6 +37,9 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
     R.layout.fragment_upload_home
 ),
     View.OnClickListener, UploadCategoryView {
+    val SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD = 128
+    var isAttach = true
+
     private val viewModel by activityViewModels<MyViewModel>()
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
     private val GALLERY_REQUEST_CODE = 1000
@@ -59,6 +61,8 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
     private lateinit var optionSheetView: View
     private lateinit var optionDialog: BottomSheetDialog
 
+
+
     private var fbImgList = mutableListOf<productImgUrl>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -78,6 +82,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
 
         setRv()
         setView()
+        setFocusListenrs()
         setDialogLogic()
         observe()
 
@@ -87,6 +92,29 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
                     smoothScrollTo(scrollX, scrollY + it)
                 }
             })
+
+        Log.d("0000", "onViewCreated: ${viewModel.setTag}")
+        if (viewModel.setTag) {
+            for (i in viewModel.uploadTagList) {
+                Log.d("0000", "observe: $i")
+            }
+            Log.d("0000", "observe: ${binding.uploadTxtTag.text}")
+            if (viewModel.uploadTagList[0] == "") {
+                binding.uploadImgTag.visibility = View.VISIBLE
+                binding.uploadTxtTag.visibility = View.VISIBLE
+                binding.uploadRvTag.visibility = View.INVISIBLE
+            } else if (viewModel.uploadTagList[0] != "") {
+                binding.uploadImgTag.visibility = View.GONE
+                binding.uploadTxtTag.visibility = View.GONE
+                binding.uploadRvTag.visibility = View.VISIBLE
+
+                tagAdapter = TagRvAdapter()
+                binding.uploadRvTag.adapter = tagAdapter
+                tagAdapter.setTagList(viewModel.uploadTagList)
+            } else {
+                Log.d("0000", "observe: 넌 뭐냐..")
+            }
+        }
 
     }
 
@@ -105,6 +133,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
     }
 
     private fun setView() {
+        UploadService(this).getLocationData()
 
         activity?.window?.apply {
             decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -120,33 +149,92 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
         binding.uploadEdtProductPrice.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (p0?.isNotEmpty() == true && p0.toString() != lastWonTxt) {
                     val myFormatter = DecimalFormat("###,###")
                     lastWonTxt = myFormatter.format((p0.toString().replace(",", "")).toDouble())
                     binding.uploadEdtProductPrice.setText(lastWonTxt)
                     binding.uploadEdtProductPrice.setSelection(lastWonTxt.length)
+                    binding.uploadImgWon.setColorFilter(requireActivity().resources.getColor(R.color.black))
+                }
+                else if(p0?.isEmpty() == true) {
+                    binding.uploadImgWon.setColorFilter(requireActivity().resources.getColor(R.color.product_location_color))
                 }
             }
-
             override fun afterTextChanged(p0: Editable?) {
-
             }
-
         })
 
-        binding.uploadEdtProductContent.setOnFocusChangeListener { view: View, isFocus: Boolean ->
-            if (isFocus && immKeyboard.isAcceptingText) {
-                Log.d("0000", "setView: it is")
-                binding.customView.visibility = View.VISIBLE
-                binding.uploadAdditionalBottomView.visibility = View.VISIBLE
-            } else {
-                Log.d("0000", "setView: it isnt")
-                binding.customView.visibility = View.GONE
-                binding.uploadAdditionalBottomView.visibility = View.GONE
+        binding.uploadEdtProductContent.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun afterTextChanged(p0: Editable?) {
+                binding.uploadCountContent.text = "${p0?.length}/2000"
+            }
+        })
+
+        binding.uploadEdtProductContent.viewTreeObserver.addOnGlobalLayoutListener {
+            if(isAttach) {
+                if (isKeyboardShown(binding.uploadEdtProductContent.rootView)) {
+                    if (binding.uploadEdtProductPrice.isFocused) {
+                        binding.customView.visibility = View.VISIBLE
+                        binding.uploadLayoutSafePay.visibility = View.GONE
+                    }
+                    else if(binding.uploadEdtProductName.isFocused) {
+                        binding.customView.visibility = View.VISIBLE
+                        binding.uploadAdditionalTitle.visibility = View.VISIBLE
+                        binding.uploadLayoutSafePay.visibility = View.GONE
+                    }
+                    else {
+                        binding.customView.visibility = View.VISIBLE
+                        binding.uploadAdditionalContent.visibility = View.VISIBLE
+                        binding.uploadLayoutSafePay.visibility = View.GONE
+                    }
+                } else {
+                    binding.customView.visibility = View.GONE
+                    binding.uploadAdditionalTitle.visibility = View.GONE
+                    binding.uploadAdditionalContent.visibility = View.GONE
+                    binding.uploadLayoutSafePay.visibility = View.VISIBLE
+                }
             }
         }
+
+        binding.uploadTxtMyLocation.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        binding.uploadTxtSafepayRequireMoreInfo.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+
+    }
+
+    private fun setFocusListenrs() {
+        binding.uploadEdtProductName.setOnFocusChangeListener { view, b ->
+            if(b) {
+                binding.uploadDivName.setBackgroundColor(requireActivity().resources.getColor(R.color.black))
+            } else {
+                binding.uploadDivName.setBackgroundColor(requireActivity().resources.getColor(R.color.login_user_edittext_unfocused_tint))
+            }
+
+        }
+        binding.uploadEdtProductPrice.setOnFocusChangeListener { view, b ->
+            if(b) {
+                binding.uploadDivPrice.setBackgroundColor(requireActivity().resources.getColor(R.color.black))
+            } else {
+                binding.uploadDivPrice.setBackgroundColor(requireActivity().resources.getColor(R.color.login_user_edittext_unfocused_tint))
+            }
+        }
+    }
+
+    private fun isKeyboardShown (rootView : View?) : Boolean {
+        val r = Rect()
+        rootView?.getWindowVisibleDisplayFrame(r)
+        val dm = rootView?.resources?.displayMetrics
+        val heightDiff = rootView?.bottom?.minus(r.bottom)
+        if (dm != null) {
+            if (heightDiff != null) {
+                return heightDiff > SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD * dm.density
+            }
+        }
+        return false
     }
 
     private fun setDialogLogic() {
@@ -266,28 +354,6 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
                 }
             }
         })
-
-        viewModel.uploadTagList.observe(requireActivity(), Observer {
-            for (i in it) {
-                Log.d("0000", "observe: $i")
-            }
-            Log.d("0000", "observe: ${binding.uploadTxtTag.text}")
-            /*if(it[0] == "") {
-                binding.uploadImgTag.visibility = View.VISIBLE
-                binding.uploadTxtTag.visibility = View.VISIBLE
-                binding.uploadRvTag.visibility = View.INVISIBLE
-            } else if(it[0] != "") {
-                binding.uploadImgTag.visibility = View.GONE
-                binding.uploadTxtTag.visibility = View.GONE
-                binding.uploadRvTag.visibility = View.VISIBLE
-
-                tagAdapter = TagRvAdapter()
-                binding.uploadRvTag.adapter = tagAdapter
-                tagAdapter.setTagList(it)
-            } else {
-                Log.d("0000", "observe: 넌 뭐냐..")
-            }*/
-        })
     }
 
     private fun setNotify(list: MutableList<Uri>) {
@@ -316,7 +382,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
                 categoryMiddle = viewModel.uploadMiddleCategoryIdx.value!!,
                 categorySmall = viewModel.uploadSmallCategoryIdx.value!!,
                 price = (binding.uploadEdtProductPrice.text.toString().replace(",", "")).toInt(),
-                productTagList = mutableListOf<tagName>(tagName("#")),
+                productTagList = tagAdapter.tagsList,
                 explanation = binding.uploadEdtProductContent.text.toString(),
                 shippingFee = if (isFeeIncluded) {
                     "INCLUDE"
@@ -457,15 +523,14 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
         }
     }
 
-    override fun onDestroyView() {
-        keyboardVisibilityUtils.detachKeyboardListeners()
-        super.onDestroyView()
-    }
-
     override fun onGetLargeCategorySuccess(response: UploadCategoryData) {
     }
 
     override fun onGetMiddleCategorySuccess(response: UploadCategoryData) {
+    }
+
+    override fun onGetLocationData(response: UploadLocationData) {
+        binding.uploadTxtMyLocation.text = response.result
     }
 
     override fun onGetSmallCategorySuccess(response: UploadCategoryData) {
@@ -478,6 +543,18 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
                 .commit()
             requireActivity().supportFragmentManager.popBackStack()
         }
+    }
 
+    override fun onPause() {
+        super.onPause()
+        viewModel.setTag = true
+        isAttach = false
+        keyboardVisibilityUtils.detachKeyboardListeners()
+        Log.d("0000", "onPause: ")
+    }
+    override fun onDetach() {
+        super.onDetach()
+        viewModel.setTag = false
+        Log.d("0000", "onDetach: ")
     }
 }

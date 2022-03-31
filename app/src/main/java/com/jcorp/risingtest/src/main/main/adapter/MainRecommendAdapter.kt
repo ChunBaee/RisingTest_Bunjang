@@ -68,6 +68,11 @@ class MainRecommendAdapter (context : Context) : RecyclerView.Adapter<MainRecomm
             }
             binding.itemMainRecommendTime.text = item.createdAt
 
+            if(item.myFavorite == "LIKE") {
+                binding.itemMainRecommendHeart.setImageResource(R.drawable.icon_heart_filled)
+            } else if(item.myFavorite == "UNLIKE") {
+                binding.itemMainRecommendHeart.setImageResource(R.drawable.icon_itemlist_heart)
+            }
 
         }
     }

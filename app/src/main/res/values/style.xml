@@ -20,4 +20,9 @@
         <item name="android:textSize">15dp</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <style name="deep_green_handle_black_cursor_edt" parent="Theme.MaterialComponents.Light.NoActionBar">
+
+    </style>
+
 </resources>

@@ -154,6 +154,9 @@ class TradeAddAddressFragment (name : String?, main : String?, sub : String?, ph
     override fun onProductDetailDataSuccess(response: ProductDetailData) {
     }
 
+    override fun onPostUserFavoriteSuccess(response: BaseData) {
+    }
+
     override fun onGetBuyProductDataSuccess(response: BuyProductData) {
     }
 

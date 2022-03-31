@@ -11,6 +11,7 @@ import com.jcorp.risingtest.databinding.FragmentUploadCategoryFormBinding
 import com.jcorp.risingtest.src.MyViewModel
 import com.jcorp.risingtest.src.main.upload.adapter.CategoryRvAdapter
 import com.jcorp.risingtest.src.main.upload.model.UploadCategoryData
+import com.jcorp.risingtest.src.main.upload.model.UploadLocationData
 import com.jcorp.risingtest.src.main.upload.util.UploadCategoryView
 import com.jcorp.risingtest.src.main.upload.util.UploadService
 
@@ -94,6 +95,9 @@ class UploadCategoryFormFragment(depth: Int) : BaseFragment<FragmentUploadCatego
 
     override fun onGetMiddleCategorySuccess(response: UploadCategoryData) {
         categoryAdapter.setData(response.result.toMutableList())
+    }
+
+    override fun onGetLocationData(response: UploadLocationData) {
     }
 
     override fun onGetSmallCategorySuccess(response: UploadCategoryData) {

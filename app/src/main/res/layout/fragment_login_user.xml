@@ -13,7 +13,8 @@
         android:src="@drawable/icon_back"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_margin="10sp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"/>
 
     <TextView
         android:id="@+id/login_user_txt_changeable1"
@@ -24,7 +25,7 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_marginTop="30dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="30dp"
         app:layout_constraintTop_toBottomOf="@id/login_user_back"
         app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -43,7 +44,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
-        app:layout_constraintWidth_percent="0.9"
+        app:layout_constraintWidth_percent="0.86"
+        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@id/login_user_txt_changeable2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -52,7 +54,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/login_user_layout_shop_name"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:visibility="gone">
 
@@ -63,7 +65,9 @@
                 android:text="상점명"
                 android:textStyle="bold"
                 android:textSize="12sp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/login_user_edt_shop_name"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
             <EditText
@@ -72,12 +76,24 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:maxLength="10"
+                android:textSelectHandle="@drawable/icon_edt_handle_dark_green"
                 android:textCursorDrawable="@color/black"
-                android:backgroundTint="@color/login_user_edittext_unfocused_tint"
+                android:background="@android:color/transparent"
+                android:textSize="20sp"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintWidth_percent="1"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/login_user_txt_shop_name"
+                app:layout_constraintBottom_toTopOf="@id/login_user_shopName_divider"
                 app:layout_constraintLeft_toLeftOf="parent" >
             </EditText>
+
+            <View
+                android:id="@+id/login_user_shopName_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/login_user_edittext_unfocused_tint"
+                app:layout_constraintTop_toBottomOf="@id/login_user_edt_shop_name"
+                app:layout_constraintLeft_toLeftOf="parent"/>
 
             <TextView
                 android:id="@+id/login_user_shopname_additonal1"
@@ -86,7 +102,7 @@
                 android:text="@string/login_shopname_additional1"
                 android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="@id/login_user_edt_shop_name"
-                app:layout_constraintTop_toBottomOf="@id/login_user_edt_shop_name"/>
+                app:layout_constraintTop_toBottomOf="@id/login_user_shopName_divider"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -101,7 +117,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/login_user_layout_phone_number"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:visibility="gone">
 
@@ -112,7 +128,9 @@
                 android:text="휴대폰번호"
                 android:textStyle="bold"
                 android:textSize="12sp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/login_user_edt_phone_number"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
             <EditText
@@ -122,13 +140,25 @@
                 android:textStyle="bold"
                 android:maxLength="11"
                 android:inputType="number"
+                android:textSelectHandle="@drawable/icon_edt_handle_dark_green"
                 android:textCursorDrawable="@color/black"
-                android:backgroundTint="@color/login_user_edittext_unfocused_tint"
+                android:background="@android:color/transparent"
+                android:textSize="20sp"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintWidth_percent="1"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/login_user_phone_divider"
                 app:layout_constraintLeft_toLeftOf="parent" >
                 <requestFocus/>
+
             </EditText>
+
+            <View
+                android:id="@+id/login_user_phone_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/login_user_edittext_unfocused_tint"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"/>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -144,6 +174,18 @@
         app:layout_constraintTop_toBottomOf="@id/login_user_txt_changeable2"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" >
+
+        <TextView
+            android:id="@+id/login_user_txt_telecom_upper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="통신사"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/login_user_txt_telecom"
+            app:layout_constraintLeft_toLeftOf="parent"/>
         
         <TextView
             android:id="@+id/login_user_txt_telecom"
@@ -152,7 +194,8 @@
             android:text="통신사"
             android:textStyle="bold"
             android:textSize="17sp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintTop_toBottomOf="@id/login_user_txt_telecom_upper"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"/>
         
@@ -175,7 +218,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/login_user_layout_password"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
             android:visibility="gone"
             app:layout_constraintHeight_percent="0.08"
             android:layout_marginTop="25dp"
@@ -190,18 +233,31 @@
                 android:text="비밀번호"
                 android:textStyle="bold"
                 android:textSize="12sp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/login_user_edt_user_password"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
             <EditText
                 android:id="@+id/login_user_edt_user_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textSelectHandle="@drawable/icon_edt_handle_dark_green"
                 android:textCursorDrawable="@color/black"
-                android:backgroundTint="@color/login_user_edittext_unfocused_tint"
+                android:background="@android:color/transparent"
                 android:inputType="textPassword"
                 android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginBottom="8dp"
                 app:layout_constraintTop_toBottomOf="@id/login_user_txt_password"
+                app:layout_constraintBottom_toTopOf="@id/login_user_password_divider"
+                app:layout_constraintLeft_toLeftOf="parent"/>
+
+            <View
+                android:id="@+id/login_user_password_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/login_user_edittext_unfocused_tint"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"/>
 
@@ -212,7 +268,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_user_layout_email"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintHeight_percent="0.08"
         android:layout_marginTop="25dp"
@@ -227,29 +283,41 @@
             android:text="이메일"
             android:textStyle="bold"
             android:textSize="12sp"
+            android:layout_marginBottom="5dp"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/login_user_edt_user_email"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
         <EditText
             android:id="@+id/login_user_edt_user_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSelectHandle="@drawable/icon_edt_handle_dark_green"
             android:textCursorDrawable="@color/black"
-            android:backgroundTint="@color/login_user_edittext_unfocused_tint"
+            android:background="@android:color/transparent"
             android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginBottom="8dp"
             app:layout_constraintTop_toBottomOf="@id/login_user_txt_email"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/login_user_email_divider"
             app:layout_constraintLeft_toLeftOf="parent" />
+
+        <View
+            android:id="@+id/login_user_email_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/login_user_edittext_unfocused_tint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/login_user_layout_name"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         app:layout_constraintWidth_percent="0.9"
-        app:layout_constraintHeight_percent="0.08"
         app:layout_constraintTop_toBottomOf="@id/login_user_layout_email"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" >
@@ -261,7 +329,9 @@
             android:text="이름"
             android:textStyle="bold"
             android:textSize="12sp"
+            android:layout_marginBottom="5dp"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/login_user_edt_name"
             app:layout_constraintLeft_toLeftOf="parent"/>
 
         <EditText
@@ -269,14 +339,24 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:maxLength="6"
+            android:textSize="20sp"
+            android:textSelectHandle="@drawable/icon_edt_handle_dark_green"
             android:textCursorDrawable="@color/black"
-            android:backgroundTint="@color/login_user_edittext_unfocused_tint"
+            android:background="@android:color/transparent"
+            android:layout_marginBottom="8dp"
             app:layout_constraintWidth_percent="1"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/login_user_name_divider"
             app:layout_constraintLeft_toLeftOf="parent" >
             <requestFocus/>
         </EditText>
+
+        <View
+            android:id="@+id/login_user_name_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/login_user_edittext_unfocused_tint"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

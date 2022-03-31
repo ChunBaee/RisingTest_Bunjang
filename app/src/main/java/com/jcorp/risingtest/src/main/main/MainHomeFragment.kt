@@ -1,9 +1,13 @@
 package com.jcorp.risingtest.src.main.main
 
+import android.app.ActionBar
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
 import android.view.View
+import android.widget.ScrollView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.viewpager.widget.ViewPager
@@ -40,10 +44,6 @@ class MainHomeFragment : BaseFragment<FragmentMainHomeBinding>(
         setCategory()
         setRecommend()
 
-        viewModel.testImgUrl.observe(requireActivity(), Observer {
-            Log.d("0000", "onViewCreated: $it")
-            //lide.with(requireActivity()).load(it).into(binding.img)
-    })
 
     //툴바 투명도 조절
     val outLocation = IntArray(2)
@@ -116,6 +116,10 @@ private fun setCategory() {
         list.add(MainHomeCategoryData(i, i.toString(), R.drawable.ic_launcher_background))
     }
 
+    binding.mainHomeRvCategory.setOnScrollChangeListener { view, i, i2, i3, i4 ->
+        binding.mainCategoryHandle.scrollX = ((binding.mainHomeRvCategory.computeHorizontalScrollOffset()/425.0)*236.0).toInt()
+    }
+
 }
 
     private fun setRecommend() {
@@ -164,6 +168,9 @@ private fun setCategory() {
     }
 
     override fun onProductDetailDataSuccess(response: ProductDetailData) {
+    }
+
+    override fun onPostUserFavoriteSuccess(response: BaseData) {
     }
 
     override fun onGetBuyProductDataSuccess(response: BuyProductData) {

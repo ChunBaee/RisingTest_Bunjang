@@ -14,6 +14,8 @@ interface MainActivityView {
 
     fun onProductDetailDataSuccess (response : ProductDetailData)
 
+    fun onPostUserFavoriteSuccess (response : BaseData)
+
     fun onGetBuyProductDataSuccess(response : BuyProductData)
 
     fun onPostUserAddress (response : BaseData)

@@ -27,6 +27,11 @@ interface MainInterface {
         @Path (value = "productId", encoded = true) productId : Int
     ) : Call<ProductDetailData>
 
+    @POST("app/favorites/{productId}")
+    fun postUserFavoriteData(
+        @Path(value = "productId", encoded = true) productId: Int
+    ) : Call<BaseData>
+
     @GET("app/orders/{productId}")
     fun getBuyProductData(
         @Path(value = "productId", encoded = true) productId: Int

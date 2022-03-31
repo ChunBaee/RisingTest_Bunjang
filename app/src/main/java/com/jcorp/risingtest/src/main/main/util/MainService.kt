@@ -76,6 +76,18 @@ class MainService(val view: MainActivityView) {
         })
     }
 
+    fun postUserFavoriteData (productId: Int) {
+        mRetrofitInterface.postUserFavoriteData(productId).enqueue(object : Callback<BaseData> {
+            override fun onResponse(call: Call<BaseData>, response: Response<BaseData>) {
+                view.onPostUserFavoriteSuccess(response.body() as BaseData)
+            }
+
+            override fun onFailure(call: Call<BaseData>, t: Throwable) {
+            }
+
+        })
+    }
+
     fun getBuyProductData(productId : Int) {
         mRetrofitInterface.getBuyProductData(productId).enqueue(object : Callback<BuyProductData> {
             override fun onResponse(

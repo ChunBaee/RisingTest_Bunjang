@@ -80,13 +80,25 @@
                     android:layout_height="70dp"
                     android:hint="상품명"
                     android:textColorHint="@color/product_location_color"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    android:backgroundTint="@color/login_user_edittext_unfocused_tint"
+                    android:background="@android:color/transparent"
+                    android:textSelectHandle="@drawable/icon_edt_handle_dark_green"
+                    android:textCursorDrawable="@color/black"
                     app:layout_constraintWidth_percent="0.93"
                     app:layout_constraintTop_toBottomOf="@id/upload_rv_gallery"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintStart_toStartOf="@id/upload_btn_gallery" />
+
+                <View
+                    android:id="@+id/upload_div_name"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:background="@color/login_user_edittext_unfocused_tint"
+                    app:layout_constraintWidth_percent="0.9"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/upload_edt_product_name" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/upload_btn_category"
@@ -169,7 +181,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="태그"
-                        android:textSize="15sp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@color/product_location_color"
                         android:visibility="visible"
@@ -183,7 +195,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:background="@color/black"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:visibility="gone"
                         tools:listitem="@layout/item_upload_tag_list"
@@ -225,10 +236,12 @@
                     android:layout_height="70dp"
                     android:hint="가격"
                     android:textColorHint="@color/product_location_color"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:inputType="number"
                     android:maxLength="11"
+                    android:textSelectHandle="@drawable/icon_edt_handle_dark_green"
+                    android:textCursorDrawable="@color/black"
                     android:backgroundTint="@android:color/transparent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -352,6 +365,8 @@
                     android:maxLength="2000"
                     android:hint="@string/upload_context_hint"
                     android:textSize="15sp"
+                    android:textSelectHandle="@drawable/icon_edt_handle_dark_green"
+                    android:textCursorDrawable="@color/black"
                     app:layout_constraintWidth_percent="0.93"
                     app:layout_constraintTop_toBottomOf="@id/upload_btn_choose_options"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -361,58 +376,10 @@
                 <View
                     android:id="@+id/custom_view"
                     android:layout_width="match_parent"
-                    android:layout_height="500dp"
+                    android:layout_height="700dp"
                     android:background="@android:color/transparent"
                     android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/upload_edt_product_content" />
-
-                <LinearLayout
-                    android:fitsSystemWindows="true"
-                    android:id="@+id/upload_additional_bottom_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    style="@style/Widget.AppCompat.ButtonBar"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="parent">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="혹시 카카오톡 ID를 적으셨나요?"
-                            android:textColor="@color/login_user_edittext_unfocused_tint"
-                            android:textSize="10sp"
-                            android:layout_marginVertical="10dp"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintLeft_toLeftOf="parent"/>
-
-                        <TextView
-                            android:id="@+id/upload_count_content"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0/2000"
-                            android:textSize="10sp"
-                            android:textColor="@color/login_user_edittext_unfocused_tint"
-                            android:layout_marginVertical="10dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent" />
-
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/login_user_edittext_unfocused_tint"
-                            app:layout_constraintBottom_toBottomOf="parent"/>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -442,10 +409,116 @@
 
         </com.google.android.material.appbar.MaterialToolbar>
 
+        <LinearLayout
+            android:id="@+id/upload_additional_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:padding="15dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent" >
+
+            <ImageView
+                android:layout_width="17dp"
+                android:layout_height="17dp"
+                android:src="@drawable/icon_buy_guide_tax"
+                app:tint="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:layout_marginStart="5dp"
+                android:text="거래금지품목 보기"
+                android:textColor="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:fitsSystemWindows="true"
+            android:id="@+id/upload_additional_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:background="@color/white"
+            style="@style/Widget.AppCompat.ButtonBar"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/upload_additional_kakaoId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="혹시 카카오톡 ID를 적으셨나요?"
+                    android:textColor="@color/product_location_color"
+                    android:textSize="12sp"
+                    android:layout_marginStart="20dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/upload_additional_bottom_divider"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <TextView
+                    android:id="@+id/upload_count_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0/2000"
+                    android:textSize="12sp"
+                    android:textColor="@color/product_location_color"
+                    android:layout_marginEnd="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/upload_additional_kakaoId"
+                    app:layout_constraintBottom_toBottomOf="@id/upload_additional_kakaoId" />
+
+                <View
+                    android:id="@+id/upload_additional_bottom_divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/login_user_edittext_unfocused_tint"
+                    app:layout_constraintTop_toBottomOf="@id/upload_additional_kakaoId"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="15dp"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="15dp"
+                    android:layout_marginStart="15dp"
+                    app:layout_constraintTop_toBottomOf="@id/upload_additional_bottom_divider"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_upload_usually_ment" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="자주쓰는 문구"
+                        android:textColor="@color/black"
+                        android:textSize="13sp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"/>
+
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/upload_layout_safePay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_weight="0"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -536,6 +609,7 @@
                     app:layout_constraintRight_toRightOf="parent" />
 
                 <TextView
+                    android:id="@+id/upload_txt_safepay_require_more_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="자세히"

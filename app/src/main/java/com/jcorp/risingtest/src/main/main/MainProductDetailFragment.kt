@@ -8,10 +8,12 @@ import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.android.material.snackbar.Snackbar
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.config.ApplicationClass
 import com.jcorp.risingtest.config.BaseData
@@ -27,13 +29,14 @@ import java.text.DecimalFormat
 class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItemDetailBinding>(FragmentMainItemDetailBinding::bind, R.layout.fragment_main_item_detail), MainActivityView, View.OnClickListener {
     private val viewModel by activityViewModels<MyViewModel>()
 
-    private lateinit var photoAdapter : DetailImageAdapter
+    private lateinit var photoAdapter : DetailMainImgAdapter
     private lateinit var tagAdapter : DetailTagAdapter
     private lateinit var otherProductAdapter : DetailOtherProductAdapter
     private lateinit var reviewAdapter : DetailReviewAdapter
     private lateinit var similarAdapter : DetailSimilarAdapter
 
     private val mPosition = position
+    private var likeState = false
 
     private val myFormatter = DecimalFormat("###,###")
 
@@ -43,6 +46,7 @@ class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItem
 
         binding.productDetailBtnBack.setOnClickListener(this)
         binding.productDetailBtnThunderPay.setOnClickListener(this)
+        binding.productDetailBtnZzim.setOnClickListener(this)
 
         getData()
         observe()
@@ -114,8 +118,7 @@ class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItem
     }
 
     private fun setImgPager() {
-        photoAdapter = DetailImageAdapter(requireActivity())
-        binding.productDetailPager.adapter = photoAdapter
+
     }
 
     private fun setTagList() {
@@ -161,7 +164,11 @@ class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItem
     }
 
     override fun onProductDetailDataSuccess(response: ProductDetailData) {
-        photoAdapter.setImgList(response.result.productImgList.toMutableList())
+        photoAdapter = DetailMainImgAdapter(response.result.productImgList.toMutableList(),false,requireActivity())
+        binding.productDetailPager.adapter = photoAdapter
+        binding.productDetailPagerIndicator.attachViewPager(binding.productDetailPager)
+        binding.productDetailPagerIndicator.setDotTint(requireActivity().resources.getColor(R.color.product_detail_thunderpay_color))
+
         tagAdapter.setTagList(response.result.productTagList.toMutableList())
         otherProductAdapter.setOtherProductList(response.result.sellProductList.toMutableList())
         reviewAdapter.setReviewList(response.result.reviewList.toMutableList())
@@ -186,6 +193,7 @@ class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItem
 
         binding.productDetailShopProductCount.text = response.result.sellProductList.size.toString()
         binding.productDetailShopReviewCount.text = response.result.reviewList.size.toString()
+        binding.productDetailReviewRating.rating = response.result.storeInfo.starRate.toFloat()
 
 
         binding.productDetailSmallToolbarTitle.text = response.result.productInfo.title
@@ -209,6 +217,16 @@ class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItem
             })
         }
 
+        if(response.result.productInfo.myFavorite == "LIKE") {
+            binding.productDetailHeart.setImageResource(R.drawable.icon_heart_filled)
+            likeState = true
+        } else if(response.result.productInfo.myFavorite == "UNLIKE") {
+            binding.productDetailHeart.setImageResource(R.drawable.icon_product_detail_heart)
+            likeState = false
+        }
+    }
+
+    override fun onPostUserFavoriteSuccess(response: BaseData) {
     }
 
     override fun onGetBuyProductDataSuccess(response: BuyProductData) {
@@ -249,6 +267,22 @@ class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItem
                     viewModel.isDirect.value = true
                     payDialog.dismiss()
                     requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null).replace(R.id.main_container, MainProductBuyFragment(true, mPosition)).commit()
+                }
+            }
+
+            R.id.product_detail_btn_zzim -> {
+                if(likeState) {
+                    binding.productDetailHeart.setImageResource(R.drawable.icon_product_detail_heart)
+                    binding.productDetailTxtZzim.text = (binding.productDetailTxtZzim.text.toString().toInt() - 1).toString()
+                    MainService(this).postUserFavoriteData(mPosition)
+                    Snackbar.make(binding.productDetailScrollView, "찜 해제가 완료되었습니다", Snackbar.LENGTH_SHORT).show()
+                    likeState = false
+                } else {
+                    binding.productDetailHeart.setImageResource(R.drawable.icon_heart_filled)
+                    binding.productDetailTxtZzim.text = (binding.productDetailTxtZzim.text.toString().toInt() + 1).toString()
+                    MainService(this).postUserFavoriteData(mPosition)
+                    Snackbar.make(binding.productDetailScrollView, "찜 목록에 추가했어요!", Snackbar.LENGTH_SHORT).show()
+                    likeState = true
                 }
             }
         }

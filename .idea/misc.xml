@@ -33,17 +33,17 @@
         <entry key="app/src/main/res/layout/dialog_user_login_permission.xml" value="0.125" />
         <entry key="app/src/main/res/layout/dialog_user_login_telecom.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/fragment_add_address.xml" value="0.1940222897669706" />
-        <entry key="app/src/main/res/layout/fragment_buy_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_buy_main.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_choose_how_to_pay.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_finish_trade.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_login_start.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_login_user.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_login_user.xml" value="0.27298850574712646" />
         <entry key="app/src/main/res/layout/fragment_main_home.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_main_item_detail.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_main_item_detail.xml" value="0.165" />
         <entry key="app/src/main/res/layout/fragment_main_rv_recommend.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/fragment_upload_category_form.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_upload_choose_category.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_upload_home.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_upload_home.xml" value="0.21851851851851853" />
         <entry key="app/src/main/res/layout/fragment_upload_tag.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_add_address.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_choose_how_to_pay.xml" value="0.25" />
@@ -59,7 +59,7 @@
         <entry key="app/src/main/res/layout/item_main_tab_layout_tab.xml" value="0.1644021739130435" />
         <entry key="app/src/main/res/layout/item_product_detail_other_product.xml" value="0.1940222897669706" />
         <entry key="app/src/main/res/layout/item_product_detail_pager.xml" value="0.1933876811594203" />
-        <entry key="app/src/main/res/layout/item_product_detail_review.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/item_product_detail_review.xml" value="0.24611398963730569" />
         <entry key="app/src/main/res/layout/item_product_detail_similar_product.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_product_detail_tag.xml" value="0.165" />
         <entry key="app/src/main/res/layout/item_shipping_options.xml" value="0.1940222897669706" />

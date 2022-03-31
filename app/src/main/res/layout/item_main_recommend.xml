@@ -105,14 +105,16 @@
         android:id="@+id/item_main_recommend_heart_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/item_main_recommend_isThunderPay"
         app:layout_constraintStart_toStartOf="@id/item_main_recommend_price" >
 
         <ImageView
             android:id="@+id/item_main_recommend_heart_img"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
             android:src="@drawable/icon_product_heart"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -124,6 +126,7 @@
             android:layout_height="wrap_content"
             android:text="0"
             android:textStyle="bold"
+            android:textSize="12sp"
             android:textColor="@color/product_location_color"
             android:layout_marginLeft="3dp"
             app:layout_constraintLeft_toRightOf="@id/item_main_recommend_heart_img"

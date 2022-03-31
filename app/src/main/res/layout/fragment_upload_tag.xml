@@ -59,7 +59,7 @@
         <EditText
             android:id="@+id/upload_tag_edt_tags"
             android:layout_width="0dp"
-            android:layout_height="35dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:backgroundTint="@android:color/transparent"

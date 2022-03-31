@@ -7,9 +7,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.jcorp.risingtest.R
 import com.jcorp.risingtest.databinding.ItemUploadTagListBinding
+import com.jcorp.risingtest.src.main.upload.model.tagName
 
 class TagRvAdapter : RecyclerView.Adapter<TagRvAdapter.TagRvViewHolder>() {
-    private var tagList = mutableListOf<String>()
+    var tagsList = mutableListOf<tagName>()
 
     inner class TagRvViewHolder(val binding : ItemUploadTagListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : String) {
@@ -24,20 +25,25 @@ class TagRvAdapter : RecyclerView.Adapter<TagRvAdapter.TagRvViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: TagRvViewHolder, position: Int) {
-        holder.bind(tagList[position])
+        holder.bind(tagsList[position].tagName)
 
-        holder.binding.itemTagTitle.text = tagList[position]
-        if(position == tagList.size -1) {
+        holder.binding.itemTagTitle.text = tagsList[position].tagName
+        if(position == tagsList.size -1) {
             holder.binding.itemTagDivider.visibility = View.GONE
         }
     }
 
     override fun getItemCount(): Int {
-        return tagList.size
+        return tagsList.size
     }
 
-    fun setTagList (list : MutableList<String>) {
-        tagList = list
+    fun setTagList (list : MutableList<String?>) {
+        tagsList = mutableListOf<tagName>()
+        for(i in 0 until list.size) {
+            if(list[i] != null) {
+                tagsList.add(tagName(list[i]!!))
+            }
+        }
         notifyDataSetChanged()
     }
 }

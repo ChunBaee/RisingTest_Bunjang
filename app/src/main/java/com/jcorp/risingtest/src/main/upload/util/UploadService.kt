@@ -4,6 +4,7 @@ import android.util.Log
 import com.jcorp.risingtest.config.ApplicationClass
 import com.jcorp.risingtest.config.BaseData
 import com.jcorp.risingtest.src.main.upload.model.UploadCategoryData
+import com.jcorp.risingtest.src.main.upload.model.UploadLocationData
 import com.jcorp.risingtest.src.main.upload.model.UploadMyProductData
 import retrofit2.Call
 import retrofit2.Callback
@@ -11,6 +12,20 @@ import retrofit2.Response
 
 class UploadService (val view : UploadCategoryView) {
     private val mRetrofitInterface = ApplicationClass.mRetrofit.create(UploadInterface::class.java)
+
+    fun getLocationData() {
+        mRetrofitInterface.getLocationData().enqueue(object : Callback<UploadLocationData> {
+            override fun onResponse(
+                call: Call<UploadLocationData>,
+                response: Response<UploadLocationData>
+            ) {
+                view.onGetLocationData(response.body() as UploadLocationData)
+            }
+
+            override fun onFailure(call: Call<UploadLocationData>, t: Throwable) {
+            }
+        })
+    }
 
     fun getLargeCategory() {
         mRetrofitInterface.getLargeCategory().enqueue(object : Callback<UploadCategoryData> {

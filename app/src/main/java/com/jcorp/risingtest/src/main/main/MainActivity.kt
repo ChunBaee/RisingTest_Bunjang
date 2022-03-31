@@ -87,6 +87,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>(ActivityMainBinding::infl
     override fun onProductDetailDataSuccess(response: ProductDetailData) {
     }
 
+    override fun onPostUserFavoriteSuccess(response: BaseData) {
+    }
+
     override fun onGetBuyProductDataSuccess(response: BuyProductData) {
     }
 

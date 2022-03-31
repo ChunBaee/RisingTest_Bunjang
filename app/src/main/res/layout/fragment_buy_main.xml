@@ -290,6 +290,8 @@
                                 android:backgroundTint="@android:color/transparent"
                                 android:hint="0"
                                 android:inputType="number"
+                                android:textSelectHandle="@drawable/icon_edt_handle_dark_green"
+                                android:textCursorDrawable="@color/black"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintLeft_toLeftOf="parent"
                                 app:layout_constraintRight_toLeftOf="@id/buy_btn_use_all_point"

@@ -80,7 +80,7 @@ class UploadTagFragment : BaseFragment<FragmentUploadTagBinding>(
                 } else {
                     "#" + binding.uploadTagEdtTags.text.toString()
                 }
-                viewModel.uploadTagList.value = tagList.split(" ").toMutableList()
+                viewModel.uploadTagList = tagList.split(" ").toMutableList()
 
                 requireActivity().supportFragmentManager.beginTransaction()
                     .remove(this@UploadTagFragment)

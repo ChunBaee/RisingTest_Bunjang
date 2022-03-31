@@ -60,6 +60,7 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
         setView()
         setDialogOnSingle()
         checkName()
+        focusListeners()
     }
 
     private fun setView() {
@@ -188,10 +189,47 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
         return list
     }
 
+    private fun focusListeners() {
+        binding.loginUserEdtName.setOnFocusChangeListener { view, b ->
+            if(b) {
+                binding.loginUserNameDivider.setBackgroundColor(requireActivity().resources.getColor(R.color.black))
+            } else {
+                binding.loginUserNameDivider.setBackgroundColor(requireActivity().resources.getColor(R.color.login_user_edittext_unfocused_tint))
+            }
+        }
+        binding.loginUserEdtUserEmail.setOnFocusChangeListener { view, b ->
+            if(b) {
+                binding.loginUserEmailDivider.setBackgroundColor(requireActivity().resources.getColor(R.color.black))
+            } else {
+                binding.loginUserEmailDivider.setBackgroundColor(requireActivity().resources.getColor(R.color.login_user_edittext_unfocused_tint))
+            }
+        }
+        binding.loginUserEdtUserPassword.setOnFocusChangeListener { view, b ->
+            if(b) {
+                binding.loginUserPasswordDivider.setBackgroundColor(requireActivity().resources.getColor(R.color.black))
+            } else {
+                binding.loginUserPasswordDivider.setBackgroundColor(requireActivity().resources.getColor(R.color.login_user_edittext_unfocused_tint))
+            }
+        }
+        binding.loginUserEdtPhoneNumber.setOnFocusChangeListener { view, b ->
+            if(b) {
+                binding.loginUserPhoneDivider.setBackgroundColor(requireActivity().resources.getColor(R.color.black))
+            } else {
+                binding.loginUserPhoneDivider.setBackgroundColor(requireActivity().resources.getColor(R.color.login_user_edittext_unfocused_tint))
+            }
+        }
+        binding.loginUserEdtShopName.setOnFocusChangeListener { view, b ->
+            if(b) {
+                binding.loginUserShopNameDivider.setBackgroundColor(requireActivity().resources.getColor(R.color.black))
+            } else {
+                binding.loginUserShopNameDivider.setBackgroundColor(requireActivity().resources.getColor(R.color.login_user_edittext_unfocused_tint))
+            }
+        }
+    }
+
     private fun checkName() {
         binding.loginUserEdtName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                binding.loginUserEdtName.background.setTint(Color.BLACK)
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -205,11 +243,10 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
                     isName = true
                 }
             }
-
         })
     }
 
-    private fun checkId() {
+    private fun checkEmail() {
         binding.loginUserEdtUserEmail.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -329,7 +366,7 @@ class LoginUserFragment : BaseFragment<FragmentLoginUserBinding>(
                     binding.loginUserLayoutEmail.visibility = View.VISIBLE
                     binding.loginUserEdtUserEmail.requestFocus()
                     binding.loginUserTxtChangeable1.text = "아이디를"
-                    checkId()
+                    checkEmail()
                 }
             }
 

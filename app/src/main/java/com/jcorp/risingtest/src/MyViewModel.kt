@@ -7,9 +7,11 @@ import androidx.lifecycle.ViewModel
 import com.google.android.gms.tasks.Task
 import com.jcorp.risingtest.src.main.main.model.CurUserData
 import com.jcorp.risingtest.src.main.main.model.Result
+import com.jcorp.risingtest.src.main.upload.model.tagName
 
 class MyViewModel : ViewModel() {
 
+    var setTag = false
     var choosePayment = MutableLiveData<Boolean>(false)
 
     var testImgUrl = MutableLiveData<String>()
@@ -44,7 +46,7 @@ class MyViewModel : ViewModel() {
 
     var categorySelected = MutableLiveData<Boolean>(false)
     //uploadTag
-    var uploadTagList = MutableLiveData<MutableList<String>>()
+    var uploadTagList = mutableListOf<String?>()
 
     //BuyProduct
     var isDirect = MutableLiveData<Boolean>()

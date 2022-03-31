@@ -222,6 +222,9 @@ class MainProductBuyFragment(isDirect: Boolean, position: Int) :
     override fun onProductDetailDataSuccess(response: ProductDetailData) {
     }
 
+    override fun onPostUserFavoriteSuccess(response: BaseData) {
+    }
+
     override fun onGetBuyProductDataSuccess(response: BuyProductData) {
         binding.buyProductPrice.text = myFormatter.format(response.result.price.toDouble())
         binding.buyProductTitle.text = response.result.title
