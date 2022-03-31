@@ -40,6 +40,8 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
     val SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD = 128
     var isAttach = true
 
+    private lateinit var imm : InputMethodManager
+
     private val viewModel by activityViewModels<MyViewModel>()
     private lateinit var keyboardVisibilityUtils: KeyboardVisibilityUtils
     private val GALLERY_REQUEST_CODE = 1000
@@ -134,6 +136,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
 
     private fun setView() {
         UploadService(this).getLocationData()
+        imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 
         activity?.window?.apply {
             decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -446,6 +449,7 @@ class UploadFragment : BaseFragment<FragmentUploadHomeBinding>(
                 viewModel.safePayClicked()
             }
             R.id.upload_btn_category -> {
+                imm.hideSoftInputFromWindow(binding.uploadBtnCategory.windowToken, 0)
                 requireActivity().supportFragmentManager.beginTransaction().addToBackStack(null)
                     .add(R.id.main_container, UploadCategoryChooseFragment()).commit()
             }

@@ -1,5 +1,6 @@
 package com.jcorp.risingtest.src.main.main
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
@@ -46,8 +47,8 @@ class TradeChoosePayFragment : BaseFragment<FragmentChooseHowToPayBinding>(
                 viewModel.curLiveChoosePayment.value = position
                 paymentAdapter.notifyDataSetChanged()
             }
-
         })
+        binding.txtNotionInfo.paintFlags = Paint.UNDERLINE_TEXT_FLAG
     }
 
     private fun observe() {
@@ -60,7 +61,7 @@ class TradeChoosePayFragment : BaseFragment<FragmentChooseHowToPayBinding>(
                     binding.txtNotion3.text =
                         "ㆍ카드사별 무이자 할부 지원 : BC카드, NH농협카드, KB국민카드, 삼성카드, 신한카드, 하나카드, 롯데카드, 현대카드, 우리카드"
                     binding.txtNotion4.text = "ㆍ일부 상품은 무이자 할부 및 혜택 적용이 불가"
-                    binding.txtNotionInfo.text = "ㆍ포인트/무이자 할부"
+                    binding.txtNotionInfo.text = "포인트/무이자 할부"
                     binding.chooseHowBtnChooseCompany.visibility = View.VISIBLE
                 }
                 1 -> {

@@ -1,5 +1,6 @@
 package com.jcorp.risingtest.src.main.main
 
+import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.Editable
@@ -63,10 +64,9 @@ class MainProductBuyFragment(isDirect: Boolean, position: Int) :
 
         viewModel.hideBottomView.value = true
 
-        getData()
         setUi()
-        observe()
         setDialog()
+        observe()
 
         binding.buyBtnSetOrChangeLocation.setOnClickListener(this)
         binding.buyBtnShippingRequest.setOnClickListener(this)
@@ -121,8 +121,13 @@ class MainProductBuyFragment(isDirect: Boolean, position: Int) :
                     viewModel.usePoint.value = 0
                 }
             }
-
         })
+
+        binding.buyBtnSetOrChangeLocation.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        binding.buyTxtMaximumBenefitInfo.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        binding.buyBtnNewPayment.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        binding.buyBtnAgreeSeeMore.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+        binding.buyPastTax.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
     }
 
     private fun observe() {
@@ -140,7 +145,7 @@ class MainProductBuyFragment(isDirect: Boolean, position: Int) :
         })
 
         viewModel.usePoint.observe(requireActivity(), Observer {
-            binding.buyUsePoint.text = it.toString()
+            binding.buyUsePoint.text = myFormatter.format(it.toDouble())
             binding.buyFinalPrice.text = myFormatter.format(intTotPay - viewModel.usePoint.value!!)
         })
 
@@ -394,6 +399,15 @@ class MainProductBuyFragment(isDirect: Boolean, position: Int) :
             }
 
         }
+    }
+
+    override fun onResume() {
+        getData()
+        super.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 
     override fun onDestroyView() {

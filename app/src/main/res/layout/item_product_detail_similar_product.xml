@@ -41,13 +41,16 @@
 
         <TextView
             android:id="@+id/product_other_product_name"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="에어팟 프로"
             android:textSize="13sp"
             android:textColor="#63626D"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="@id/product_other_product_price"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toStartOf="@id/product_other_product_photo"
             app:layout_constraintTop_toBottomOf="@id/product_other_product_price" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

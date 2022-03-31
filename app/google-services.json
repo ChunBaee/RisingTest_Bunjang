@@ -79,6 +79,35 @@
           ]
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345942039389:android:8794b4e20ed0e2353966b4",
+        "android_client_info": {
+          "package_name": "com.risingcamp.bunjangb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345942039389-je0lkre25blpih25ah5gpu8ckuve486f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMghz_2_k3U-V6hRmQDrOXTgBfjm8mq2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345942039389-je0lkre25blpih25ah5gpu8ckuve486f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
     }
   ],
   "configuration_version": "1"

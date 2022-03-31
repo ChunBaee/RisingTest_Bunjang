@@ -764,11 +764,13 @@
                                     app:layout_constraintTop_toTopOf="@id/buy_benefit_top1" />
 
                                 <TextView
+                                    android:id="@+id/buy_txt_maximum_benefit_info"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_margin="15dp"
                                     android:text="자세히"
-                                    android:textColor="@color/black"
+                                    android:textSize="12sp"
+                                    android:textColor="@color/login_start_other_text"
                                     app:layout_constraintBottom_toBottomOf="@id/buy_benefit_top1"
                                     app:layout_constraintRight_toRightOf="parent"
                                     app:layout_constraintTop_toTopOf="@id/buy_benefit_top1" />

@@ -42,7 +42,6 @@ class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItem
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.hideBottomView.value = true
 
         binding.productDetailBtnBack.setOnClickListener(this)
         binding.productDetailBtnThunderPay.setOnClickListener(this)
@@ -143,6 +142,11 @@ class MainProductDetailFragment (position : Int) : BaseFragment<FragmentMainItem
         similarAdapter = DetailSimilarAdapter(requireActivity())
         binding.productDetailSimilarRv.hasFixedSize()
         binding.productDetailSimilarRv.adapter = similarAdapter
+    }
+
+    override fun onResume() {
+        viewModel.hideBottomView.value = true
+        super.onResume()
     }
 
     override fun onPause() {

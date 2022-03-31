@@ -67,6 +67,8 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="@color/black"
+            android:textSelectHandle="@drawable/icon_edt_handle_dark_green"
+            android:textCursorDrawable="@color/black"
             android:layout_marginLeft="25dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -29,6 +29,7 @@ class TradeFinishFragment : BaseFragment<FragmentFinishTradeBinding> (FragmentFi
         })
 
         binding.finishBtnFinish.setOnClickListener {
+            viewModel.productPrice.value = 0
             requireActivity().supportFragmentManager.beginTransaction().remove(this@TradeFinishFragment).commit()
             requireActivity().supportFragmentManager.popBackStack()
         }
